@@ -1,52 +1,29 @@
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
-var pg = require('pg');
-
-var CONTACTS_COLLECTION = "mutthikadam";
+var CONTACTS_COLLECTION = "public";
 
 var app = express();
-app.use(express.static(__dirname + "/mutthikadam"));
+app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
-// var config = {
-  // user: 'foo',
-  // database: 'my_db',
-  // password: 'secret',
-  // host: 'localhost',
-  // port: 5432,
-  // max: 10,
-  // idletimeoutmillis: 30000,
-// };
-// var pool = new pg.pool(config);
-// pool.connect(function(err, client, done) {
-  // if(err) {
-    // return console.error('error fetching client from pool', err);
-  // }
-  // client.query('select $1::int as number', ['1'], function(err, result) {
-    // done();
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'tutorial-db-instance.cili1k8ns5gz.us-east-1.rds.amazonaws.com',
+  user     : 'tutorial_user',
+  password : 'mysql123',
+  database : 'domutthi_ka_dum'
+});
 
-    // if(err) {
-      // return console.error('error running query', err);
-    // }
-    // console.log(result.rows[0].number);
-  // });
-// });
+const sql = "CREATE TABLE MyGuests ( id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(30) NOT NULL, lastname VARCHAR(30) NOT NULL, email VARCHAR(50), reg_date TIMESTAMP)";
+const select = 'select * from MyGuests';
+connection.connect();
+connection.query(sql, function(err, rows, fields) {
+  if (err) throw err;
+  console.log('The solution is: ', rows[0].solution);
+});
 
-// pool.on('error', function (err, client) {
-  // console.error('idle client error', err.message, err.stack)
-// })
-
-// var client = new pg.client();
-// client.connect(function (err) {
-  // client.query('select $1::text as name', ['brianc'], function (err, result) {
-    // if (err) throw err;
-    // console.log("running");
-    // client.end(function (err) {
-      // if (err) throw err;
-    // });
-  // });
-// });
+connection.end();
 
   var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
@@ -58,32 +35,17 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
-app.get("/mutthikadam", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get mutthikadam.");
-    } else {
-      res.status(200).json(docs);  
-    }
-  });
+app.get("/health", function(req, res) {
+connection.connect();
+connection.query(select, function(err, rows, fields) {
+  if (err) throw err;
+  console.log('The solution is: ', rows[0].solution);
+  res.status(200).json(rows[0].solution); 
 });
 
-app.post("/mutthikadam", function(req, res) {
-  var newContact = req.body;
-  newContact.createDate = new Date();
-
-  if (!(req.body.firstName || req.body.lastName)) {
-    handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
-  }
-
-  db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to create new mutthikadam.");
-    } else {
-      res.status(201).json(doc.ops[0]);
-    }
-  });
+connection.end();
 });
+
 
 app.get("/mutthikadam/:id", function(req, res) {
   db.collection(CONTACTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
