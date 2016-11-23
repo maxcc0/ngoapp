@@ -129,7 +129,7 @@
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _DashboardLayout = __webpack_require__(961);
+	var _DashboardLayout = __webpack_require__(973);
 
 	var _DashboardLayout2 = _interopRequireDefault(_DashboardLayout);
 
@@ -154,7 +154,7 @@
 	  childRoutes: [{
 	    component: _Home2.default,
 	    indexRoute: { component: _DashboardLayout2.default },
-	    childRoutes: [__webpack_require__(972), __webpack_require__(973), __webpack_require__(986)]
+	    childRoutes: [__webpack_require__(984), __webpack_require__(985), __webpack_require__(991)]
 	  }, {
 	    path: '/login',
 	    component: _Login2.default,
@@ -30165,7 +30165,7 @@
 	  displayName: 'Base',
 
 	  componentWillMount: function componentWillMount() {
-	    // this.props.history.pushState(null, '/dashboard/overview');
+	    this.props.history.pushState(null, '/login');
 	  },
 
 	  render: function render() {
@@ -77305,7 +77305,7 @@
 
 	var _Features2 = _interopRequireDefault(_Features);
 
-	var _Intro = __webpack_require__(960);
+	var _Intro = __webpack_require__(972);
 
 	var _Intro2 = _interopRequireDefault(_Intro);
 
@@ -77892,6 +77892,10 @@
 
 	var _place2 = _interopRequireDefault(_place);
 
+	var _Signup = __webpack_require__(960);
+
+	var _Signup2 = _interopRequireDefault(_Signup);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Features = function (_React$Component) {
@@ -78310,11 +78314,7 @@
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'col-xs-6' },
-	                                _react2.default.createElement(
-	                                    'button',
-	                                    { type: 'submit', block: true, className: 'btn btn-block btn-default btn-lg' },
-	                                    'Register'
-	                                )
+	                                _react2.default.createElement(_Signup2.default, null)
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
@@ -78656,6 +78656,1868 @@
 	    value: true
 	});
 
+	var _react = __webpack_require__(81);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _RaisedButton = __webpack_require__(921);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	var _SimpleDialog = __webpack_require__(961);
+
+	var _SimpleDialog2 = _interopRequireDefault(_SimpleDialog);
+
+	var _SignupForm = __webpack_require__(964);
+
+	var _SignupForm2 = _interopRequireDefault(_SignupForm);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function trigger() {
+	    return _react2.default.createElement(
+	        'button',
+	        { type: 'submit', block: true, className: 'btn btn-block btn-outline btn-white btn-default btn-lg' },
+	        'Signup'
+	    );
+	}
+
+	function renderBrand() {
+	    return _react2.default.createElement('img', { src: __webpack_require__(948), style: { marginLeft: '10px' }, className: 'brand-logo' });
+	}
+
+	function getTitle() {
+	    return _react2.default.createElement(
+	        'h4',
+	        { className: 'font-thin no-margins text-center' },
+	        renderBrand(),
+	        ' ',
+	        _react2.default.createElement(
+	            'div',
+	            { style: { display: 'inline-block' }, className: ' text-center' },
+	            'Signup!! Become a volunteer'
+	        )
+	    );
+	}
+
+	var Modals = _react2.default.createClass({
+	    displayName: 'Modals',
+	    handleConfirm: function handleConfirm() {
+	        alert('confirm button pressed');
+	    },
+	    handleCancel: function handleCancel() {
+	        alert('cancel button pressed');
+	    },
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            _SimpleDialog2.default,
+	            { trigger: trigger,
+	                handleConfirm: this.handleConfirm,
+	                handleCancel: this.handleCancel,
+	                title: getTitle() },
+	            _react2.default.createElement(_SignupForm2.default, null),
+	            _react2.default.createElement(
+	                'p',
+	                { className: 'card-text text-center text-muted' },
+	                'Become a part of the intiative and contribute.'
+	            )
+	        );
+	    }
+
+	});
+
+	exports.default = Modals;
+
+/***/ },
+/* 961 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(769);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(795);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(796);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(800);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(847);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(81);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Dialog = __webpack_require__(962);
+
+	var _Dialog2 = _interopRequireDefault(_Dialog);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ModalDialog = function (_React$Component) {
+	    (0, _inherits3.default)(ModalDialog, _React$Component);
+
+	    function ModalDialog(props) {
+	        (0, _classCallCheck3.default)(this, ModalDialog);
+
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (ModalDialog.__proto__ || (0, _getPrototypeOf2.default)(ModalDialog)).call(this, props));
+
+	        _this.state = { open: false };
+	        _this.handleClose = _this.handleClose.bind(_this);
+	        _this.handleOpen = _this.handleOpen.bind(_this);
+	        _this.renderTrigger = _this.renderTrigger.bind(_this);
+	        _this.handleCancel = _this.handleCancel.bind(_this);
+	        _this.handleConfirm = _this.handleConfirm.bind(_this);
+	        _this.renderActions = _this.renderActions.bind(_this);
+	        return _this;
+	    }
+
+	    (0, _createClass3.default)(ModalDialog, [{
+	        key: 'handleOpen',
+	        value: function handleOpen() {
+	            this.setState({ open: true });
+	        }
+	    }, {
+	        key: 'handleClose',
+	        value: function handleClose() {
+	            this.setState({ open: false });
+	        }
+	    }, {
+	        key: 'handleConfirm',
+	        value: function handleConfirm() {
+	            var props = this.props;
+	            props.handleConfirm && props.handleConfirm();
+	            this.handleClose();
+	        }
+	    }, {
+	        key: 'handleCancel',
+	        value: function handleCancel() {
+	            var props = this.props;
+	            props.handleCancel && props.handleCancel();
+	            this.handleClose();
+	        }
+	    }, {
+	        key: 'renderContent',
+	        value: function renderContent() {
+	            var props = this.props;
+	            if (props.children) {
+	                return props.children;
+	            }
+	            return props.message || 'Are you sure you want to do this?';
+	        }
+	    }, {
+	        key: 'renderTrigger',
+	        value: function renderTrigger() {
+	            var props = this.props;
+	            if (props.trigger) {
+	                return _react2.default.createElement(
+	                    'span',
+	                    { onTouchTap: this.handleOpen.bind(this) },
+	                    props.trigger()
+	                );
+	            }
+	        }
+	    }, {
+	        key: 'renderActions',
+	        value: function renderActions() {
+	            var props = this.props;
+	            if (props.hideActions) {
+	                return null;
+	            }
+	            return null;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var props = this.props;
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.renderTrigger(),
+	                _react2.default.createElement(
+	                    _Dialog2.default,
+	                    {
+	                        title: props.title || 'Confirmation',
+	                        actions: this.renderActions(),
+	                        modal: false,
+	                        open: this.state.open,
+	                        onRequestClose: this.handleClose.bind(this)
+	                    },
+	                    this.renderContent()
+	                )
+	            );
+	        }
+	    }]);
+	    return ModalDialog;
+	}(_react2.default.Component);
+
+	exports.default = ModalDialog;
+
+/***/ },
+/* 962 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _Dialog = __webpack_require__(963);
+
+	var _Dialog2 = _interopRequireDefault(_Dialog);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _Dialog2.default;
+
+/***/ },
+/* 963 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _simpleAssign = __webpack_require__(857);
+
+	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+	var _react = __webpack_require__(81);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(114);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _reactEventListener = __webpack_require__(871);
+
+	var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
+
+	var _keycode = __webpack_require__(621);
+
+	var _keycode2 = _interopRequireDefault(_keycode);
+
+	var _transitions = __webpack_require__(864);
+
+	var _transitions2 = _interopRequireDefault(_transitions);
+
+	var _Overlay = __webpack_require__(934);
+
+	var _Overlay2 = _interopRequireDefault(_Overlay);
+
+	var _RenderToLayer = __webpack_require__(872);
+
+	var _RenderToLayer2 = _interopRequireDefault(_RenderToLayer);
+
+	var _Paper = __webpack_require__(874);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _reactAddonsTransitionGroup = __webpack_require__(902);
+
+	var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TransitionItem = function (_Component) {
+	  _inherits(TransitionItem, _Component);
+
+	  function TransitionItem() {
+	    var _Object$getPrototypeO;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, TransitionItem);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(TransitionItem)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+	      style: {}
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(TransitionItem, [{
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearTimeout(this.enterTimeout);
+	      clearTimeout(this.leaveTimeout);
+	    }
+	  }, {
+	    key: 'componentWillEnter',
+	    value: function componentWillEnter(callback) {
+	      this.componentWillAppear(callback);
+	    }
+	  }, {
+	    key: 'componentWillAppear',
+	    value: function componentWillAppear(callback) {
+	      var spacing = this.context.muiTheme.baseTheme.spacing;
+
+	      this.setState({
+	        style: {
+	          opacity: 1,
+	          transform: 'translate(0, ' + spacing.desktopKeylineIncrement + 'px)'
+	        }
+	      });
+
+	      this.enterTimeout = setTimeout(callback, 450); // matches transition duration
+	    }
+	  }, {
+	    key: 'componentWillLeave',
+	    value: function componentWillLeave(callback) {
+	      this.setState({
+	        style: {
+	          opacity: 0,
+	          transform: 'translate(0, 0)'
+	        }
+	      });
+
+	      this.leaveTimeout = setTimeout(callback, 450); // matches transition duration
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var style = _props.style;
+	      var children = _props.children;
+
+	      var other = _objectWithoutProperties(_props, ['style', 'children']);
+
+	      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        _extends({}, other, { style: prepareStyles((0, _simpleAssign2.default)({}, this.state.style, style)) }),
+	        children
+	      );
+	    }
+	  }]);
+
+	  return TransitionItem;
+	}(_react.Component);
+
+	TransitionItem.propTypes = {
+	  children: _react.PropTypes.node,
+	  style: _react.PropTypes.object
+	};
+	TransitionItem.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+
+
+	function getStyles(props, context) {
+	  var autoScrollBodyContent = props.autoScrollBodyContent;
+	  var open = props.open;
+	  var _context$muiTheme = context.muiTheme;
+	  var _context$muiTheme$bas = _context$muiTheme.baseTheme;
+	  var spacing = _context$muiTheme$bas.spacing;
+	  var palette = _context$muiTheme$bas.palette;
+	  var dialog = _context$muiTheme.dialog;
+	  var zIndex = _context$muiTheme.zIndex;
+
+
+	  var gutter = spacing.desktopGutter;
+	  var borderScroll = '1px solid ' + palette.borderColor;
+
+	  return {
+	    root: {
+	      position: 'fixed',
+	      boxSizing: 'border-box',
+	      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+	      zIndex: zIndex.dialog,
+	      top: 0,
+	      left: open ? 0 : -10000,
+	      width: '100%',
+	      height: '100%',
+	      transition: open ? _transitions2.default.easeOut('0ms', 'left', '0ms') : _transitions2.default.easeOut('0ms', 'left', '450ms')
+	    },
+	    content: {
+	      boxSizing: 'border-box',
+	      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+	      transition: _transitions2.default.easeOut(),
+	      position: 'relative',
+	      width: '75%',
+	      maxWidth: spacing.desktopKeylineIncrement * 12,
+	      margin: '0 auto',
+	      zIndex: zIndex.dialog
+	    },
+	    actionsContainer: {
+	      boxSizing: 'border-box',
+	      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+	      padding: 8,
+	      width: '100%',
+	      textAlign: 'right',
+	      marginTop: autoScrollBodyContent ? -1 : 0,
+	      borderTop: autoScrollBodyContent ? borderScroll : 'none'
+	    },
+	    overlay: {
+	      zIndex: zIndex.dialogOverlay
+	    },
+	    title: {
+	      margin: 0,
+	      padding: gutter + 'px ' + gutter + 'px 20px ' + gutter + 'px',
+	      color: palette.textColor,
+	      fontSize: dialog.titleFontSize,
+	      lineHeight: '32px',
+	      fontWeight: 400,
+	      marginBottom: autoScrollBodyContent ? -1 : 0,
+	      borderBottom: autoScrollBodyContent ? borderScroll : 'none'
+	    },
+	    body: {
+	      fontSize: dialog.bodyFontSize,
+	      color: dialog.bodyColor,
+	      padding: (props.title ? 0 : gutter) + 'px ' + gutter + 'px ' + gutter + 'px',
+	      boxSizing: 'border-box',
+	      overflowY: autoScrollBodyContent ? 'auto' : 'hidden'
+	    }
+	  };
+	}
+
+	var DialogInline = function (_Component2) {
+	  _inherits(DialogInline, _Component2);
+
+	  function DialogInline() {
+	    var _Object$getPrototypeO2;
+
+	    var _temp2, _this2, _ret2;
+
+	    _classCallCheck(this, DialogInline);
+
+	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	      args[_key2] = arguments[_key2];
+	    }
+
+	    return _ret2 = (_temp2 = (_this2 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(DialogInline)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.handleTouchTapOverlay = function () {
+	      _this2.requestClose(false);
+	    }, _this2.handleKeyUp = function (event) {
+	      if ((0, _keycode2.default)(event) === 'esc') {
+	        _this2.requestClose(false);
+	      }
+	    }, _this2.handleResize = function () {
+	      _this2.positionDialog();
+	    }, _temp2), _possibleConstructorReturn(_this2, _ret2);
+	  }
+
+	  _createClass(DialogInline, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.positionDialog();
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      this.positionDialog();
+	    }
+	  }, {
+	    key: 'positionDialog',
+	    value: function positionDialog() {
+	      var _props2 = this.props;
+	      var actions = _props2.actions;
+	      var autoDetectWindowHeight = _props2.autoDetectWindowHeight;
+	      var autoScrollBodyContent = _props2.autoScrollBodyContent;
+	      var bodyStyle = _props2.bodyStyle;
+	      var open = _props2.open;
+	      var repositionOnUpdate = _props2.repositionOnUpdate;
+	      var title = _props2.title;
+
+
+	      if (!open) {
+	        return;
+	      }
+
+	      var clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+	      var container = _reactDom2.default.findDOMNode(this);
+	      var dialogWindow = _reactDom2.default.findDOMNode(this.refs.dialogWindow);
+	      var dialogContent = _reactDom2.default.findDOMNode(this.refs.dialogContent);
+	      var minPaddingTop = 16;
+
+	      // Reset the height in case the window was resized.
+	      dialogWindow.style.height = '';
+	      dialogContent.style.height = '';
+
+	      var dialogWindowHeight = dialogWindow.offsetHeight;
+	      var paddingTop = (clientHeight - dialogWindowHeight) / 2 - 64;
+	      if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
+
+	      // Vertically center the dialog window, but make sure it doesn't
+	      // transition to that position.
+	      if (repositionOnUpdate || !container.style.paddingTop) {
+	        container.style.paddingTop = paddingTop + 'px';
+	      }
+
+	      // Force a height if the dialog is taller than clientHeight
+	      if (autoDetectWindowHeight || autoScrollBodyContent) {
+	        var styles = getStyles(this.props, this.context);
+	        styles.body = (0, _simpleAssign2.default)(styles.body, bodyStyle);
+	        var maxDialogContentHeight = clientHeight - 2 * 64;
+
+	        if (title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
+
+	        if (_react2.default.Children.count(actions)) {
+	          maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+	        }
+
+	        dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
+	      }
+	    }
+	  }, {
+	    key: 'requestClose',
+	    value: function requestClose(buttonClicked) {
+	      if (!buttonClicked && this.props.modal) {
+	        return;
+	      }
+
+	      if (this.props.onRequestClose) {
+	        this.props.onRequestClose(!!buttonClicked);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props3 = this.props;
+	      var actions = _props3.actions;
+	      var actionsContainerClassName = _props3.actionsContainerClassName;
+	      var actionsContainerStyle = _props3.actionsContainerStyle;
+	      var bodyClassName = _props3.bodyClassName;
+	      var bodyStyle = _props3.bodyStyle;
+	      var children = _props3.children;
+	      var className = _props3.className;
+	      var contentClassName = _props3.contentClassName;
+	      var contentStyle = _props3.contentStyle;
+	      var overlayClassName = _props3.overlayClassName;
+	      var overlayStyle = _props3.overlayStyle;
+	      var open = _props3.open;
+	      var titleClassName = _props3.titleClassName;
+	      var titleStyle = _props3.titleStyle;
+	      var title = _props3.title;
+	      var style = _props3.style;
+	      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+	      var styles = getStyles(this.props, this.context);
+
+	      styles.root = (0, _simpleAssign2.default)(styles.root, style);
+	      styles.content = (0, _simpleAssign2.default)(styles.content, contentStyle);
+	      styles.body = (0, _simpleAssign2.default)(styles.body, bodyStyle);
+	      styles.actionsContainer = (0, _simpleAssign2.default)(styles.actionsContainer, actionsContainerStyle);
+	      styles.overlay = (0, _simpleAssign2.default)(styles.overlay, overlayStyle);
+	      styles.title = (0, _simpleAssign2.default)(styles.title, titleStyle);
+
+	      var actionsContainer = _react2.default.Children.count(actions) > 0 && _react2.default.createElement(
+	        'div',
+	        { className: actionsContainerClassName, style: prepareStyles(styles.actionsContainer) },
+	        _react2.default.Children.toArray(actions)
+	      );
+
+	      var titleElement = title;
+	      if (_react2.default.isValidElement(title)) {
+	        titleElement = _react2.default.cloneElement(title, {
+	          className: title.props.className || titleClassName,
+	          style: prepareStyles((0, _simpleAssign2.default)(styles.title, title.props.style))
+	        });
+	      } else if (typeof title === 'string') {
+	        titleElement = _react2.default.createElement(
+	          'h3',
+	          { className: titleClassName, style: prepareStyles(styles.title) },
+	          title
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: className, style: prepareStyles(styles.root) },
+	        open && _react2.default.createElement(_reactEventListener2.default, {
+	          target: 'window',
+	          onKeyUp: this.handleKeyUp,
+	          onResize: this.handleResize
+	        }),
+	        _react2.default.createElement(
+	          _reactAddonsTransitionGroup2.default,
+	          {
+	            component: 'div',
+	            ref: 'dialogWindow',
+	            transitionAppear: true,
+	            transitionAppearTimeout: 450,
+	            transitionEnter: true,
+	            transitionEnterTimeout: 450
+	          },
+	          open && _react2.default.createElement(
+	            TransitionItem,
+	            {
+	              className: contentClassName,
+	              style: styles.content
+	            },
+	            _react2.default.createElement(
+	              _Paper2.default,
+	              { zDepth: 4 },
+	              titleElement,
+	              _react2.default.createElement(
+	                'div',
+	                {
+	                  ref: 'dialogContent',
+	                  className: bodyClassName,
+	                  style: prepareStyles(styles.body)
+	                },
+	                children
+	              ),
+	              actionsContainer
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(_Overlay2.default, {
+	          show: open,
+	          className: overlayClassName,
+	          style: styles.overlay,
+	          onTouchTap: this.handleTouchTapOverlay
+	        })
+	      );
+	    }
+	  }]);
+
+	  return DialogInline;
+	}(_react.Component);
+
+	DialogInline.propTypes = {
+	  actions: _react.PropTypes.node,
+	  actionsContainerClassName: _react.PropTypes.string,
+	  actionsContainerStyle: _react.PropTypes.object,
+	  autoDetectWindowHeight: _react.PropTypes.bool,
+	  autoScrollBodyContent: _react.PropTypes.bool,
+	  bodyClassName: _react.PropTypes.string,
+	  bodyStyle: _react.PropTypes.object,
+	  children: _react.PropTypes.node,
+	  className: _react.PropTypes.string,
+	  contentClassName: _react.PropTypes.string,
+	  contentStyle: _react.PropTypes.object,
+	  modal: _react.PropTypes.bool,
+	  onRequestClose: _react.PropTypes.func,
+	  open: _react.PropTypes.bool.isRequired,
+	  overlayClassName: _react.PropTypes.string,
+	  overlayStyle: _react.PropTypes.object,
+	  repositionOnUpdate: _react.PropTypes.bool,
+	  style: _react.PropTypes.object,
+	  title: _react.PropTypes.node,
+	  titleClassName: _react.PropTypes.string,
+	  titleStyle: _react.PropTypes.object
+	};
+	DialogInline.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+
+	var Dialog = function (_Component3) {
+	  _inherits(Dialog, _Component3);
+
+	  function Dialog() {
+	    var _Object$getPrototypeO3;
+
+	    var _temp3, _this3, _ret3;
+
+	    _classCallCheck(this, Dialog);
+
+	    for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+	      args[_key3] = arguments[_key3];
+	    }
+
+	    return _ret3 = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_Object$getPrototypeO3 = Object.getPrototypeOf(Dialog)).call.apply(_Object$getPrototypeO3, [this].concat(args))), _this3), _this3.renderLayer = function () {
+	      return _react2.default.createElement(DialogInline, _this3.props);
+	    }, _temp3), _possibleConstructorReturn(_this3, _ret3);
+	  }
+
+	  _createClass(Dialog, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(_RenderToLayer2.default, { render: this.renderLayer, open: true, useLayerForClickAway: false });
+	    }
+	  }]);
+
+	  return Dialog;
+	}(_react.Component);
+
+	Dialog.propTypes = {
+	  /**
+	   * Action buttons to display below the Dialog content (`children`).
+	   * This property accepts either a React element, or an array of React elements.
+	   */
+	  actions: _react.PropTypes.node,
+	  /**
+	   * The `className` to add to the actions container's root element.
+	   */
+	  actionsContainerClassName: _react.PropTypes.string,
+	  /**
+	   * Overrides the inline-styles of the actions container's root element.
+	   */
+	  actionsContainerStyle: _react.PropTypes.object,
+	  /**
+	   * If set to true, the height of the `Dialog` will be auto detected. A max height
+	   * will be enforced so that the content does not extend beyond the viewport.
+	   */
+	  autoDetectWindowHeight: _react.PropTypes.bool,
+	  /**
+	   * If set to true, the body content of the `Dialog` will be scrollable.
+	   */
+	  autoScrollBodyContent: _react.PropTypes.bool,
+	  /**
+	   * The `className` to add to the content's root element under the title.
+	   */
+	  bodyClassName: _react.PropTypes.string,
+	  /**
+	   * Overrides the inline-styles of the content's root element under the title.
+	   */
+	  bodyStyle: _react.PropTypes.object,
+	  /**
+	   * The contents of the `Dialog`.
+	   */
+	  children: _react.PropTypes.node,
+	  /**
+	   * The css class name of the root element.
+	   */
+	  className: _react.PropTypes.string,
+	  /**
+	   * The `className` to add to the content container.
+	   */
+	  contentClassName: _react.PropTypes.string,
+	  /**
+	   * Overrides the inline-styles of the content container.
+	   */
+	  contentStyle: _react.PropTypes.object,
+	  /**
+	   * Force the user to use one of the actions in the `Dialog`.
+	   * Clicking outside the `Dialog` will not trigger the `onRequestClose`.
+	   */
+	  modal: _react.PropTypes.bool,
+	  /**
+	   * Fired when the `Dialog` is requested to be closed by a click outside the `Dialog` or on the buttons.
+	   *
+	   * @param {bool} buttonClicked Determines whether a button click triggered this request.
+	   */
+	  onRequestClose: _react.PropTypes.func,
+	  /**
+	   * Controls whether the Dialog is opened or not.
+	   */
+	  open: _react.PropTypes.bool.isRequired,
+	  /**
+	   * The `className` to add to the `Overlay` component that is rendered behind the `Dialog`.
+	   */
+	  overlayClassName: _react.PropTypes.string,
+	  /**
+	   * Overrides the inline-styles of the `Overlay` component that is rendered behind the `Dialog`.
+	   */
+	  overlayStyle: _react.PropTypes.object,
+	  /**
+	   * Determines whether the `Dialog` should be repositioned when it's contents are updated.
+	   */
+	  repositionOnUpdate: _react.PropTypes.bool,
+	  /**
+	   * Override the inline-styles of the root element.
+	   */
+	  style: _react.PropTypes.object,
+	  /**
+	   * The title to display on the `Dialog`. Could be number, string, element or an array containing these types.
+	   */
+	  title: _react.PropTypes.node,
+	  /**
+	   * The `className` to add to the title's root container element.
+	   */
+	  titleClassName: _react.PropTypes.string,
+	  /**
+	   * Overrides the inline-styles of the title's root container element.
+	   */
+	  titleStyle: _react.PropTypes.object
+	};
+	Dialog.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+	Dialog.defaultProps = {
+	  autoDetectWindowHeight: true,
+	  autoScrollBodyContent: false,
+	  modal: false,
+	  repositionOnUpdate: true
+	};
+	exports.default = Dialog;
+
+/***/ },
+/* 964 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(81);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _formsyReact = __webpack_require__(965);
+
+	var _formsyReact2 = _interopRequireDefault(_formsyReact);
+
+	var _jQuery = __webpack_require__(767);
+
+	var _jQuery2 = _interopRequireDefault(_jQuery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MyAppForm = _react2.default.createClass({
+	  displayName: 'MyAppForm',
+	  getInitialState: function getInitialState() {
+	    return {
+	      canSubmit: false
+	    };
+	  },
+	  enableButton: function enableButton() {
+	    this.setState({
+	      canSubmit: true
+	    });
+	  },
+	  disableButton: function disableButton() {
+	    this.setState({
+	      canSubmit: false
+	    });
+	  },
+	  submit: function submit(model) {
+	    _jQuery2.default.post("/api/signup", { data: model }, function (data, status) {
+	      alert("Data: " + data + "\nStatus: " + status);
+	    });
+	    console.log(model);
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      _formsyReact2.default.Form,
+	      { onValidSubmit: this.submit, onValid: this.enableButton, onInvalid: this.disableButton },
+	      _react2.default.createElement(MyOwnInput, { name: 'name', label: 'Name', required: true }),
+	      _react2.default.createElement(MyOwnInput, { name: 'email', label: 'Email', validations: 'isEmail', validationError: 'This is not a valid email' }),
+	      _react2.default.createElement(MyOwnInput, { name: 'contact', label: 'Contact#', required: true }),
+	      _react2.default.createElement(MyOwnInput, { name: 'password', label: 'password', type: 'password', required: true }),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'form-group row' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-sm-6 col-sm-offset-3' },
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'submit', className: ' col-sm-6 col-sm-offset-3 btn btn-block btn-lg yellow-bg-v2 pull-right', disabled: !this.state.canSubmit },
+	            'Signup'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	var MyOwnInput = _react2.default.createClass({
+	  displayName: 'MyOwnInput',
+
+
+	  // Add the Formsy Mixin
+	  mixins: [_formsyReact2.default.Mixin],
+
+	  // setValue() will set the value of the component, which in
+	  // turn will validate it and the rest of the form
+	  changeValue: function changeValue(event) {
+	    this.setValue(event.currentTarget.value);
+	  },
+	  render: function render() {
+	    // Set a specific className based on the validation
+	    // state of this component. showRequired() is true
+	    // when the value is empty and the required prop is
+	    // passed to the input. showError() is true when the
+	    // value typed is invalid
+	    var className = this.showRequired() ? 'required' : this.showError() ? 'error' : null;
+
+	    // An error message is returned ONLY if the component is invalid
+	    // or the server has returned an error message
+	    var errorMessage = this.getErrorMessage();
+
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'form-group row' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-sm-6 col-sm-offset-3' },
+	        _react2.default.createElement('input', { className: 'form-control', placeholder: this.props.label, type: 'text', onChange: this.changeValue, value: this.getValue() }),
+	        _react2.default.createElement(
+	          'p',
+	          { className: 'help-block' },
+	          errorMessage
+	        )
+	      )
+	    );
+	  }
+	});
+
+	exports.default = MyAppForm;
+
+/***/ },
+/* 965 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var React = global.React || __webpack_require__(81);
+	var Formsy = {};
+	var validationRules = __webpack_require__(966);
+	var formDataToObject = __webpack_require__(967);
+	var utils = __webpack_require__(968);
+	var Mixin = __webpack_require__(969);
+	var HOC = __webpack_require__(970);
+	var Decorator = __webpack_require__(971);
+	var options = {};
+	var emptyArray = [];
+
+	Formsy.Mixin = Mixin;
+	Formsy.HOC = HOC;
+	Formsy.Decorator = Decorator;
+
+	Formsy.defaults = function (passedOptions) {
+	  options = passedOptions;
+	};
+
+	Formsy.addValidationRule = function (name, func) {
+	  validationRules[name] = func;
+	};
+
+	Formsy.Form = React.createClass({
+	  displayName: 'Formsy',
+	  getInitialState: function getInitialState() {
+	    return {
+	      isValid: true,
+	      isSubmitting: false,
+	      canChange: false
+	    };
+	  },
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      onSuccess: function onSuccess() {},
+	      onError: function onError() {},
+	      onSubmit: function onSubmit() {},
+	      onValidSubmit: function onValidSubmit() {},
+	      onInvalidSubmit: function onInvalidSubmit() {},
+	      onValid: function onValid() {},
+	      onInvalid: function onInvalid() {},
+	      onChange: function onChange() {},
+	      validationErrors: null,
+	      preventExternalInvalidation: false
+	    };
+	  },
+
+	  childContextTypes: {
+	    formsy: React.PropTypes.object
+	  },
+	  getChildContext: function getChildContext() {
+	    var _this = this;
+
+	    return {
+	      formsy: {
+	        attachToForm: this.attachToForm,
+	        detachFromForm: this.detachFromForm,
+	        validate: this.validate,
+	        isFormDisabled: this.isFormDisabled,
+	        isValidValue: function isValidValue(component, value) {
+	          return _this.runValidation(component, value).isValid;
+	        }
+	      }
+	    };
+	  },
+
+	  // Add a map to store the inputs of the form, a model to store
+	  // the values of the form and register child inputs
+	  componentWillMount: function componentWillMount() {
+	    this.inputs = [];
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    this.validateForm();
+	  },
+
+	  componentWillUpdate: function componentWillUpdate() {
+	    // Keep a reference to input names before form updates,
+	    // to check if inputs has changed after render
+	    this.prevInputNames = this.inputs.map(function (component) {
+	      return component.props.name;
+	    });
+	  },
+
+	  componentDidUpdate: function componentDidUpdate() {
+
+	    if (this.props.validationErrors && _typeof(this.props.validationErrors) === 'object' && Object.keys(this.props.validationErrors).length > 0) {
+	      this.setInputValidationErrors(this.props.validationErrors);
+	    }
+
+	    var newInputNames = this.inputs.map(function (component) {
+	      return component.props.name;
+	    });
+	    if (utils.arraysDiffer(this.prevInputNames, newInputNames)) {
+	      this.validateForm();
+	    }
+	  },
+
+	  // Allow resetting to specified data
+	  reset: function reset(data) {
+	    this.setFormPristine(true);
+	    this.resetModel(data);
+	  },
+
+	  // Update model, submit to url prop and send the model
+	  submit: function submit(event) {
+
+	    event && event.preventDefault();
+
+	    // Trigger form as not pristine.
+	    // If any inputs have not been touched yet this will make them dirty
+	    // so validation becomes visible (if based on isPristine)
+	    this.setFormPristine(false);
+	    var model = this.getModel();
+	    this.props.onSubmit(model, this.resetModel, this.updateInputsWithError);
+	    this.state.isValid ? this.props.onValidSubmit(model, this.resetModel, this.updateInputsWithError) : this.props.onInvalidSubmit(model, this.resetModel, this.updateInputsWithError);
+	  },
+
+	  mapModel: function mapModel(model) {
+
+	    if (this.props.mapping) {
+	      return this.props.mapping(model);
+	    } else {
+	      return formDataToObject.toObj(Object.keys(model).reduce(function (mappedModel, key) {
+
+	        var keyArray = key.split('.');
+	        var base = mappedModel;
+	        while (keyArray.length) {
+	          var currentKey = keyArray.shift();
+	          base = base[currentKey] = keyArray.length ? base[currentKey] || {} : model[key];
+	        }
+
+	        return mappedModel;
+	      }, {}));
+	    }
+	  },
+
+	  getModel: function getModel() {
+	    var currentValues = this.getCurrentValues();
+	    return this.mapModel(currentValues);
+	  },
+
+	  // Reset each key in the model to the original / initial / specified value
+	  resetModel: function resetModel(data) {
+	    this.inputs.forEach(function (component) {
+	      var name = component.props.name;
+	      if (data && data.hasOwnProperty(name)) {
+	        component.setValue(data[name]);
+	      } else {
+	        component.resetValue();
+	      }
+	    });
+	    this.validateForm();
+	  },
+
+	  setInputValidationErrors: function setInputValidationErrors(errors) {
+	    this.inputs.forEach(function (component) {
+	      var name = component.props.name;
+	      var args = [{
+	        _isValid: !(name in errors),
+	        _validationError: typeof errors[name] === 'string' ? [errors[name]] : errors[name]
+	      }];
+	      component.setState.apply(component, args);
+	    });
+	  },
+
+	  // Checks if the values have changed from their initial value
+	  isChanged: function isChanged() {
+	    return !utils.isSame(this.getPristineValues(), this.getCurrentValues());
+	  },
+
+	  getPristineValues: function getPristineValues() {
+	    return this.inputs.reduce(function (data, component) {
+	      var name = component.props.name;
+	      data[name] = component.props.value;
+	      return data;
+	    }, {});
+	  },
+
+	  // Go through errors from server and grab the components
+	  // stored in the inputs map. Change their state to invalid
+	  // and set the serverError message
+	  updateInputsWithError: function updateInputsWithError(errors) {
+	    var _this2 = this;
+
+	    Object.keys(errors).forEach(function (name, index) {
+	      var component = utils.find(_this2.inputs, function (component) {
+	        return component.props.name === name;
+	      });
+	      if (!component) {
+	        throw new Error('You are trying to update an input that does not exist. ' + 'Verify errors object with input names. ' + JSON.stringify(errors));
+	      }
+	      var args = [{
+	        _isValid: _this2.props.preventExternalInvalidation || false,
+	        _externalError: typeof errors[name] === 'string' ? [errors[name]] : errors[name]
+	      }];
+	      component.setState.apply(component, args);
+	    });
+	  },
+
+	  isFormDisabled: function isFormDisabled() {
+	    return this.props.disabled;
+	  },
+
+	  getCurrentValues: function getCurrentValues() {
+	    return this.inputs.reduce(function (data, component) {
+	      var name = component.props.name;
+	      data[name] = component.state._value;
+	      return data;
+	    }, {});
+	  },
+
+	  setFormPristine: function setFormPristine(isPristine) {
+	    this.setState({
+	      _formSubmitted: !isPristine
+	    });
+
+	    // Iterate through each component and set it as pristine
+	    // or "dirty".
+	    this.inputs.forEach(function (component, index) {
+	      component.setState({
+	        _formSubmitted: !isPristine,
+	        _isPristine: isPristine
+	      });
+	    });
+	  },
+
+	  // Use the binded values and the actual input value to
+	  // validate the input and set its state. Then check the
+	  // state of the form itself
+	  validate: function validate(component) {
+
+	    // Trigger onChange
+	    if (this.state.canChange) {
+	      this.props.onChange(this.getCurrentValues(), this.isChanged());
+	    }
+
+	    var validation = this.runValidation(component);
+	    // Run through the validations, split them up and call
+	    // the validator IF there is a value or it is required
+	    component.setState({
+	      _isValid: validation.isValid,
+	      _isRequired: validation.isRequired,
+	      _validationError: validation.error,
+	      _externalError: null
+	    }, this.validateForm);
+	  },
+
+	  // Checks validation on current value or a passed value
+	  runValidation: function runValidation(component, value) {
+
+	    var currentValues = this.getCurrentValues();
+	    var validationErrors = component.props.validationErrors;
+	    var validationError = component.props.validationError;
+	    value = arguments.length === 2 ? value : component.state._value;
+
+	    var validationResults = this.runRules(value, currentValues, component._validations);
+	    var requiredResults = this.runRules(value, currentValues, component._requiredValidations);
+
+	    // the component defines an explicit validate function
+	    if (typeof component.validate === "function") {
+	      validationResults.failed = component.validate() ? [] : ['failed'];
+	    }
+
+	    var isRequired = Object.keys(component._requiredValidations).length ? !!requiredResults.success.length : false;
+	    var isValid = !validationResults.failed.length && !(this.props.validationErrors && this.props.validationErrors[component.props.name]);
+
+	    return {
+	      isRequired: isRequired,
+	      isValid: isRequired ? false : isValid,
+	      error: function () {
+
+	        if (isValid && !isRequired) {
+	          return emptyArray;
+	        }
+
+	        if (validationResults.errors.length) {
+	          return validationResults.errors;
+	        }
+
+	        if (this.props.validationErrors && this.props.validationErrors[component.props.name]) {
+	          return typeof this.props.validationErrors[component.props.name] === 'string' ? [this.props.validationErrors[component.props.name]] : this.props.validationErrors[component.props.name];
+	        }
+
+	        if (isRequired) {
+	          var error = validationErrors[requiredResults.success[0]];
+	          return error ? [error] : null;
+	        }
+
+	        if (validationResults.failed.length) {
+	          return validationResults.failed.map(function (failed) {
+	            return validationErrors[failed] ? validationErrors[failed] : validationError;
+	          }).filter(function (x, pos, arr) {
+	            // Remove duplicates
+	            return arr.indexOf(x) === pos;
+	          });
+	        }
+	      }.call(this)
+	    };
+	  },
+
+	  runRules: function runRules(value, currentValues, validations) {
+
+	    var results = {
+	      errors: [],
+	      failed: [],
+	      success: []
+	    };
+	    if (Object.keys(validations).length) {
+	      Object.keys(validations).forEach(function (validationMethod) {
+
+	        if (validationRules[validationMethod] && typeof validations[validationMethod] === 'function') {
+	          throw new Error('Formsy does not allow you to override default validations: ' + validationMethod);
+	        }
+
+	        if (!validationRules[validationMethod] && typeof validations[validationMethod] !== 'function') {
+	          throw new Error('Formsy does not have the validation rule: ' + validationMethod);
+	        }
+
+	        if (typeof validations[validationMethod] === 'function') {
+	          var validation = validations[validationMethod](currentValues, value);
+	          if (typeof validation === 'string') {
+	            results.errors.push(validation);
+	            results.failed.push(validationMethod);
+	          } else if (!validation) {
+	            results.failed.push(validationMethod);
+	          }
+	          return;
+	        } else if (typeof validations[validationMethod] !== 'function') {
+	          var validation = validationRules[validationMethod](currentValues, value, validations[validationMethod]);
+	          if (typeof validation === 'string') {
+	            results.errors.push(validation);
+	            results.failed.push(validationMethod);
+	          } else if (!validation) {
+	            results.failed.push(validationMethod);
+	          } else {
+	            results.success.push(validationMethod);
+	          }
+	          return;
+	        }
+
+	        return results.success.push(validationMethod);
+	      });
+	    }
+
+	    return results;
+	  },
+
+	  // Validate the form by going through all child input components
+	  // and check their state
+	  validateForm: function validateForm() {
+	    var _this3 = this;
+
+	    // We need a callback as we are validating all inputs again. This will
+	    // run when the last component has set its state
+	    var onValidationComplete = function () {
+	      var allIsValid = this.inputs.every(function (component) {
+	        return component.state._isValid;
+	      });
+
+	      this.setState({
+	        isValid: allIsValid
+	      });
+
+	      if (allIsValid) {
+	        this.props.onValid();
+	      } else {
+	        this.props.onInvalid();
+	      }
+
+	      // Tell the form that it can start to trigger change events
+	      this.setState({
+	        canChange: true
+	      });
+	    }.bind(this);
+
+	    // Run validation again in case affected by other inputs. The
+	    // last component validated will run the onValidationComplete callback
+	    this.inputs.forEach(function (component, index) {
+	      var validation = _this3.runValidation(component);
+	      if (validation.isValid && component.state._externalError) {
+	        validation.isValid = false;
+	      }
+	      component.setState({
+	        _isValid: validation.isValid,
+	        _isRequired: validation.isRequired,
+	        _validationError: validation.error,
+	        _externalError: !validation.isValid && component.state._externalError ? component.state._externalError : null
+	      }, index === _this3.inputs.length - 1 ? onValidationComplete : null);
+	    });
+
+	    // If there are no inputs, set state where form is ready to trigger
+	    // change event. New inputs might be added later
+	    if (!this.inputs.length && this.isMounted()) {
+	      this.setState({
+	        canChange: true
+	      });
+	    }
+	  },
+
+	  // Method put on each input component to register
+	  // itself to the form
+	  attachToForm: function attachToForm(component) {
+
+	    if (this.inputs.indexOf(component) === -1) {
+	      this.inputs.push(component);
+	    }
+
+	    this.validate(component);
+	  },
+
+	  // Method put on each input component to unregister
+	  // itself from the form
+	  detachFromForm: function detachFromForm(component) {
+	    var componentPos = this.inputs.indexOf(component);
+
+	    if (componentPos !== -1) {
+	      this.inputs = this.inputs.slice(0, componentPos).concat(this.inputs.slice(componentPos + 1));
+	    }
+
+	    this.validateForm();
+	  },
+	  render: function render() {
+	    var _props = this.props;
+	    var mapping = _props.mapping;
+	    var validationErrors = _props.validationErrors;
+	    var onSubmit = _props.onSubmit;
+	    var onValid = _props.onValid;
+	    var onValidSubmit = _props.onValidSubmit;
+	    var onInvalid = _props.onInvalid;
+	    var onInvalidSubmit = _props.onInvalidSubmit;
+	    var onChange = _props.onChange;
+	    var reset = _props.reset;
+	    var preventExternalInvalidation = _props.preventExternalInvalidation;
+	    var onSuccess = _props.onSuccess;
+	    var onError = _props.onError;
+
+	    var nonFormsyProps = _objectWithoutProperties(_props, ['mapping', 'validationErrors', 'onSubmit', 'onValid', 'onValidSubmit', 'onInvalid', 'onInvalidSubmit', 'onChange', 'reset', 'preventExternalInvalidation', 'onSuccess', 'onError']);
+
+	    return React.createElement(
+	      'form',
+	      _extends({}, nonFormsyProps, { onSubmit: this.submit }),
+	      this.props.children
+	    );
+	  }
+	});
+
+	if (!global.exports && !global.module && (!global.define || !global.define.amd)) {
+	  global.Formsy = Formsy;
+	}
+
+	module.exports = Formsy;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 966 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _isExisty = function _isExisty(value) {
+	  return value !== null && value !== undefined;
+	};
+
+	var isEmpty = function isEmpty(value) {
+	  return value === '';
+	};
+
+	var validations = {
+	  isDefaultRequiredValue: function isDefaultRequiredValue(values, value) {
+	    return value === undefined || value === '';
+	  },
+	  isExisty: function isExisty(values, value) {
+	    return _isExisty(value);
+	  },
+	  matchRegexp: function matchRegexp(values, value, regexp) {
+	    return !_isExisty(value) || isEmpty(value) || regexp.test(value);
+	  },
+	  isUndefined: function isUndefined(values, value) {
+	    return value === undefined;
+	  },
+	  isEmptyString: function isEmptyString(values, value) {
+	    return isEmpty(value);
+	  },
+	  isEmail: function isEmail(values, value) {
+	    return validations.matchRegexp(values, value, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i);
+	  },
+	  isUrl: function isUrl(values, value) {
+	    return validations.matchRegexp(values, value, /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i);
+	  },
+	  isTrue: function isTrue(values, value) {
+	    return value === true;
+	  },
+	  isFalse: function isFalse(values, value) {
+	    return value === false;
+	  },
+	  isNumeric: function isNumeric(values, value) {
+	    if (typeof value === 'number') {
+	      return true;
+	    }
+	    return validations.matchRegexp(values, value, /^[-+]?(?:\d*[.])?\d+$/);
+	  },
+	  isAlpha: function isAlpha(values, value) {
+	    return validations.matchRegexp(values, value, /^[A-Z]+$/i);
+	  },
+	  isAlphanumeric: function isAlphanumeric(values, value) {
+	    return validations.matchRegexp(values, value, /^[0-9A-Z]+$/i);
+	  },
+	  isInt: function isInt(values, value) {
+	    return validations.matchRegexp(values, value, /^(?:[-+]?(?:0|[1-9]\d*))$/);
+	  },
+	  isFloat: function isFloat(values, value) {
+	    return validations.matchRegexp(values, value, /^(?:[-+]?(?:\d+))?(?:\.\d*)?(?:[eE][\+\-]?(?:\d+))?$/);
+	  },
+	  isWords: function isWords(values, value) {
+	    return validations.matchRegexp(values, value, /^[A-Z\s]+$/i);
+	  },
+	  isSpecialWords: function isSpecialWords(values, value) {
+	    return validations.matchRegexp(values, value, /^[A-Z\s\u00C0-\u017F]+$/i);
+	  },
+	  isLength: function isLength(values, value, length) {
+	    return !_isExisty(value) || isEmpty(value) || value.length === length;
+	  },
+	  equals: function equals(values, value, eql) {
+	    return !_isExisty(value) || isEmpty(value) || value == eql;
+	  },
+	  equalsField: function equalsField(values, value, field) {
+	    return value == values[field];
+	  },
+	  maxLength: function maxLength(values, value, length) {
+	    return !_isExisty(value) || value.length <= length;
+	  },
+	  minLength: function minLength(values, value, length) {
+	    return !_isExisty(value) || isEmpty(value) || value.length >= length;
+	  }
+	};
+
+	module.exports = validations;
+
+/***/ },
+/* 967 */
+/***/ function(module, exports) {
+
+	function toObj(source) {
+	  return Object.keys(source).reduce(function (output, key) {
+	    var parentKey = key.match(/[^\[]*/i);
+	    var paths = key.match(/\[.*?\]/g) || [];
+	    paths = [parentKey[0]].concat(paths).map(function (key) {
+	      return key.replace(/\[|\]/g, '');
+	    });
+	    var currentPath = output;
+	    while (paths.length) {
+	      var pathKey = paths.shift();
+
+	      if (pathKey in currentPath) {
+	        currentPath = currentPath[pathKey];
+	      } else {
+	        currentPath[pathKey] = paths.length ? isNaN(paths[0]) ? {} : [] : source[key];
+	        currentPath = currentPath[pathKey];
+	      }
+	    }
+
+	    return output;
+	  }, {});
+	}
+
+	function fromObj(obj) {
+	  function recur(newObj, propName, currVal) {
+	    if (Array.isArray(currVal) || Object.prototype.toString.call(currVal) === '[object Object]') {
+	      Object.keys(currVal).forEach(function(v) {
+	        recur(newObj, propName + "[" + v + "]", currVal[v]);
+	      });
+	      return newObj;
+	    }
+
+	    newObj[propName] = currVal;
+	    return newObj;
+	  }
+
+	  var keys = Object.keys(obj);
+	  return keys.reduce(function(newObj, propName) {
+	    return recur(newObj, propName, obj[propName]);
+	  }, {});
+	}
+
+	module.exports = {
+	  fromObj: fromObj,
+	  toObj: toObj
+	}
+
+/***/ },
+/* 968 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	module.exports = {
+	  arraysDiffer: function arraysDiffer(a, b) {
+	    var isDifferent = false;
+	    if (a.length !== b.length) {
+	      isDifferent = true;
+	    } else {
+	      a.forEach(function (item, index) {
+	        if (!this.isSame(item, b[index])) {
+	          isDifferent = true;
+	        }
+	      }, this);
+	    }
+	    return isDifferent;
+	  },
+
+	  objectsDiffer: function objectsDiffer(a, b) {
+	    var isDifferent = false;
+	    if (Object.keys(a).length !== Object.keys(b).length) {
+	      isDifferent = true;
+	    } else {
+	      Object.keys(a).forEach(function (key) {
+	        if (!this.isSame(a[key], b[key])) {
+	          isDifferent = true;
+	        }
+	      }, this);
+	    }
+	    return isDifferent;
+	  },
+
+	  isSame: function isSame(a, b) {
+	    if ((typeof a === 'undefined' ? 'undefined' : _typeof(a)) !== (typeof b === 'undefined' ? 'undefined' : _typeof(b))) {
+	      return false;
+	    } else if (Array.isArray(a)) {
+	      return !this.arraysDiffer(a, b);
+	    } else if (typeof a === 'function') {
+	      return a.toString() === b.toString();
+	    } else if ((typeof a === 'undefined' ? 'undefined' : _typeof(a)) === 'object' && a !== null && b !== null) {
+	      return !this.objectsDiffer(a, b);
+	    }
+
+	    return a === b;
+	  },
+
+	  find: function find(collection, fn) {
+	    for (var i = 0, l = collection.length; i < l; i++) {
+	      var item = collection[i];
+	      if (fn(item)) {
+	        return item;
+	      }
+	    }
+	    return null;
+	  }
+	};
+
+/***/ },
+/* 969 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	var utils = __webpack_require__(968);
+	var React = global.React || __webpack_require__(81);
+
+	var convertValidationsToObject = function convertValidationsToObject(validations) {
+
+	  if (typeof validations === 'string') {
+
+	    return validations.split(/\,(?![^{\[]*[}\]])/g).reduce(function (validations, validation) {
+	      var args = validation.split(':');
+	      var validateMethod = args.shift();
+
+	      args = args.map(function (arg) {
+	        try {
+	          return JSON.parse(arg);
+	        } catch (e) {
+	          return arg; // It is a string if it can not parse it
+	        }
+	      });
+
+	      if (args.length > 1) {
+	        throw new Error('Formsy does not support multiple args on string validations. Use object format of validations instead.');
+	      }
+
+	      validations[validateMethod] = args.length ? args[0] : true;
+	      return validations;
+	    }, {});
+	  }
+
+	  return validations || {};
+	};
+
+	module.exports = {
+	  getInitialState: function getInitialState() {
+	    return {
+	      _value: this.props.value,
+	      _isRequired: false,
+	      _isValid: true,
+	      _isPristine: true,
+	      _pristineValue: this.props.value,
+	      _validationError: [],
+	      _externalError: null,
+	      _formSubmitted: false
+	    };
+	  },
+	  contextTypes: {
+	    formsy: React.PropTypes.object // What about required?
+	  },
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      validationError: '',
+	      validationErrors: {}
+	    };
+	  },
+
+	  componentWillMount: function componentWillMount() {
+	    var configure = function () {
+	      this.setValidations(this.props.validations, this.props.required);
+
+	      // Pass a function instead?
+	      this.context.formsy.attachToForm(this);
+	      //this.props._attachToForm(this);
+	    }.bind(this);
+
+	    if (!this.props.name) {
+	      throw new Error('Form Input requires a name property when used');
+	    }
+
+	    /*
+	    if (!this.props._attachToForm) {
+	      return setTimeout(function () {
+	        if (!this.isMounted()) return;
+	        if (!this.props._attachToForm) {
+	          throw new Error('Form Mixin requires component to be nested in a Form');
+	        }
+	        configure();
+	      }.bind(this), 0);
+	    }
+	    */
+	    configure();
+	  },
+
+	  // We have to make the validate method is kept when new props are added
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    this.setValidations(nextProps.validations, nextProps.required);
+	  },
+
+	  componentDidUpdate: function componentDidUpdate(prevProps) {
+
+	    // If the value passed has changed, set it. If value is not passed it will
+	    // internally update, and this will never run
+	    if (!utils.isSame(this.props.value, prevProps.value)) {
+	      this.setValue(this.props.value);
+	    }
+
+	    // If validations or required is changed, run a new validation
+	    if (!utils.isSame(this.props.validations, prevProps.validations) || !utils.isSame(this.props.required, prevProps.required)) {
+	      this.context.formsy.validate(this);
+	    }
+	  },
+
+	  // Detach it when component unmounts
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.context.formsy.detachFromForm(this);
+	    //this.props._detachFromForm(this);
+	  },
+
+	  setValidations: function setValidations(validations, required) {
+
+	    // Add validations to the store itself as the props object can not be modified
+	    this._validations = convertValidationsToObject(validations) || {};
+	    this._requiredValidations = required === true ? { isDefaultRequiredValue: true } : convertValidationsToObject(required);
+	  },
+
+	  // We validate after the value has been set
+	  setValue: function setValue(value) {
+	    this.setState({
+	      _value: value,
+	      _isPristine: false
+	    }, function () {
+	      this.context.formsy.validate(this);
+	      //this.props._validate(this);
+	    }.bind(this));
+	  },
+	  resetValue: function resetValue() {
+	    this.setState({
+	      _value: this.state._pristineValue,
+	      _isPristine: true
+	    }, function () {
+	      this.context.formsy.validate(this);
+	      //this.props._validate(this);
+	    });
+	  },
+	  getValue: function getValue() {
+	    return this.state._value;
+	  },
+	  hasValue: function hasValue() {
+	    return this.state._value !== '';
+	  },
+	  getErrorMessage: function getErrorMessage() {
+	    var messages = this.getErrorMessages();
+	    return messages.length ? messages[0] : null;
+	  },
+	  getErrorMessages: function getErrorMessages() {
+	    return !this.isValid() || this.showRequired() ? this.state._externalError || this.state._validationError || [] : [];
+	  },
+	  isFormDisabled: function isFormDisabled() {
+	    return this.context.formsy.isFormDisabled();
+	    //return this.props._isFormDisabled();
+	  },
+	  isValid: function isValid() {
+	    return this.state._isValid;
+	  },
+	  isPristine: function isPristine() {
+	    return this.state._isPristine;
+	  },
+	  isFormSubmitted: function isFormSubmitted() {
+	    return this.state._formSubmitted;
+	  },
+	  isRequired: function isRequired() {
+	    return !!this.props.required;
+	  },
+	  showRequired: function showRequired() {
+	    return this.state._isRequired;
+	  },
+	  showError: function showError() {
+	    return !this.showRequired() && !this.isValid();
+	  },
+	  isValidValue: function isValidValue(value) {
+	    return this.context.formsy.isValidValue.call(null, this, value);
+	    //return this.props._isValidValue.call(null, this, value);
+	  }
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 970 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var React = global.React || __webpack_require__(81);
+	var Mixin = __webpack_require__(969);
+	module.exports = function (Component) {
+	  return React.createClass({
+	    displayName: 'Formsy(' + getDisplayName(Component) + ')',
+	    mixins: [Mixin],
+	    render: function render() {
+	      return React.createElement(Component, _extends({
+	        setValidations: this.setValidations,
+	        setValue: this.setValue,
+	        resetValue: this.resetValue,
+	        getValue: this.getValue,
+	        hasValue: this.hasValue,
+	        getErrorMessage: this.getErrorMessage,
+	        getErrorMessages: this.getErrorMessages,
+	        isFormDisabled: this.isFormDisabled,
+	        isValid: this.isValid,
+	        isPristine: this.isPristine,
+	        isFormSubmitted: this.isFormSubmitted,
+	        isRequired: this.isRequired,
+	        showRequired: this.showRequired,
+	        showError: this.showError,
+	        isValidValue: this.isValidValue
+	      }, this.props));
+	    }
+	  });
+	};
+
+	function getDisplayName(Component) {
+	  return Component.displayName || Component.name || (typeof Component === 'string' ? Component : 'Component');
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 971 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var React = global.React || __webpack_require__(81);
+	var Mixin = __webpack_require__(969);
+	module.exports = function () {
+	  return function (Component) {
+	    return React.createClass({
+	      mixins: [Mixin],
+	      render: function render() {
+	        return React.createElement(Component, _extends({
+	          setValidations: this.setValidations,
+	          setValue: this.setValue,
+	          resetValue: this.resetValue,
+	          getValue: this.getValue,
+	          hasValue: this.hasValue,
+	          getErrorMessage: this.getErrorMessage,
+	          getErrorMessages: this.getErrorMessages,
+	          isFormDisabled: this.isFormDisabled,
+	          isValid: this.isValid,
+	          isPristine: this.isPristine,
+	          isFormSubmitted: this.isFormSubmitted,
+	          isRequired: this.isRequired,
+	          showRequired: this.showRequired,
+	          showError: this.showError,
+	          isValidValue: this.isValidValue
+	        }, this.props));
+	      }
+	    });
+	  };
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 972 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _getPrototypeOf = __webpack_require__(769);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -78741,7 +80603,7 @@
 	exports.default = Features;
 
 /***/ },
-/* 961 */
+/* 973 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78756,7 +80618,7 @@
 
 	var _reactRouter = __webpack_require__(286);
 
-	var _PledgeCard = __webpack_require__(962);
+	var _PledgeCard = __webpack_require__(974);
 
 	var _PledgeCard2 = _interopRequireDefault(_PledgeCard);
 
@@ -78775,8 +80637,8 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4 bg-white-base' },
-	          _react2.default.createElement('img', { className: 'left-align', src: __webpack_require__(970), width: '400px', height: '500px' }),
-	          _react2.default.createElement('img', { style: { position: 'relative', left: '15px' }, className: 'pull-right', src: __webpack_require__(971), width: '50%' })
+	          _react2.default.createElement('img', { className: 'left-align', src: __webpack_require__(982), width: '400px', height: '500px' }),
+	          _react2.default.createElement('img', { style: { position: 'relative', left: '15px' }, className: 'pull-right', src: __webpack_require__(983), width: '50%' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -78801,7 +80663,7 @@
 	exports.default = Settings;
 
 /***/ },
-/* 962 */
+/* 974 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78814,7 +80676,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _PledgeForm = __webpack_require__(963);
+	var _PledgeForm = __webpack_require__(975);
 
 	var _PledgeForm2 = _interopRequireDefault(_PledgeForm);
 
@@ -78860,7 +80722,7 @@
 	exports.default = PledgeCard;
 
 /***/ },
-/* 963 */
+/* 975 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78873,7 +80735,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RadioButton = __webpack_require__(964);
+	var _RadioButton = __webpack_require__(976);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -78959,7 +80821,7 @@
 	exports.default = PledgeForm;
 
 /***/ },
-/* 964 */
+/* 976 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78969,11 +80831,11 @@
 	});
 	exports.default = exports.RadioButtonGroup = exports.RadioButton = undefined;
 
-	var _RadioButton2 = __webpack_require__(965);
+	var _RadioButton2 = __webpack_require__(977);
 
 	var _RadioButton3 = _interopRequireDefault(_RadioButton2);
 
-	var _RadioButtonGroup2 = __webpack_require__(969);
+	var _RadioButtonGroup2 = __webpack_require__(981);
 
 	var _RadioButtonGroup3 = _interopRequireDefault(_RadioButtonGroup2);
 
@@ -78984,7 +80846,7 @@
 	exports.default = _RadioButton3.default;
 
 /***/ },
-/* 965 */
+/* 977 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79009,15 +80871,15 @@
 
 	var _transitions2 = _interopRequireDefault(_transitions);
 
-	var _EnhancedSwitch = __webpack_require__(966);
+	var _EnhancedSwitch = __webpack_require__(978);
 
 	var _EnhancedSwitch2 = _interopRequireDefault(_EnhancedSwitch);
 
-	var _radioButtonUnchecked = __webpack_require__(967);
+	var _radioButtonUnchecked = __webpack_require__(979);
 
 	var _radioButtonUnchecked2 = _interopRequireDefault(_radioButtonUnchecked);
 
-	var _radioButtonChecked = __webpack_require__(968);
+	var _radioButtonChecked = __webpack_require__(980);
 
 	var _radioButtonChecked2 = _interopRequireDefault(_radioButtonChecked);
 
@@ -79247,7 +81109,7 @@
 	exports.default = RadioButton;
 
 /***/ },
-/* 966 */
+/* 978 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -79691,7 +81553,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(83)))
 
 /***/ },
-/* 967 */
+/* 979 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79728,7 +81590,7 @@
 	exports.default = ToggleRadioButtonUnchecked;
 
 /***/ },
-/* 968 */
+/* 980 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79765,7 +81627,7 @@
 	exports.default = ToggleRadioButtonChecked;
 
 /***/ },
-/* 969 */
+/* 981 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -79786,7 +81648,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RadioButton = __webpack_require__(964);
+	var _RadioButton = __webpack_require__(976);
 
 	var _RadioButton2 = _interopRequireDefault(_RadioButton);
 
@@ -79981,19 +81843,19 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(83)))
 
 /***/ },
-/* 970 */
+/* 982 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "f612ddc2cf06f846760beaae75a3ab0a.jpg";
 
 /***/ },
-/* 971 */
+/* 983 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "0322bc00654048f2315f6966b0c96f89.jpg";
 
 /***/ },
-/* 972 */
+/* 984 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80010,13 +81872,13 @@
 	    _nProgress2.default.start();
 	    !/* require.ensure */(function (require) {
 	      __webpack_require__(357).done();
-	      cb(null, __webpack_require__(961).default);
+	      cb(null, __webpack_require__(973).default);
 	    }(__webpack_require__));
 	  }
 	};
 
 /***/ },
-/* 973 */
+/* 985 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80033,25 +81895,18 @@
 	    _nProgress2.default.start();
 	    __webpack_require__.e/* nsure */(1, function (require) {
 	      __webpack_require__(357).done();
-	      cb(null, __webpack_require__(974).default);
+	      cb(null, __webpack_require__(986).default);
 	    });
 	  }
 	};
 
 /***/ },
-/* 974 */,
-/* 975 */,
-/* 976 */,
-/* 977 */,
-/* 978 */,
-/* 979 */,
-/* 980 */,
-/* 981 */,
-/* 982 */,
-/* 983 */,
-/* 984 */,
-/* 985 */,
-/* 986 */
+/* 986 */,
+/* 987 */,
+/* 988 */,
+/* 989 */,
+/* 990 */,
+/* 991 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80068,7 +81923,7 @@
 	    _nProgress2.default.start();
 	    __webpack_require__.e/* nsure */(2, function (require) {
 	      __webpack_require__(357).done();
-	      cb(null, __webpack_require__(987).default);
+	      cb(null, __webpack_require__(992).default);
 	    });
 	  }
 	};

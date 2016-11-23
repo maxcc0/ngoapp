@@ -52,7 +52,7 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.less', '.css'],
      alias: {
-        'fabric-ui': __dirname + '/src/index'
+        'fabric-ui': __dirname + '/src/lib/fabric-ui.js'
       },
     root: [
       path.resolve('./src')

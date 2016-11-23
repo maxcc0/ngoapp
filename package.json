@@ -7,9 +7,9 @@
   "license": "MIT",
   "main": "static",
   "scripts": {
-    "start": "gulp serve",
     "open": "gulp open",
     "gulp": "gulp",
+    "start": "webpack-dev-server --content-base dist/ --config webpack.dev.config.js --watch --progress --inline --hot",
     "build": "webpack --config webpack.dev.config.js"
   },
   "devDependencies": {

@@ -10,6 +10,7 @@ import $ from "jQuery";
 import AppBar from 'material-ui/AppBar';
 import Features from './Features';
 import Intro from './Intro';
+
 import HamburgerMenu from 'material-ui/svg-icons/navigation/menu';
 import SideMenu from '../core/Sidebar';
 function renderBrand() {
@@ -66,7 +67,7 @@ var LoginPage = React.createClass({
              </div>
              <Intro handleLogin={this.handleLogin}/>
              </div>
-
+             
              <Features handlePledge={this.handlePledge} handleLogin={this.handleLogin}/>
               
              <div className='page-footer text-center font-light'>
