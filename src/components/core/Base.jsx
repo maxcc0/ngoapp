@@ -27,7 +27,7 @@ console.log(getMuiTheme())
 
 var Base = React.createClass({
   componentWillMount: function(){
-    this.props.history.pushState(null, '/login');
+    //this.props.history.pushState(null, '/login');
   },
 
   render: function() {

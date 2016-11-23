@@ -23,7 +23,6 @@ function fetchDropLocations(cb) {
       data: {  },
       url: 'https://www.socialpixe.com/socialpixe/react/droplocations.php',
       success: function (response) {
-        alert(response);
            cb(response, null)
       }
     })
@@ -48,8 +47,9 @@ var PledgeForm = React.createClass({
   handleDropLocations(data, status) {
     console.log(data);
     console.log('data fetched successfully')
+    const parsed = JSON.parse(data);
     //set drop locations fetched 
-    this.setState({dropLocations: data, selectedDL: data.length && data[0].addressid});
+    this.setState({dropLocations: parsed, selectedDL: parsed.length && parsed[0].addressid});
   },
   
   componentDidMount() {
@@ -66,10 +66,9 @@ var PledgeForm = React.createClass({
     if(_.isEmpty(this.state.dropLocations)) {
       return <h4 className='font-thin'>No drop locations found :(</h4>;
     }
-
     
     _.forEach(this.state.dropLocations, function(item){
-      locations.push(<RadioButton
+      locations.push(<RadioButton key={item.addressid + '_' + _.random(0, 100)}
         value={item.addressid}
         label={item.address}
         style={styles.radioButton}

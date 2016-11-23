@@ -106,7 +106,7 @@ const MyAppForm = React.createClass({
         <button type="submit" className="btn btn-lg yellow-bg-v2" disabled={!this.state.canSubmit}>Confirm</button>
         </div>
         <div className='col-xs-6'>
-        <button type="button" onClick={this.getMyGeoLocation} className="btn  btn-primary-dm pull-right" ><PlaceIcon color={'#fff'}/>Use My Location</button>
+        <button type="button" onClick={this.getMyGeoLocation} className="btn  btn-primary-dm pull-right" ><PlaceIcon style={{verticalAlign: 'bottom'}} color={'#fff'}/>Use My Location</button>
         </div>
         
         

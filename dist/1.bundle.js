@@ -263,7 +263,7 @@ webpackJsonp([1],{
 	          _react2.default.createElement(
 	            'button',
 	            { type: 'button', onClick: this.getMyGeoLocation, className: 'btn  btn-primary-dm pull-right' },
-	            _react2.default.createElement(_place2.default, { color: '#fff' }),
+	            _react2.default.createElement(_place2.default, { style: { verticalAlign: 'bottom' }, color: '#fff' }),
 	            'Use My Location'
 	          )
 	        )

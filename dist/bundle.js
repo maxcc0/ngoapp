@@ -30165,7 +30165,7 @@
 	  displayName: 'Base',
 
 	  componentWillMount: function componentWillMount() {
-	    this.props.history.pushState(null, '/login');
+	    //this.props.history.pushState(null, '/login');
 	  },
 
 	  render: function render() {
@@ -80771,7 +80771,6 @@
 	    data: {},
 	    url: 'https://www.socialpixe.com/socialpixe/react/droplocations.php',
 	    success: function success(response) {
-	      alert(response);
 	      cb(response, null);
 	    }
 	  });
@@ -80797,8 +80796,9 @@
 	  handleDropLocations: function handleDropLocations(data, status) {
 	    console.log(data);
 	    console.log('data fetched successfully');
+	    var parsed = JSON.parse(data);
 	    //set drop locations fetched 
-	    this.setState({ dropLocations: data, selectedDL: data.length && data[0].addressid });
+	    this.setState({ dropLocations: parsed, selectedDL: parsed.length && parsed[0].addressid });
 	  },
 	  componentDidMount: function componentDidMount() {
 	    fetchDropLocations(this.handleDropLocations);
@@ -80820,7 +80820,7 @@
 	    }
 
 	    _lodash2.default.forEach(this.state.dropLocations, function (item) {
-	      locations.push(_react2.default.createElement(_RadioButton.RadioButton, {
+	      locations.push(_react2.default.createElement(_RadioButton.RadioButton, { key: item.addressid + '_' + _lodash2.default.random(0, 100),
 	        value: item.addressid,
 	        label: item.address,
 	        style: styles.radioButton
