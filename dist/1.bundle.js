@@ -34,8 +34,8 @@ webpackJsonp([1],{
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4' },
-	          _react2.default.createElement('img', { src: __webpack_require__(990), width: '100%' }),
-	          _react2.default.createElement('img', { src: __webpack_require__(991), width: '100%' })
+	          _react2.default.createElement('img', { src: __webpack_require__(991), width: '100%' }),
+	          _react2.default.createElement('img', { src: __webpack_require__(992), width: '100%' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -142,13 +142,58 @@ webpackJsonp([1],{
 
 	var _jQuery2 = _interopRequireDefault(_jQuery);
 
+	var _place = __webpack_require__(959);
+
+	var _place2 = _interopRequireDefault(_place);
+
+	var _Location = __webpack_require__(990);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// var geocoder;
+
+	// function initialize() {
+	//   geocoder = new google.maps.Geocoder();
+	// }
+
+	// function codeLatLng(lat, lng, cb) {
+	//   var latlng = new google.maps.LatLng(lat, lng);
+	//   geocoder.geocode({
+	//     'latLng': latlng
+	//   }, function (results, status) {
+	//     if (status === google.maps.GeocoderStatus.OK) {
+	//       if (results[1]) {
+	//         console.log(results[1]);
+	//         cb(null, results[1].formatted_address)
+	//       } else {
+	//         cb(null, '')
+	//       }
+	//     } else {
+	//       cb('Geocoder failed due to: ' + status, '')
+	//     }
+	//   });
+	// }
+	// // initialize();
+	// function _getMyGeoLocation(cb) {
+	//   if (navigator.geolocation) {
+	//     navigator.geolocation.getCurrentPosition(function (location) {
+	//       cb(null, location);
+	//     });
+	//   } else {
+	//     cb('not supported');
+	//     alert('Geolocation is not supported in your browser');
+	//   }
+
+	// }
 
 	var MyAppForm = _react2.default.createClass({
 	  displayName: 'MyAppForm',
 	  getInitialState: function getInitialState() {
+
 	    return {
-	      canSubmit: false
+	      canSubmit: false,
+	      geoLocation: null,
+	      address: null
 	    };
 	  },
 	  enableButton: function enableButton() {
@@ -162,6 +207,7 @@ webpackJsonp([1],{
 	    });
 	  },
 	  submit: function submit(model) {
+	    model.geoLocation = this.state.geoLocation;
 	    _jQuery2.default.ajax({
 
 	      type: 'post',
@@ -172,20 +218,55 @@ webpackJsonp([1],{
 	      }
 	    });
 	  },
+	  handleAddress: function handleAddress(err, address) {
+	    if (err) {
+	      return;
+	    }
+	    this.setState({ address: address });
+	  },
+	  handleGeoLocation: function handleGeoLocation(err, data) {
+	    if (err) {
+	      return;
+	    }
+	    this.setState({ geoLocation: data });
+	    (0, _Location.fetchAddress)(data.coords.latitude, data.coords.longitude, this.handleAddress);
+	  },
+	  getMyGeoLocation: function getMyGeoLocation() {
+	    (0, _Location.getGeoLocation)(this.handleGeoLocation);
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      _formsyReact2.default.Form,
 	      { onValidSubmit: this.submit, onValid: this.enableButton, onInvalid: this.disableButton },
 	      _react2.default.createElement(MyOwnInput, { name: 'name', label: 'Name', required: true }),
-	      _react2.default.createElement(MyOwnInput, { name: 'address', label: 'Address', required: true }),
+	      _react2.default.createElement(MyOwnInput, { name: 'address', value: this.state.address, label: 'Address', required: true }),
 	      _react2.default.createElement(MyOwnInput, { name: 'email', label: 'Email', validations: 'isEmail', validationError: 'This is not a valid email' }),
 	      _react2.default.createElement(MyOwnInput, { name: 'contact', label: 'Contact#', required: true }),
 	      _react2.default.createElement(MyOwnInput, { name: 'contact_alternate', label: 'Alternate Contact#' }),
 	      _react2.default.createElement(MyOwnInput, { name: 'donation_type', label: 'Donate', required: true }),
 	      _react2.default.createElement(
-	        'button',
-	        { type: 'submit', className: 'btn btn-lg yellow-bg-v2', disabled: !this.state.canSubmit },
-	        'Confirm'
+	        'div',
+	        { className: 'form-group row text-left' },
+	        _react2.default.createElement('div', { className: 'col-sm-2' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-xs-4' },
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'submit', className: 'btn btn-lg yellow-bg-v2', disabled: !this.state.canSubmit },
+	            'Confirm'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-xs-6' },
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'button', onClick: this.getMyGeoLocation, className: 'btn  btn-primary-dm pull-right' },
+	            _react2.default.createElement(_place2.default, { color: '#fff' }),
+	            'Use My Location'
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -242,13 +323,56 @@ webpackJsonp([1],{
 /***/ },
 
 /***/ 990:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.fetchAddress = fetchAddress;
+	exports.getGeoLocation = getGeoLocation;
+	function fetchAddress(lat, lng, cb) {
+	    var geocoder;
+	    geocoder = new google.maps.Geocoder();
+	    var latlng = new google.maps.LatLng(lat, lng);
+	    geocoder.geocode({
+	        'latLng': latlng
+	    }, function (results, status) {
+	        if (status === google.maps.GeocoderStatus.OK) {
+	            if (results[1]) {
+	                console.log(results[1]);
+	                cb(null, results[1].formatted_address);
+	            } else {
+	                cb(null, '');
+	            }
+	        } else {
+	            cb('Geocoder failed due to: ' + status, '');
+	        }
+	    });
+	}
+
+	function getGeoLocation(cb) {
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(function (location) {
+	            cb(null, location);
+	        });
+	    } else {
+	        cb('not supported');
+	        alert('Geolocation is not supported in your browser');
+	    }
+	}
+
+/***/ },
+
+/***/ 991:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "00d96eaeb1314ed3e291fe40dea6dfa7.jpg";
 
 /***/ },
 
-/***/ 991:
+/***/ 992:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "506a01626c2319957ee0848d0242c89f.jpg";

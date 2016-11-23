@@ -154,7 +154,7 @@
 	  childRoutes: [{
 	    component: _Home2.default,
 	    indexRoute: { component: _DashboardLayout2.default },
-	    childRoutes: [__webpack_require__(985), __webpack_require__(986), __webpack_require__(992)]
+	    childRoutes: [__webpack_require__(985), __webpack_require__(986), __webpack_require__(993)]
 	  }, {
 	    path: '/login',
 	    component: _Login2.default,
@@ -98914,7 +98914,8 @@
 /* 989 */,
 /* 990 */,
 /* 991 */,
-/* 992 */
+/* 992 */,
+/* 993 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98931,7 +98932,7 @@
 	    _nProgress2.default.start();
 	    __webpack_require__.e/* nsure */(2, function (require) {
 	      __webpack_require__(357).done();
-	      cb(null, __webpack_require__(993).default);
+	      cb(null, __webpack_require__(994).default);
 	    });
 	  }
 	};

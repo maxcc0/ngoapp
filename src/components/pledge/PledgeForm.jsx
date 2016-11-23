@@ -1,13 +1,54 @@
 import React from 'react';
 import Formsy from 'formsy-react';
 import $ from 'jQuery';
+import PlaceIcon from 'material-ui/svg-icons/maps/place';
+import {fetchAddress, getGeoLocation} from '../../utils/Location';
+// var geocoder;
+
+// function initialize() {
+//   geocoder = new google.maps.Geocoder();
+// }
+
+// function codeLatLng(lat, lng, cb) {
+//   var latlng = new google.maps.LatLng(lat, lng);
+//   geocoder.geocode({
+//     'latLng': latlng
+//   }, function (results, status) {
+//     if (status === google.maps.GeocoderStatus.OK) {
+//       if (results[1]) {
+//         console.log(results[1]);
+//         cb(null, results[1].formatted_address)
+//       } else {
+//         cb(null, '')
+//       }
+//     } else {
+//       cb('Geocoder failed due to: ' + status, '')
+//     }
+//   });
+// }
+// // initialize();
+// function _getMyGeoLocation(cb) {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function (location) {
+//       cb(null, location);
+//     });
+//   } else {
+//     cb('not supported');
+//     alert('Geolocation is not supported in your browser');
+//   }
+
+// }
 
 const MyAppForm = React.createClass({
   getInitialState() {
+
     return {
-      canSubmit: false
+      canSubmit: false,
+      geoLocation: null,
+      address: null
     }
   },
+
   enableButton() {
     this.setState({
       canSubmit: true
@@ -20,6 +61,7 @@ const MyAppForm = React.createClass({
   },
 
   submit(model) {
+    model.geoLocation = this.state.geoLocation;
     $.ajax({
 
       type: 'post',
@@ -30,21 +72,49 @@ const MyAppForm = React.createClass({
       }
     })
   },
+  handleAddress(err, address) {
+    if(err){
+      return
+    }
+    this.setState({address: address});
+  },
+  handleGeoLocation(err, data) {
+    if(err) {
+      return
+    }
+    this.setState({geoLocation: data});
+    fetchAddress(data.coords.latitude, data.coords.longitude, this.handleAddress)
+  },
+
+  getMyGeoLocation() {
+    getGeoLocation(this.handleGeoLocation)
+  },
 
   render() {
-    return(
-        <Formsy.Form onValidSubmit= { this.submit } onValid= { this.enableButton } onInvalid= { this.disableButton } >
-  <MyOwnInput name="name" label='Name' required/>
-  <MyOwnInput name="address"  label='Address' required/>
-  <MyOwnInput name="email" label='Email'  validations="isEmail" validationError="This is not a valid email"/>
-  <MyOwnInput name="contact" label='Contact#'   required/>
-  <MyOwnInput name="contact_alternate" label='Alternate Contact#'/>
-  <MyOwnInput name="donation_type" label='Donate' required/>
-  <button type="submit" className="btn btn-lg yellow-bg-v2" disabled={!this.state.canSubmit}>Confirm</button>
-        </Formsy.Form >
-      );
-    }
-  });
+    return (
+      <Formsy.Form onValidSubmit= { this.submit } onValid= { this.enableButton } onInvalid= { this.disableButton } >
+        <MyOwnInput name="name" label='Name' required/>
+        <MyOwnInput name="address"  value={this.state.address} label='Address' required/>
+        <MyOwnInput name="email" label='Email'  validations="isEmail" validationError="This is not a valid email"/>
+        <MyOwnInput name="contact" label='Contact#'   required/>
+        <MyOwnInput name="contact_alternate" label='Alternate Contact#'/>
+        <MyOwnInput name="donation_type" label='Donate' required/>
+        <div className="form-group row text-left">
+        <div className='col-sm-2'>
+        </div>
+        <div className='col-xs-4'>
+        <button type="submit" className="btn btn-lg yellow-bg-v2" disabled={!this.state.canSubmit}>Confirm</button>
+        </div>
+        <div className='col-xs-6'>
+        <button type="button" onClick={this.getMyGeoLocation} className="btn  btn-primary-dm pull-right" ><PlaceIcon color={'#fff'}/>Use My Location</button>
+        </div>
+        
+        
+        </div>
+      </Formsy.Form >
+    );
+  }
+});
 
 const MyOwnInput = React.createClass({
 
