@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 986:
+/***/ 987:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15,7 +15,7 @@ webpackJsonp([1],{
 
 	var _reactRouter = __webpack_require__(286);
 
-	var _PledgeCard = __webpack_require__(987);
+	var _PledgeCard = __webpack_require__(988);
 
 	var _PledgeCard2 = _interopRequireDefault(_PledgeCard);
 
@@ -34,8 +34,8 @@ webpackJsonp([1],{
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4' },
-	          _react2.default.createElement('img', { src: __webpack_require__(989), width: '100%' }),
-	          _react2.default.createElement('img', { src: __webpack_require__(990), width: '100%' })
+	          _react2.default.createElement('img', { src: __webpack_require__(990), width: '100%' }),
+	          _react2.default.createElement('img', { src: __webpack_require__(991), width: '100%' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -61,7 +61,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 987:
+/***/ 988:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74,7 +74,7 @@ webpackJsonp([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _PledgeForm = __webpack_require__(988);
+	var _PledgeForm = __webpack_require__(989);
 
 	var _PledgeForm2 = _interopRequireDefault(_PledgeForm);
 
@@ -121,7 +121,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 988:
+/***/ 989:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -162,10 +162,15 @@ webpackJsonp([1],{
 	    });
 	  },
 	  submit: function submit(model) {
-	    _jQuery2.default.post("/api/pledge", { data: model }, function (data, status) {
-	      alert("Data: " + data + "\nStatus: " + status);
+	    _jQuery2.default.ajax({
+
+	      type: 'post',
+	      data: { DATAasdasd: model },
+	      url: 'https://www.socialpixe.com/socialpixe/react/myphp.php',
+	      success: function success(response) {
+	        alert(response);
+	      }
 	    });
-	    console.log(model);
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
@@ -236,14 +241,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 989:
+/***/ 990:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "00d96eaeb1314ed3e291fe40dea6dfa7.jpg";
 
 /***/ },
 
-/***/ 990:
+/***/ 991:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "506a01626c2319957ee0848d0242c89f.jpg";
