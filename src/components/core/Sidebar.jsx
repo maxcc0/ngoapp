@@ -20,7 +20,7 @@ export default class Sidebar extends React.Component {
 
   render() {
     return (
-        <IconButton  onClick={this.handleToggle}>
+        <IconButton  style={{padding: 0, marginLeft:'1rem'}} onClick={this.handleToggle}>
                    <IconMenu iconButtonElement={<HamburgerMenu className='app-header-menu-icon'/>}>
             <MenuItem primaryText="Events" />
             <MenuItem primaryText="Picture Gallery" />

@@ -20,10 +20,15 @@ import React from 'react';
     },
     
     submit(model) {
-        $.post("/api/signup", {data: model}, function(data, status){
-          alert("Data: " + data + "\nStatus: " + status);
-      });
-      console.log(model)
+          $.ajax({
+
+      type: 'post',
+      data: { DATAasdasd: model },
+      url: 'https://www.socialpixe.com/socialpixe/react/signup.php',
+      success: function (response) {
+        alert(response);
+      }
+    })
     },
 
     render() {

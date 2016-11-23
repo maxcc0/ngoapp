@@ -14,7 +14,7 @@ import Sidebar from './Sidebar';
 import PrimaryHeaderContent from '../base/PrimaryHeaderContent';
 
 const BrandLogo = () => (
-  <div style={{ 'lineHeight': 50 + 'px' }}>
+  <div style={{ 'lineHeight': 50 + 'px', marginLeft: '10px' }}>
   <a  href='#/login'>
       <img src={require("../../assets/images/logo_ngo.png") }  className="brand-logo"/></a>
     </div>

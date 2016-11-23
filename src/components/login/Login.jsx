@@ -61,7 +61,7 @@ var LoginPage = React.createClass({
           <div className="login-page intro-header">
             <div className='' >
             <div className='login-header row'>
-              <div style={{width: '200px', padding: '.25rem', paddingLeft: '3rem'}}>
+              <div style={{width: '200px', padding: '.25rem', paddingLeft: '1rem'}}>
               <SideMenu/>   {renderBrand()}
               </div>
              </div>
