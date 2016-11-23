@@ -1,0 +1,55 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500';
+
+@import "less/bootstrap.less";
+//vars
+@import "variables.less";
+// Base
+@import "base.less";
+
+// Pages
+@import "pages/login.less";
+@import "pages/dashboard.less";
+@import "pages/pledge.less";
+
+// Widgets and Effects
+@import "widgets/input-underline.less";
+
+@import "index.less";
+@import "transitions/all.less";
+
+@import "~nprogress/nprogress.css";
+@import "~react-data-grid/themes/react-data-grid.css";
+
+@import "material-custom.less";
+@import "widgets/react-data-grid.css";
+
+// Other
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+html,body {
+	overflow: hidden;
+}
+
+
+.example-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.example-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+}

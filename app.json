@@ -1,8 +1,0 @@
-{
-  "name": "DoMutthiKaDum",
-  "description": "An NGO.",
-  "repository": "",
-  "logo": "https://mlab.com/company/brand/resources/mLab-logo-onlight.png",
-  "keywords": ["node", "express", "angular", "MEAN", "mongodb", "REST", "API"],
-  "addons": ["mongolab"]
-}

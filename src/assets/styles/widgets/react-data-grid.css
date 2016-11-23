@@ -1,0 +1,49 @@
+/*
+ * =============================================================================
+ *   <React Data Grid Style Overrides>
+ * =============================================================================
+*/
+
+.react-grid-Main {
+  outline: none;
+}
+.react-grid-Grid {
+  border: none;
+}
+.react-grid-HeaderRow {
+  background: #4465A7;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.react-grid-HeaderCell{
+  background: #4465A7;
+  color: #fff;
+  font-weight: normal;
+  border-right: none;
+  border-bottom: none;
+}
+.react-grid-Cell {
+  background-color: transparent;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-right: none;
+  border-bottom: none;
+}
+.react-grid-Row--even {
+  background-color: #fdfdfd!important;
+}
+.react-grid-Row--odd {
+  background-color: #f3f3f3!important;
+}
+.react-grid-Row--even .react-grid-Cell {
+  background-color: #fdfdfd!important;
+}
+.react-grid-Row--odd .react-grid-Cell {
+  background-color: #f3f3f3!important;
+}
+.react-grid-Row:hover .react-grid-Cell, .react-grid-Row.row-context-menu .react-grid-Cell {
+    background-color: transparent;
+}
+.react-grid-Canvas {
+  overflow-y: auto!important;
+}

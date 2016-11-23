@@ -1,0 +1,118 @@
+.login-page {
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-x: hidden;
+    overflow-y: auto;
+    background: @brand-main-background ;
+
+	text-align: center;
+	color: #fff; 
+	.pitch-card{
+		position: relative;
+		top: -60px;
+	}
+	.login-backdrop {	
+		background: linear-gradient(to bottom,rgba(1,1,1,0)0%,rgba(1,1,1,.6)70%);
+		/* padding: 3em;*/
+		height: 100%;
+		/*position: absolute;*/
+	}
+	
+	h1 {
+		font-weight: 100;
+		font-size: 70px;
+		small {
+			color: rgba(255,255,255,0.7);
+			font-weight: 300;
+			font-size: 24px;
+		}
+	}
+	h2 {
+		font-weight: 100;
+		font-size: 32px;
+		small {
+			color: rgba(255,255,255,0.7);
+			font-weight: 300;
+		}
+	}
+	.form-group {
+		padding: 8px 0;
+	}
+
+	.form-content {
+		padding: 40px 0;
+	}
+	.intro-footer {
+		padding: 2rem;
+		font-size: 18px;
+		background: @brand-login-page-intro-footer;
+	}
+	.page-footer {
+		padding: 2rem;
+		text-align: left;
+		font-size: 18px;
+		background: @brand-login-page-intro-footer;
+	}
+	.feature-section {
+		padding: 2rem;
+		color: @brand-body-color;
+		.section-header{
+			font-weight: 100;
+			font-size: 32px;
+			extraLarge {
+				font-size: 100px;
+			}
+		}
+		.title {
+			font-weight: 100;
+			font-size: 32px;	
+		}
+		.feature-desc {
+			font-weight: 100;
+			font-size: 20px;	
+		}	
+	}
+	.feature-section.main {
+		color: #fff;
+		background: @brand-login-page-feature-last url(../../images/fabric.png);
+    	background-repeat: repeat;
+    	background-size: 947px 530px;
+    	background-position: 50% -1%;
+	}
+
+}
+
+.container_1n45xpj {
+    background-color: #710041 !important;
+    background: -moz-linear-gradient(90deg, #710041, #A2474B) !important;
+    background: -webkit-linear-gradient(90deg, #710041, #A2474B) !important;
+    background: linear-gradient(90deg, #710041, #A2474B) !important;
+    height: 300px !important;
+    position: relative !important;
+	}
+.intro-header {
+    height: 100%;
+    color: #f8f8f8;
+    background: url('../../images/login_bg.jpg') no-repeat center center;
+    background-size: cover;
+    text-align: left;
+}
+
+/* make keyframes that tell the start state and the end state of our object */
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes appear { from { transform :translateY(20px); } to { transform :none;; } }
+
+.fade-in {
+  transition: transform 2s;
+  opacity:0;  /* make things invisible upon start */
+  animation:fadeIn ease-in 1, appear ease-in 1s;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  animation-fill-mode:forwards;/* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:2s;
+}
