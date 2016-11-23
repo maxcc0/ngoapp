@@ -1,7 +1,20 @@
 import React from 'react';
 import { Link } from "react-router";
 import Map from './Map'
+import $ from 'jQuery';
+function _fetchPickups(cb) {
+    $.ajax({
 
+      type: 'post',
+      data: {  },
+      url: 'https://www.socialpixe.com/socialpixe/react/fetchPickups.php',
+      success: function (response) {
+        cb(null, response)
+      }
+    })
+
+
+}
 var PickupPageLayout = React.createClass({
   getInitialState() {
     return {
@@ -9,6 +22,12 @@ var PickupPageLayout = React.createClass({
       dest: null,
       drops: null,
     }
+  },
+  handlePickups(err, data) {
+    if(err) {
+      return
+    }
+    console.log(data);
   },
   componentDidMount() {
     const pathname = this.props.location.pathname;
@@ -20,6 +39,7 @@ var PickupPageLayout = React.createClass({
       dest: params[2]
     })
     console.log('mounting collection')
+    _fetchPickups(this.handlePickups)
   },
   render: function () {
     return (
