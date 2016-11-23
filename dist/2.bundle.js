@@ -21,9 +21,24 @@ webpackJsonp([2],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Settings = _react2.default.createClass({
-	  displayName: 'Settings',
+	var PickupPageLayout = _react2.default.createClass({
+	  displayName: 'PickupPageLayout',
+	  getInitialState: function getInitialState() {
+	    return {
+	      origin: null,
+	      dest: null,
+	      drops: null
+	    };
+	  },
 	  componentDidMount: function componentDidMount() {
+	    var pathname = this.props.location.pathname;
+	    var params = pathname.split('/');
+	    var from = params[1];
+	    var to = params[2];
+	    this.setState({
+	      origin: params[1],
+	      dest: params[2]
+	    });
 	    console.log('mounting collection');
 	  },
 
@@ -50,7 +65,7 @@ webpackJsonp([2],{
 
 	});
 
-	exports.default = Settings;
+	exports.default = PickupPageLayout;
 
 /***/ },
 

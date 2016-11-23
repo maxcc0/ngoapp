@@ -80748,6 +80748,8 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
+	var _reactRouter = __webpack_require__(286);
+
 	var _RadioButton = __webpack_require__(977);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -80760,17 +80762,28 @@
 	    marginBottom: 16
 	  }
 	};
+	// ...
 
+	function assignDropLocation() {}
 	function fetchDropLocations(cb) {
 	  _jQuery2.default.ajax({
-
 	    type: 'get',
 	    data: {},
 	    url: 'https://www.socialpixe.com/socialpixe/react/droplocations.php',
 	    success: function success(response) {
 	      alert(response);
+	      cb(response, null);
 	    }
 	  });
+	  // const data = [
+	  //   {addressid: 1, address: 'Flat 303, Sayali Niwas, Airoli, Navi Mumbai'},
+	  //   {addressid: 2, address: 'Flat 303, Sayali Niwas, Airoli, Navi Mumbai'},
+	  //   {addressid: 3, address: 'Flat 303, Sayali Niwas, Airoli, Navi Mumbai'},
+	  //   {addressid: 4, address: 'Flat 303, Sayali Niwas, Airoli, Navi Mumbai'},
+	  //   {addressid: 5, address: 'Flat 303, Sayali Niwas, Airoli, Navi Mumbai'},
+	  //   {addressid: 6, address: 'Flat 303, Sayali Niwas, Airoli, Navi Mumbai'}
+	  // ]
+	  //cb(data, null)
 	}
 
 	var PledgeForm = _react2.default.createClass({
@@ -80785,7 +80798,7 @@
 	    console.log(data);
 	    console.log('data fetched successfully');
 	    //set drop locations fetched 
-	    this.setState({ dropLocations: data });
+	    this.setState({ dropLocations: data, selectedDL: data.length && data[0].addressid });
 	  },
 	  componentDidMount: function componentDidMount() {
 	    fetchDropLocations(this.handleDropLocations);
@@ -80795,11 +80808,20 @@
 	    console.log(v);
 	  },
 
+
 	  render: function render() {
 	    var locations = [];
+	    if (_lodash2.default.isEmpty(this.state.dropLocations)) {
+	      return _react2.default.createElement(
+	        'h4',
+	        { className: 'font-thin' },
+	        'No drop locations found :('
+	      );
+	    }
+
 	    _lodash2.default.forEach(this.state.dropLocations, function (item) {
 	      locations.push(_react2.default.createElement(_RadioButton.RadioButton, {
-	        value: item.locationid,
+	        value: item.addressid,
 	        label: item.address,
 	        style: styles.radioButton
 	      }));
@@ -80824,43 +80846,24 @@
 	          null,
 	          _react2.default.createElement(
 	            _RadioButton.RadioButtonGroup,
-	            { name: 'notRight', labelPosition: 'left', className: 'text-left', onChange: this.handleChange },
-	            _react2.default.createElement(_RadioButton.RadioButton, {
-	              value: 'reverse',
-	              label: 'Address 1',
-	              style: styles.radioButton
-	            }),
-	            _react2.default.createElement(_RadioButton.RadioButton, {
-	              value: '2',
-	              label: 'Address 2',
-	              style: styles.radioButton
-	            }),
-	            _react2.default.createElement(_RadioButton.RadioButton, {
-	              value: '3',
-	              label: 'Address 3',
-	              style: styles.radioButton
-	            }),
-	            _react2.default.createElement(_RadioButton.RadioButton, {
-	              value: '4',
-	              label: 'Address 4',
-	              style: styles.radioButton
-	            }),
-	            _react2.default.createElement(_RadioButton.RadioButton, {
-	              value: '5',
-	              label: 'Address 5',
-	              style: styles.radioButton
-	            })
+	            { defaultSelected: this.state.selectedDL,
+	              name: 'notRight', labelPosition: 'left', className: 'text-left', onChange: this.handleChange },
+	            locations
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'form-group row' },
 	            _react2.default.createElement(
 	              'div',
-	              { className: ' text-left col-sm-12' },
+	              { className: 'col-sm-6' },
 	              _react2.default.createElement(
-	                'button',
-	                { className: 'btn btn-lg yellow-bg-v2' },
-	                'Confirm'
+	                _reactRouter.Link,
+	                { to: '/pickup/' + this.state.selectedDL + '/' + this.state.selectedDL },
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'btn btn-block btn-lg yellow-bg-v2' },
+	                  'Confirm'
+	                )
 	              )
 	            )
 	          )
@@ -98923,7 +98926,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = {
-	  path: '/collection',
+	  path: '/pickup/:start/:end',
 	  getComponent: function getComponent(location, cb) {
 	    _nProgress2.default.start();
 	    __webpack_require__.e/* nsure */(2, function (require) {
