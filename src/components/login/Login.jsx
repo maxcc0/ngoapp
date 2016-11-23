@@ -42,14 +42,14 @@ var LoginPage = React.createClass({
 
   handleLogin: function (e) {
     e.preventDefault();
-    this.context.router.pushState(null, '/home/collect');
+    this.context.router.pushState(null, '/pickup');
     // this.transitionTo('dashboard');
 
     return false;
   },
   handlePledge: function (e) {
     e.preventDefault();
-    this.context.router.pushState(null, '/home/pledge');
+    this.context.router.pushState(null, '/pledge');
     // this.transitionTo('dashboard');
 
     return false;

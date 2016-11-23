@@ -60,20 +60,9 @@ var PledgeForm = React.createClass({
   handleChange(e, v) {
     this.setState({selectedDL: v});
   },
-   getMyGeoLocation() {
-    getGeoLocation(this.handleGeoLocation)
-  },
-  
-  handleGeoLocation(err, data) {
-    if(err) {
-      alert('Failed to get location. Please enable geo location in brower');
-    }
-    this.setState({geoLocation: data});
-    fetchAddress(data.coords.latitude, data.coords.longitude, this.handleAddress)
-  },
-
-  handleClick() {
-
+  handleSubmit() {
+    this.props.fetchPickups(this.state.selectedDL);
+    this.props.handleSubmit();
   },
 
   render: function () {
@@ -92,22 +81,13 @@ var PledgeForm = React.createClass({
     })
     return (
       <div className='row'>
-          <div className='col-xs-4'>
-          <h4 className='font-thin'>Choose a drop off location:</h4>
-          </div>
-          <div className='col-xs-8'>
-        <form>
+          <div className='col-xs-12'>
+        <form onSubmit={this.handleSubmit}>
             <RadioButtonGroup defaultSelected={this.state.selectedDL} 
               name="notRight" labelPosition="left" className='text-left' onChange={this.handleChange}>
                   {locations}
             </RadioButtonGroup>
-            <div className="form-group row">
-              <div className="col-sm-6">
-                <Link to={'/pickup/'+this.state.selectedDL+ '/'+ this.state.selectedDL}>
-                <button  type='button' className="btn btn-block btn-lg yellow-bg-v2">Confirm</button>
-                </Link>
-              </div>
-            </div>
+            <button  type='button' onClick={this.handleSubmit} className="btn btn-block btn-lg yellow-bg-v2">Confirm</button>
         </form>
           </div>
       </div>
