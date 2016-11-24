@@ -129,9 +129,13 @@
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _DashboardLayout = __webpack_require__(975);
+	var _DashboardLayout = __webpack_require__(976);
 
 	var _DashboardLayout2 = _interopRequireDefault(_DashboardLayout);
+
+	var _auth = __webpack_require__(989);
+
+	var _auth2 = _interopRequireDefault(_auth);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -140,7 +144,11 @@
 	(0, _reactTapEventPlugin2.default)();
 
 	_nProgress2.default.configure({ showSpinner: false });
-
+	// function requireAuth(nextState, replaceState) {
+	//    if (!auth.loggedIn())
+	//      replaceState({ nextPathname: nextState.location.pathname }, '/login')
+	//   console.log(nextState)
+	// }
 	//  const history = useBasename(createHashHistory)({
 	//     queryKey: false
 	//  })
@@ -154,7 +162,7 @@
 	  childRoutes: [{
 	    component: _Home2.default,
 	    indexRoute: { component: _DashboardLayout2.default },
-	    childRoutes: [__webpack_require__(988), __webpack_require__(989), __webpack_require__(995)]
+	    childRoutes: [__webpack_require__(990), __webpack_require__(991), __webpack_require__(997)]
 	  }, {
 	    path: '/login',
 	    component: _Login2.default,
@@ -163,6 +171,17 @@
 	};
 
 	(0, _reactDom.render)(_react2.default.createElement(_reactRouter.Router, { history: history, routes: rootRoute }), document.getElementById('react-app'));
+	// render (
+	//   <Router history={history}>
+	//   <Route path="/" component={Base}>
+	//     <IndexRoute component={Dashboard}/>
+	//     <Route path="pickup" component={Login} />
+	//     <Route path="pledge" component={Login} />
+	//     <Route path="login" component={Login} />
+	//   </Route>
+	// </Router>,
+	// document.getElementById('react-app')
+	// )
 
 /***/ },
 /* 1 */,
@@ -77309,7 +77328,7 @@
 
 	var _Features2 = _interopRequireDefault(_Features);
 
-	var _Intro = __webpack_require__(974);
+	var _Intro = __webpack_require__(975);
 
 	var _Intro2 = _interopRequireDefault(_Intro);
 
@@ -77357,7 +77376,7 @@
 	  },
 
 	  handleLogin: function handleLogin(e) {
-	    e.preventDefault();
+	    //e.preventDefault();
 	    this.context.router.pushState(null, '/pickup');
 	    // this.transitionTo('dashboard');
 
@@ -78312,7 +78331,7 @@
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'col-xs-6 ' },
-	                                _react2.default.createElement(_LoginDialog2.default, null)
+	                                _react2.default.createElement(_LoginDialog2.default, this.props)
 	                            )
 	                        )
 	                    )
@@ -78761,6 +78780,7 @@
 	            { trigger: trigger,
 	                handleConfirm: this.handleConfirm,
 	                handleCancel: this.handleCancel,
+	                hideActions: true,
 	                title: getTitle() },
 	            _react2.default.createElement(_SignupForm2.default, null),
 	            _react2.default.createElement(
@@ -78816,6 +78836,10 @@
 	var _Dialog = __webpack_require__(962);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
+
+	var _FlatButton = __webpack_require__(923);
+
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -78889,7 +78913,29 @@
 	            if (props.hideActions) {
 	                return null;
 	            }
-	            return null;
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-sm-6' },
+	                    _react2.default.createElement(
+	                        'button',
+	                        { type: 'button', onClick: this.handleCancel, className: 'btn btn-block btn-default btn-lg' },
+	                        'cancel'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-sm-6' },
+	                    _react2.default.createElement(
+	                        'button',
+	                        { type: 'submit', onClick: this.handleConfirm, className: 'btn btn-block yellow-bg-v2 btn-lg' },
+	                        'Confirm'
+	                    )
+	                )
+	            );
 	        }
 	    }, {
 	        key: 'render',
@@ -78902,10 +78948,10 @@
 	                this.renderTrigger(),
 	                _react2.default.createElement(
 	                    _Dialog2.default,
-	                    {
+	                    { bodyStyle: { maxHeight: 'none!important' }, contentStyle: { maxHeight: 'none' },
 	                        title: props.title || 'Confirmation',
 	                        actions: this.renderActions(),
-	                        modal: false,
+	                        modal: false, bodyClassName: 'cancel-height',
 	                        open: this.state.open,
 	                        onRequestClose: this.handleClose.bind(this)
 	                    },
@@ -80594,7 +80640,13 @@
 
 	var _reactRouter = __webpack_require__(258);
 
+	var _api = __webpack_require__(974);
+
+	var _api2 = _interopRequireDefault(_api);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var transitionTo = _reactRouter.Router.transitionTo;
 
 	function trigger() {
 	    return _react2.default.createElement(
@@ -80622,33 +80674,9 @@
 	    );
 	}
 	function _login(model, cb) {
-	    _jQuery2.default.ajax({
-	        type: 'post',
-	        data: { data: model },
-	        url: 'https://www.socialpixe.com/socialpixe/react/login.php',
-	        success: function success(response) {
-	            alert(response);
-	        }, error: function error(jqXHR, exception) {
-	            var msg = '';
-	            if (jqXHR.status === 0) {
-	                msg = 'Not connect.\n Verify Network.';
-	            } else if (jqXHR.status == 404) {
-	                msg = 'Requested page not found. [404]';
-	            } else if (jqXHR.status == 500) {
-	                msg = 'Internal Server Error [500].';
-	            } else if (exception === 'parsererror') {
-	                msg = 'Requested JSON parse failed.';
-	            } else if (exception === 'timeout') {
-	                msg = 'Time out error.';
-	            } else if (exception === 'abort') {
-	                msg = 'Ajax request aborted.';
-	            } else {
-	                msg = 'Uncaught Error.\n' + jqXHR.responseText;
-	            }
-	            cb(msg);
-	        }
-	    });
+	    _api2.default.login(model, cb);
 	}
+
 	var Modals = _react2.default.createClass({
 	    displayName: 'Modals',
 	    getInitialState: function getInitialState() {
@@ -80660,20 +80688,21 @@
 	        _login(model, this.handleResponse);
 	    },
 	    handleResponse: function handleResponse(err, data) {
-	        _reactRouter.browserHistory.push('/pickup');
 	        if (err) {
 	            return this.setState({ loginError: 'Failed to login. ' + err });
 	        }
-	        this.context.router.pushState(null, '/#/pickup');
+	        this.refs.login.handleClose();
+	        this.props.handleLogin();
 	    },
 
 
 	    render: function render() {
 	        return _react2.default.createElement(
 	            _SimpleDialog2.default,
-	            { trigger: trigger,
+	            { trigger: trigger, ref: 'login',
 	                handleConfirm: this.handleConfirm,
 	                handleCancel: this.handleCancel,
+	                hideActions: true,
 	                title: getTitle() },
 	            _react2.default.createElement(_LoginForm2.default, { handleLogin: this.handleLogin }),
 	            _react2.default.createElement(
@@ -80813,6 +80842,60 @@
 
 	'use strict';
 
+	var _jQuery = __webpack_require__(767);
+
+	var _jQuery2 = _interopRequireDefault(_jQuery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _makeAjax(type, data, url, cb) {
+	  _jQuery2.default.ajax({
+
+	    type: type,
+	    data: data,
+	    url: url,
+	    success: function success(response) {
+	      cb(null, response);
+	    },
+	    error: function error(jqXHR, exception) {
+	      var msg = '';
+	      if (jqXHR.status === 0) {
+	        msg = 'Not connect.\n Verify Network.';
+	      } else if (jqXHR.status == 404) {
+	        msg = 'Requested page not found. [404]';
+	      } else if (jqXHR.status == 500) {
+	        msg = 'Internal Server Error [500].';
+	      } else if (exception === 'parsererror') {
+	        msg = 'Requested JSON parse failed.';
+	      } else if (exception === 'timeout') {
+	        msg = 'Time out error.';
+	      } else if (exception === 'abort') {
+	        msg = 'Ajax request aborted.';
+	      } else {
+	        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+	      }
+	      cb(msg);
+	    }
+	  });
+	}
+	module.exports = {
+	  fetchPickupLocations: function fetchPickupLocations(origin, dest, cb) {
+	    _makeAjax('post', { origin: origin, dest: dest }, 'https://www.socialpixe.com/socialpixe/react/fetchPickups.php', cb);
+	  },
+	  assignVoluteer: function assignVoluteer(data, cb) {
+	    _makeAjax('post', { data: data }, 'https://www.socialpixe.com/socialpixe/react/assignVolunteer.php', cb);
+	  },
+	  login: function login(data, cb) {
+	    _makeAjax('post', { data: data }, 'https://www.socialpixe.com/socialpixe/react/login.php', cb);
+	  }
+	};
+
+/***/ },
+/* 975 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
@@ -80902,7 +80985,7 @@
 	exports.default = Features;
 
 /***/ },
-/* 975 */
+/* 976 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80917,7 +81000,7 @@
 
 	var _reactRouter = __webpack_require__(258);
 
-	var _PledgeCard = __webpack_require__(976);
+	var _PledgeCard = __webpack_require__(977);
 
 	var _PledgeCard2 = _interopRequireDefault(_PledgeCard);
 
@@ -80936,8 +81019,8 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4 bg-white-base' },
-	          _react2.default.createElement('img', { className: 'left-align', src: __webpack_require__(986), width: '400px', height: '500px' }),
-	          _react2.default.createElement('img', { style: { position: 'relative', left: '15px' }, className: 'pull-right', src: __webpack_require__(987), width: '50%' })
+	          _react2.default.createElement('img', { className: 'left-align', src: __webpack_require__(987), width: '400px', height: '500px' }),
+	          _react2.default.createElement('img', { style: { position: 'relative', left: '15px' }, className: 'pull-right', src: __webpack_require__(988), width: '50%' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -80962,7 +81045,7 @@
 	exports.default = Settings;
 
 /***/ },
-/* 976 */
+/* 977 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80975,7 +81058,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _PledgeForm = __webpack_require__(977);
+	var _PledgeForm = __webpack_require__(978);
 
 	var _PledgeForm2 = _interopRequireDefault(_PledgeForm);
 
@@ -81021,7 +81104,7 @@
 	exports.default = PledgeCard;
 
 /***/ },
-/* 977 */
+/* 978 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81038,15 +81121,15 @@
 
 	var _jQuery2 = _interopRequireDefault(_jQuery);
 
-	var _lodash = __webpack_require__(978);
+	var _lodash = __webpack_require__(979);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
 	var _reactRouter = __webpack_require__(258);
 
-	var _Location = __webpack_require__(979);
+	var _Location = __webpack_require__(980);
 
-	var _RadioButton = __webpack_require__(980);
+	var _RadioButton = __webpack_require__(981);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -81183,7 +81266,7 @@
 	exports.default = PledgeForm;
 
 /***/ },
-/* 978 */
+/* 979 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -98135,7 +98218,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(435)(module)))
 
 /***/ },
-/* 979 */
+/* 980 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -98177,7 +98260,7 @@
 	}
 
 /***/ },
-/* 980 */
+/* 981 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98187,11 +98270,11 @@
 	});
 	exports.default = exports.RadioButtonGroup = exports.RadioButton = undefined;
 
-	var _RadioButton2 = __webpack_require__(981);
+	var _RadioButton2 = __webpack_require__(982);
 
 	var _RadioButton3 = _interopRequireDefault(_RadioButton2);
 
-	var _RadioButtonGroup2 = __webpack_require__(985);
+	var _RadioButtonGroup2 = __webpack_require__(986);
 
 	var _RadioButtonGroup3 = _interopRequireDefault(_RadioButtonGroup2);
 
@@ -98202,7 +98285,7 @@
 	exports.default = _RadioButton3.default;
 
 /***/ },
-/* 981 */
+/* 982 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98227,15 +98310,15 @@
 
 	var _transitions2 = _interopRequireDefault(_transitions);
 
-	var _EnhancedSwitch = __webpack_require__(982);
+	var _EnhancedSwitch = __webpack_require__(983);
 
 	var _EnhancedSwitch2 = _interopRequireDefault(_EnhancedSwitch);
 
-	var _radioButtonUnchecked = __webpack_require__(983);
+	var _radioButtonUnchecked = __webpack_require__(984);
 
 	var _radioButtonUnchecked2 = _interopRequireDefault(_radioButtonUnchecked);
 
-	var _radioButtonChecked = __webpack_require__(984);
+	var _radioButtonChecked = __webpack_require__(985);
 
 	var _radioButtonChecked2 = _interopRequireDefault(_radioButtonChecked);
 
@@ -98465,7 +98548,7 @@
 	exports.default = RadioButton;
 
 /***/ },
-/* 982 */
+/* 983 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -98909,7 +98992,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(83)))
 
 /***/ },
-/* 983 */
+/* 984 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98946,7 +99029,7 @@
 	exports.default = ToggleRadioButtonUnchecked;
 
 /***/ },
-/* 984 */
+/* 985 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98983,7 +99066,7 @@
 	exports.default = ToggleRadioButtonChecked;
 
 /***/ },
-/* 985 */
+/* 986 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -99004,7 +99087,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RadioButton = __webpack_require__(980);
+	var _RadioButton = __webpack_require__(981);
 
 	var _RadioButton2 = _interopRequireDefault(_RadioButton);
 
@@ -99199,39 +99282,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(83)))
 
 /***/ },
-/* 986 */
+/* 987 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "f612ddc2cf06f846760beaae75a3ab0a.jpg";
 
 /***/ },
-/* 987 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "0322bc00654048f2315f6966b0c96f89.jpg";
-
-/***/ },
 /* 988 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var _nProgress = __webpack_require__(357);
-
-	var _nProgress2 = _interopRequireDefault(_nProgress);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	module.exports = {
-	  path: '/home/collect',
-	  getComponent: function getComponent(location, cb) {
-	    _nProgress2.default.start();
-	    !/* require.ensure */(function (require) {
-	      __webpack_require__(357).done();
-	      cb(null, __webpack_require__(975).default);
-	    }(__webpack_require__));
-	  }
-	};
+	module.exports = __webpack_require__.p + "0322bc00654048f2315f6966b0c96f89.jpg";
 
 /***/ },
 /* 989 */
@@ -99239,30 +99299,63 @@
 
 	'use strict';
 
-	var _nProgress = __webpack_require__(357);
+	var _jQuery = __webpack_require__(767);
 
-	var _nProgress2 = _interopRequireDefault(_nProgress);
+	var _jQuery2 = _interopRequireDefault(_jQuery);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = {
-	  path: '/pledge',
-	  getComponent: function getComponent(location, cb) {
-	    _nProgress2.default.start();
-	    __webpack_require__.e/* nsure */(1, function (require) {
-	      __webpack_require__(357).done();
-	      cb(null, __webpack_require__(990).default);
+	  login: function login(email, pass, cb) {
+	    var _this = this;
+
+	    cb = arguments[arguments.length - 1];
+	    if (localStorage.token) {
+	      if (cb) cb(true);
+	      this.onChange(true);
+	      return;
+	    }
+	    pretendRequest(email, pass, function (res) {
+	      if (res.authenticated) {
+	        localStorage.token = res.token;
+	        if (cb) cb(true);
+	        _this.onChange(true);
+	      } else {
+	        if (cb) cb(false);
+	        _this.onChange(false);
+	      }
 	    });
-	  }
+	  },
+	  getToken: function getToken() {
+	    return localStorage.token;
+	  },
+	  logout: function logout(cb) {
+	    delete localStorage.token;
+	    if (cb) cb();
+	    this.onChange(false);
+	  },
+	  loggedIn: function loggedIn() {
+	    return false;
+	    //return !!localStorage.token
+	  },
+	  onChange: function onChange() {}
 	};
 
+	function pretendRequest(email, pass, cb) {
+	  setTimeout(function () {
+	    if (email === 'joe@example.com' && pass === 'password1') {
+	      cb({
+	        authenticated: true,
+	        token: Math.random().toString(36).substring(7)
+	      });
+	    } else {
+	      cb({ authenticated: false });
+	    }
+	  }, 0);
+	}
+
 /***/ },
-/* 990 */,
-/* 991 */,
-/* 992 */,
-/* 993 */,
-/* 994 */,
-/* 995 */
+/* 990 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -99274,12 +99367,63 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = {
-	  path: '/pickup',
+	  path: 'collect',
+	  getComponent: function getComponent(location, cb) {
+	    _nProgress2.default.start();
+	    !/* require.ensure */(function (require) {
+	      __webpack_require__(357).done();
+	      cb(null, __webpack_require__(976).default);
+	    }(__webpack_require__));
+	  }
+	};
+
+/***/ },
+/* 991 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _nProgress = __webpack_require__(357);
+
+	var _nProgress2 = _interopRequireDefault(_nProgress);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = {
+	  path: 'pledge',
+	  getComponent: function getComponent(location, cb) {
+	    _nProgress2.default.start();
+	    __webpack_require__.e/* nsure */(1, function (require) {
+	      __webpack_require__(357).done();
+	      cb(null, __webpack_require__(992).default);
+	    });
+	  }
+	};
+
+/***/ },
+/* 992 */,
+/* 993 */,
+/* 994 */,
+/* 995 */,
+/* 996 */,
+/* 997 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _nProgress = __webpack_require__(357);
+
+	var _nProgress2 = _interopRequireDefault(_nProgress);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = {
+	  path: 'pickup',
 	  getComponent: function getComponent(location, cb) {
 	    _nProgress2.default.start();
 	    __webpack_require__.e/* nsure */(2, function (require) {
 	      __webpack_require__(357).done();
-	      cb(null, __webpack_require__(996).default);
+	      cb(null, __webpack_require__(998).default);
 	    });
 	  }
 	};

@@ -3,7 +3,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from '../shared/overlays/SimpleDialog'
 import Form from './LoginForm';
 import $ from 'jQuery';
-import { browserHistory } from 'react-router'
+import { browserHistory, Router } from 'react-router'
+import webApi from '../../actions/api';
+var transitionTo = Router.transitionTo;
+
+
 
 function trigger() {
     return <button type="submit" block className="btn btn-block btn-outline btn-white btn-default btn-lg">Login</button>
@@ -19,33 +23,9 @@ function getTitle() {
     )
 }
 function _login(model, cb) {
-        $.ajax({
-            type: 'post',
-            data: { data: model },
-            url: 'https://www.socialpixe.com/socialpixe/react/login.php',
-            success: function (response) {
-                alert(response);
-            }, error: function (jqXHR, exception) {
-                var msg = '';
-                if (jqXHR.status === 0) {
-                    msg = 'Not connect.\n Verify Network.';
-                } else if (jqXHR.status == 404) {
-                    msg = 'Requested page not found. [404]';
-                } else if (jqXHR.status == 500) {
-                    msg = 'Internal Server Error [500].';
-                } else if (exception === 'parsererror') {
-                    msg = 'Requested JSON parse failed.';
-                } else if (exception === 'timeout') {
-                    msg = 'Time out error.';
-                } else if (exception === 'abort') {
-                    msg = 'Ajax request aborted.';
-                } else {
-                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
-                }
-                cb(msg)
-            }
-        })
+    webApi.login(model, cb);
 }
+
 var Modals = React.createClass({
     getInitialState() {
         return {
@@ -58,18 +38,19 @@ var Modals = React.createClass({
     },
 
     handleResponse(err, data) {
-        browserHistory.push('/pickup')
         if(err) {
            return this.setState({loginError: 'Failed to login. ' + err})
-        }
-        this.context.router.pushState(null, '/#/pickup');  
+        } 
+        this.refs.login.handleClose();
+        this.props.handleLogin();  
     },
 
     render: function () {
         return (
-            <Dialog trigger={trigger}
+            <Dialog trigger={trigger} ref='login'
                 handleConfirm={this.handleConfirm}
                 handleCancel={this.handleCancel}
+                hideActions={true}
                 title={getTitle() }>
                 <Form handleLogin={this.handleLogin}/>
                 <p className="card-text text-center text-red-variant1">{this.state.loginError || null}</p>

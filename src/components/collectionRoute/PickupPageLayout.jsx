@@ -4,50 +4,31 @@ import Map from './Map'
 import $ from 'jQuery';
 import Signup from './Signup';
 import DropLocationList from './DropLocationList';
+import PathPoints from './Path';
+    import Accept from './AcceptAssignmentModal';
+import webapi from '../../actions/api';
+
 import {fetchAddress, getGeoLocation} from '../../utils/Location';
 
 function _fetchPickups(origin, dest, cb) {
-  $.ajax({
-
-    type: 'post',
-    data: { origin: origin, dest: dest },
-    url: 'https://www.socialpixe.com/socialpixe/react/fetchPickups.php',
-    success: function (response) {
-      cb(null, response)
-    },
-    error: function (jqXHR, exception) {
-      var msg = '';
-      if (jqXHR.status === 0) {
-        msg = 'Not connect.\n Verify Network.';
-      } else if (jqXHR.status == 404) {
-        msg = 'Requested page not found. [404]';
-      } else if (jqXHR.status == 500) {
-        msg = 'Internal Server Error [500].';
-      } else if (exception === 'parsererror') {
-        msg = 'Requested JSON parse failed.';
-      } else if (exception === 'timeout') {
-        msg = 'Time out error.';
-      } else if (exception === 'abort') {
-        msg = 'Ajax request aborted.';
-      } else {
-        msg = 'Uncaught Error.\n' + jqXHR.responseText;
-      }
-      cb(msg)
-    }
-  })
+  webapi.fetchPickupLocations(origin, dest, cb);
 }
-
+function _assignVolunteer(data, cb) {
+  webapi.assignVoluteer(data, cb);
+}
 let _dest = null;
 let _origin = null;
 var PickupPageLayout = React.createClass({
   getInitialState() {
     return {
+      data: null,
       origin: null,
       dest: null,
       waypoints: null,
+      assignmentError: null
     }
   },
-  setWayPoints() {
+  setWayPoints(data) {
     var items = ["surat", "ahmedabad"];
     var waypoints = [];
     for (var i = 0; i < items.length; i++) {
@@ -60,6 +41,7 @@ var PickupPageLayout = React.createClass({
       }
     }
     this.setState({
+          data: data,
           origin: new google.maps.LatLng(_origin.coords.latitude, _origin.coords.longitude),
           dest: new google.maps.LatLng(28.5789564, 73.683705),
       waypoints: waypoints
@@ -93,7 +75,15 @@ var PickupPageLayout = React.createClass({
     _dest = dest;
     this.getMyGeoLocation();
   },
-
+  handleAssign(err, data) {
+    if(err) {
+      this.setState({assignmentError: 'Failed to assign route. '+ err})
+    }
+    console.log('assigment complete')
+  },
+  assignRoute() {
+    _assignVolunteer(this.state.data, this.handleAssign)
+  },
 
   render: function () {
     console.log(this.state)
@@ -106,7 +96,10 @@ var PickupPageLayout = React.createClass({
             <div className='card-block'>
             <Signup fetchPickups={this.fetchPickups}/>
             <br/><br/>
-            <DropLocationList/>
+            <PathPoints/>
+            <p className="card-text text-center text-red-variant1">{this.state.assignmentError || null}</p>
+            <Accept assignRoute={this.assignRoute}/>
+            <DropLocationList />
 
    
             </div>

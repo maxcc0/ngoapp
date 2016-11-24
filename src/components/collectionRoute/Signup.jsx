@@ -32,6 +32,7 @@ var Modals = React.createClass({
         return (
             <Dialog trigger={trigger} ref='routeConfirmDialog'
                 autoScrollBodyContent={true}
+                hideActions={true}
                 handleConfirm={this.handleConfirm}
                 handleCancel={this.handleCancel}
                 title={getTitle()}>

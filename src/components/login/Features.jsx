@@ -207,7 +207,7 @@ class Pitch extends React.Component {
                                 
                             </div>
                             <div className='col-xs-6 '>
-                            <Login/>
+                            <Login {...this.props}/>
                             </div>
                         </div>
                         

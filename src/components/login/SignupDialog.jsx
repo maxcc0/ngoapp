@@ -31,6 +31,7 @@ var Modals = React.createClass({
             <Dialog trigger={trigger}
                 handleConfirm={this.handleConfirm}
                 handleCancel={this.handleCancel}
+                hideActions={true}
                 title={getTitle()}>
                 <Form/>
                 <p className="card-text text-center text-muted"><small>Become a part of the intiative and contribute.</small></p>

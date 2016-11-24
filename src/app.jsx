@@ -13,13 +13,19 @@ import Base from './components/core/Base';
 import Dashboard from './components/core/Home';
 import Login from './components/login/Login';
 import DashboardLayout from './components/dashboard/DashboardLayout';
+import auth from './utils/auth';
 NProgress.configure({ showSpinner: false });
-
+// function requireAuth(nextState, replaceState) {
+//    if (!auth.loggedIn())
+//      replaceState({ nextPathname: nextState.location.pathname }, '/login')
+//   console.log(nextState)
+// }
 //  const history = useBasename(createHashHistory)({
 //     queryKey: false
 //  })
  // useRouterHistory creates a composable higher-order function
 const history = useRouterHistory(createHashHistory)({ queryKey: false });
+
 
 const rootRoute = {
   path: '/',
@@ -49,3 +55,14 @@ render(
   <Router history={history} routes={rootRoute} />,
   document.getElementById('react-app')
 )
+// render (
+//   <Router history={history}>
+//   <Route path="/" component={Base}>
+//     <IndexRoute component={Dashboard}/>
+//     <Route path="pickup" component={Login} />
+//     <Route path="pledge" component={Login} />
+//     <Route path="login" component={Login} />
+//   </Route>
+// </Router>,
+// document.getElementById('react-app')
+// )

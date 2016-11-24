@@ -7769,6 +7769,9 @@ button.close {
   background: #ffcb1f;
   color: #3c3c3c;
 }
+.cancel-height {
+  max-height: none!important;
+}
 .login-page {
   position: absolute;
   top: 0;

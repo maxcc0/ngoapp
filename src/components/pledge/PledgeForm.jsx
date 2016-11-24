@@ -3,41 +3,6 @@ import Formsy from 'formsy-react';
 import $ from 'jQuery';
 import PlaceIcon from 'material-ui/svg-icons/maps/place';
 import {fetchAddress, getGeoLocation} from '../../utils/Location';
-// var geocoder;
-
-// function initialize() {
-//   geocoder = new google.maps.Geocoder();
-// }
-
-// function codeLatLng(lat, lng, cb) {
-//   var latlng = new google.maps.LatLng(lat, lng);
-//   geocoder.geocode({
-//     'latLng': latlng
-//   }, function (results, status) {
-//     if (status === google.maps.GeocoderStatus.OK) {
-//       if (results[1]) {
-//         console.log(results[1]);
-//         cb(null, results[1].formatted_address)
-//       } else {
-//         cb(null, '')
-//       }
-//     } else {
-//       cb('Geocoder failed due to: ' + status, '')
-//     }
-//   });
-// }
-// // initialize();
-// function _getMyGeoLocation(cb) {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function (location) {
-//       cb(null, location);
-//     });
-//   } else {
-//     cb('not supported');
-//     alert('Geolocation is not supported in your browser');
-//   }
-
-// }
 
 const MyAppForm = React.createClass({
   getInitialState() {
@@ -45,7 +10,8 @@ const MyAppForm = React.createClass({
     return {
       canSubmit: false,
       geoLocation: null,
-      address: null
+      address: null,
+      geoLocationError: null
     }
   },
 
@@ -74,6 +40,7 @@ const MyAppForm = React.createClass({
   },
   handleAddress(err, address) {
     if(err){
+      this.setState({geoLocationError: 'Could not fetch your location from geo services. Please add your address.'})
       return
     }
     this.setState({address: address});
@@ -111,6 +78,7 @@ const MyAppForm = React.createClass({
         
         
         </div>
+        <p className="card-text text-center text-red-variant1">{this.state.geoLocationError || null}</p>
       </Formsy.Form >
     );
   }
