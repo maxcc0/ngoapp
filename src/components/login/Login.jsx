@@ -17,6 +17,10 @@ function renderBrand() {
     return <img src={require("../../assets/images/logo_ngo.png")} style={{verticalAlign: 'super', marginLeft: '10px'}} className="brand-logo" /> 
 }
 
+function renderBrandForFooter() {
+    return <img src={require("../../assets/images/logo_ngo.png")} style={{marginLeft: '10px'}} className="brand-logo" /> 
+}
+
 const AppPrimaryHeader = () => (
   <AppBar className='app-header'
 
@@ -70,8 +74,10 @@ var LoginPage = React.createClass({
              
              <Features handlePledge={this.handlePledge} handleLogin={this.handleLogin}/>
               
-             <div className='page-footer text-center font-light'>
-              Copyright
+             <div className='page-footer  text-right font-light'>
+
+                    Copyright. All rights reserverd. {renderBrandForFooter()}
+        
              </div>
           </div>
          
