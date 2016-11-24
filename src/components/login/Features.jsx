@@ -16,9 +16,7 @@ export default class Features extends React.Component {
         return (
             <div>
                 <Pitch {...props}/>
-                <div className='intro-footer text-center font-light'>
-                    Who we are | What we Do | Why we do it.
-                </div>
+                <JoyOfGiving {...props}/>
                 <Benefits/>
                 <BecomeAVolunteer/>
                 
@@ -136,9 +134,7 @@ class Benefits extends React.Component {
         return (
             <section className=' bg-white-base text-center'>
                 <div className='row feature-section'>
-                    <div ><span className='section-header'>What Can you Donate <small><small></small></small></span></div>
-                    <br/><br/>
-                    <div className='col-xs-6'>
+                    <div className='col-sm-6'>
                         <div className='card-block'>
                             <div className='title'>Clothes</div>
                             <span className='text-muted feature-desc'>
@@ -146,7 +142,7 @@ class Benefits extends React.Component {
                             </span>
                         </div>
                     </div>
-                    <div className='col-xs-6'>
+                    <div className='col-sm-6'>
                         <div className='card-block'>
                             <div className='title'>Books</div>
                             <span className='text-muted feature-desc'>
@@ -157,7 +153,7 @@ class Benefits extends React.Component {
                 </div>
                 <div className='row feature-section'>
 
-                    <div className='col-xs-6'>
+                    <div className='col-sm-6'>
                         <div className='card-block'>
                             <div className='title'>Toys</div>
                             <span className='text-muted feature-desc'>
@@ -165,7 +161,7 @@ class Benefits extends React.Component {
                             </span>
                         </div>
                     </div>
-                    <div className='col-xs-6'>
+                    <div className='col-sm-6'>
                         <div className='card-block'>
                             <div className='title'>Stationery</div>
                             <span className='text-muted feature-desc'>
@@ -175,14 +171,14 @@ class Benefits extends React.Component {
 
                 </div>
                 <div className='row feature-section'>
-                    <div className='col-xs-6'>
+                    <div className='col-sm-6'>
                         <div className='card-block'>
                             <div className='title'>Time</div>
                             <span className='text-muted feature-desc'>
                                 Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.</span>
                         </div>
                     </div>
-                    <div className='col-xs-6'>
+                    <div className='col-sm-6'>
                         <div className='card-block'>
                         </div>
                     </div>
@@ -258,6 +254,33 @@ class BecomeAVolunteer extends React.Component {
                         </form>
                     </div>
                 </div>
+            </div>
+
+        )
+
+    }
+}
+
+class JoyOfGiving extends React.Component {
+    render() {
+        return (
+            <div className='row peachu text-muted'>
+                <div className="row text-center">
+                    <div className="col-md-12">
+                        <br/>
+                        <h2 className='font-light'> How can you contribute?</h2>
+                            <br/>
+                       <small></small>
+                        <br/><br/><br/>
+                    </div>
+                    <div className='col-md-12'>
+                    <br/><br/>
+                        <form role="form" onSubmit={this.props.handleLogin}>
+                            <button type="button" onClick={this.props.handlePledge}  className="btn  btn-white text-muted btn-outline btn-lg btn-rounded">Pledge A Donation</button>
+                        </form>
+                    </div>
+                </div>
+                <br/><br/>
             </div>
 
         )
