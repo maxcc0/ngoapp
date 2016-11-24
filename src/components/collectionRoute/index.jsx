@@ -1,7 +1,7 @@
 import NProgress from 'nProgress';
 
 module.exports = {
-  path: 'pickup',
+  path: 'voluntarypickup',
   getComponent(location, cb) {
   	NProgress.start();
     require.ensure([], (require) => {

@@ -24,7 +24,7 @@ var Modals = React.createClass({
     },
 
     render: function () {
-        const message = <h4 className='text-muted font-thin no-borders'>Do you want to take this route?</h4>
+        const message = <h4 className='text-muted font-thin no-borders'>The addresses shown will be assigned to you for pickup.</h4>
         return (
             <Dialog trigger={trigger} ref='routeConfirmDialog'
                 autoScrollBodyContent={true}

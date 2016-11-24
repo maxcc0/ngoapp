@@ -19,6 +19,10 @@ webpackJsonp([1],{
 
 	var _PledgeCard2 = _interopRequireDefault(_PledgeCard);
 
+	var _PledgeOverview = __webpack_require__(995);
+
+	var _PledgeOverview2 = _interopRequireDefault(_PledgeOverview);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Settings = _react2.default.createClass({
@@ -34,8 +38,8 @@ webpackJsonp([1],{
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4' },
-	          _react2.default.createElement('img', { src: __webpack_require__(995), width: '100%' }),
-	          _react2.default.createElement('img', { src: __webpack_require__(996), width: '100%' })
+	          _react2.default.createElement('img', { src: __webpack_require__(996), width: '100%' }),
+	          _react2.default.createElement('img', { src: __webpack_require__(997), width: '100%' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -47,11 +51,12 @@ webpackJsonp([1],{
 	          { className: 'col-md-2 ' },
 	          _react2.default.createElement(
 	            'div',
-	            { style: { marginTop: '.75rem' } },
+	            null,
 	            _react2.default.createElement('img', { src: __webpack_require__(948), width: '200px' })
 	          )
 	        )
-	      )
+	      ),
+	      _react2.default.createElement(_PledgeOverview2.default, null)
 	    );
 	  }
 
@@ -86,7 +91,7 @@ webpackJsonp([1],{
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'card ', style: { marginTop: '.75rem' } },
+	      { className: 'card ' },
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'card-header text-center' },
@@ -296,11 +301,246 @@ webpackJsonp([1],{
 /***/ 995:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "00d96eaeb1314ed3e291fe40dea6dfa7.jpg";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(769);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(795);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(796);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(800);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(847);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(81);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Overview = function (_React$Component) {
+	    (0, _inherits3.default)(Overview, _React$Component);
+
+	    function Overview() {
+	        (0, _classCallCheck3.default)(this, Overview);
+	        return (0, _possibleConstructorReturn3.default)(this, (Overview.__proto__ || (0, _getPrototypeOf2.default)(Overview)).apply(this, arguments));
+	    }
+
+	    (0, _createClass3.default)(Overview, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'section',
+	                { className: '.feature-section' },
+	                _react2.default.createElement(JoyOfGiving, null),
+	                _react2.default.createElement(Benefits, null)
+	            );
+	        }
+	    }]);
+	    return Overview;
+	}(_react2.default.Component);
+
+	exports.default = Overview;
+
+	var Benefits = function (_React$Component2) {
+	    (0, _inherits3.default)(Benefits, _React$Component2);
+
+	    function Benefits() {
+	        (0, _classCallCheck3.default)(this, Benefits);
+	        return (0, _possibleConstructorReturn3.default)(this, (Benefits.__proto__ || (0, _getPrototypeOf2.default)(Benefits)).apply(this, arguments));
+	    }
+
+	    (0, _createClass3.default)(Benefits, [{
+	        key: 'render',
+	        value: function render() {
+
+	            return _react2.default.createElement(
+	                'section',
+	                { className: 'text-center' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row feature-section' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'card-block' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'title' },
+	                                'Clothes'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'text-muted feature-desc' },
+	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'card-block' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'title' },
+	                                'Books'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'text-muted feature-desc' },
+	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row feature-section' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'card-block' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'title' },
+	                                'Toys'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'text-muted feature-desc' },
+	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'card-block' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'title' },
+	                                'Stationery'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'text-muted feature-desc' },
+	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row feature-section' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'card-block' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'title' },
+	                                'Time'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'text-muted feature-desc' },
+	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6' },
+	                        _react2.default.createElement('div', { className: 'card-block' })
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	    return Benefits;
+	}(_react2.default.Component);
+
+	var JoyOfGiving = function (_React$Component3) {
+	    (0, _inherits3.default)(JoyOfGiving, _React$Component3);
+
+	    function JoyOfGiving() {
+	        (0, _classCallCheck3.default)(this, JoyOfGiving);
+	        return (0, _possibleConstructorReturn3.default)(this, (JoyOfGiving.__proto__ || (0, _getPrototypeOf2.default)(JoyOfGiving)).apply(this, arguments));
+	    }
+
+	    (0, _createClass3.default)(JoyOfGiving, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'row peachu text-muted' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row text-center' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-md-12' },
+	                        _react2.default.createElement('br', null),
+	                        _react2.default.createElement(
+	                            'h2',
+	                            { className: 'font-light' },
+	                            ' How can you contribute?'
+	                        ),
+	                        _react2.default.createElement('br', null),
+	                        _react2.default.createElement('small', null),
+	                        _react2.default.createElement('br', null),
+	                        _react2.default.createElement('br', null),
+	                        _react2.default.createElement('br', null)
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-md-12' },
+	                        _react2.default.createElement(Benefits, null)
+	                    )
+	                ),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('br', null)
+	            );
+	        }
+	    }]);
+	    return JoyOfGiving;
+	}(_react2.default.Component);
 
 /***/ },
 
 /***/ 996:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "00d96eaeb1314ed3e291fe40dea6dfa7.jpg";
+
+/***/ },
+
+/***/ 997:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "506a01626c2319957ee0848d0242c89f.jpg";

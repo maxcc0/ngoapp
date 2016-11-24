@@ -46,7 +46,7 @@ var LoginPage = React.createClass({
 
   handleLogin: function (e) {
     //e.preventDefault();
-    this.context.router.pushState(null, '/pickup');
+    this.context.router.pushState(null, '/voluntarypickup');
     // this.transitionTo('dashboard');
 
     return false;

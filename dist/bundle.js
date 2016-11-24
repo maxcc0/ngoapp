@@ -162,7 +162,7 @@
 	  childRoutes: [{
 	    component: _Home2.default,
 	    indexRoute: { component: _DashboardLayout2.default },
-	    childRoutes: [__webpack_require__(990), __webpack_require__(991), __webpack_require__(997)]
+	    childRoutes: [__webpack_require__(990), __webpack_require__(991), __webpack_require__(998)]
 	  }, {
 	    path: '/login',
 	    component: _Login2.default,
@@ -77377,7 +77377,7 @@
 
 	  handleLogin: function handleLogin(e) {
 	    //e.preventDefault();
-	    this.context.router.pushState(null, '/pickup');
+	    this.context.router.pushState(null, '/voluntarypickup');
 	    // this.transitionTo('dashboard');
 
 	    return false;
@@ -78948,10 +78948,11 @@
 	                this.renderTrigger(),
 	                _react2.default.createElement(
 	                    _Dialog2.default,
-	                    { bodyStyle: { maxHeight: 'none!important' }, contentStyle: { maxHeight: 'none' },
+	                    {
 	                        title: props.title || 'Confirmation',
 	                        actions: this.renderActions(),
-	                        modal: false, bodyClassName: 'cancel-height',
+	                        modal: false, titleStyle: { borderBottom: 'none' },
+	                        autoScrollBodyContent: props.autoScrollBodyContent,
 	                        open: this.state.open,
 	                        onRequestClose: this.handleClose.bind(this)
 	                    },
@@ -80887,6 +80888,9 @@
 	  },
 	  login: function login(data, cb) {
 	    _makeAjax('post', { data: data }, 'https://www.socialpixe.com/socialpixe/react/login.php', cb);
+	  },
+	  fetchDropLocations: function fetchDropLocations(cb) {
+	    _makeAjax('get', {}, 'https://www.socialpixe.com/socialpixe/react/droplocations.php', cb);
 	  }
 	};
 
@@ -99406,7 +99410,8 @@
 /* 994 */,
 /* 995 */,
 /* 996 */,
-/* 997 */
+/* 997 */,
+/* 998 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -99418,12 +99423,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = {
-	  path: 'pickup',
+	  path: 'voluntarypickup',
 	  getComponent: function getComponent(location, cb) {
 	    _nProgress2.default.start();
 	    __webpack_require__.e/* nsure */(2, function (require) {
 	      __webpack_require__(357).done();
-	      cb(null, __webpack_require__(998).default);
+	      cb(null, __webpack_require__(999).default);
 	    });
 	  }
 	};

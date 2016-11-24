@@ -4,6 +4,7 @@ import Map from './Map'
 import $ from 'jQuery';
 import Signup from './Signup';
 import DropLocationList from './DropLocationList';
+import DropOffLocationSelect from './DropOffLocationSelect';
 import PathPoints from './Path';
     import Accept from './AcceptAssignmentModal';
 import webapi from '../../actions/api';
@@ -16,11 +17,16 @@ function _fetchPickups(origin, dest, cb) {
 function _assignVolunteer(data, cb) {
   webapi.assignVoluteer(data, cb);
 }
+function _fetchDropOffLocations(cb){
+  webapi.fetchDropLocations(cb);
+}
 let _dest = null;
 let _origin = null;
 var PickupPageLayout = React.createClass({
   getInitialState() {
     return {
+      dropOffLocations: [],
+      selectedDL: null,
       data: null,
       origin: null,
       dest: null,
@@ -54,8 +60,22 @@ var PickupPageLayout = React.createClass({
     }
     this.setWayPoints(data);
   },
+  
+  handleDropLocationData(err, data) {
+    if(err) {
+      return
+    }
+    const parsed = JSON.parse(data);
+    //set drop locations fetched 
+    this.setState({dropOffLocations: parsed, selectedDL: parsed.length && parsed[0].addressid});
+  },
+
+  handleChange(e, v) {
+    this.setState({selectedDL: v});
+  },
 
   componentDidMount() {
+    _fetchDropOffLocations(this.handleDropLocationData);
   },
   
   getMyGeoLocation() {
@@ -75,6 +95,7 @@ var PickupPageLayout = React.createClass({
     _dest = dest;
     this.getMyGeoLocation();
   },
+
   handleAssign(err, data) {
     if(err) {
       this.setState({assignmentError: 'Failed to assign route. '+ err})
@@ -87,18 +108,25 @@ var PickupPageLayout = React.createClass({
 
   render: function () {
     console.log(this.state)
+    //<Signup fetchPickups={this.fetchPickups}/>
     return (
       <div key="collection" className="reports-page">
 
         <div className='row pledge-logo-section'>
           <div className='col-md-4 bg-white-base'>
+           <h4 className='font-thin text-center'>Volunteer Drop Route Confirmation</h4>
+           <div className='text-center'>
               <img src={require("../../assets/images/logo_ngo.png") } width='200px'/>
+
+              </div>
             <div className='card-block'>
-            <Signup fetchPickups={this.fetchPickups}/>
+            
+            <DropOffLocationSelect options={this.state.dropOffLocations} fetchPickups={this.fetchPickups}/>
             <br/><br/>
             <PathPoints/>
             <p className="card-text text-center text-red-variant1">{this.state.assignmentError || null}</p>
             <Accept assignRoute={this.assignRoute}/>
+            <br/><br/>
             <DropLocationList />
 
    

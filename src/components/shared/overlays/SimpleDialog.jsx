@@ -76,10 +76,11 @@ class ModalDialog extends React.Component {
         return (
             <div>
                 {this.renderTrigger() }
-                <Dialog bodyStyle={{maxHeight: 'none!important'}} contentStyle={{maxHeight: 'none'}}
+                <Dialog
                     title={props.title || 'Confirmation'}
                     actions={this.renderActions() }
-                    modal={false} bodyClassName='cancel-height'
+                    modal={false} titleStyle={{borderBottom: 'none'}}
+                    autoScrollBodyContent={props.autoScrollBodyContent}
                     open={this.state.open}
                     onRequestClose={this.handleClose.bind(this) }
                     >

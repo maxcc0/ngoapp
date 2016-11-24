@@ -42,5 +42,8 @@ module.exports = {
     login(data, cb) {
       _makeAjax('post', { data: data }, 
       'https://www.socialpixe.com/socialpixe/react/login.php', cb);
+    },
+    fetchDropLocations(cb) {
+      _makeAjax('get', { }, 'https://www.socialpixe.com/socialpixe/react/droplocations.php', cb);
     }
 }

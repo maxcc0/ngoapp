@@ -9,8 +9,8 @@
 
             return (
                 <div className=''>
-                    <a type="type"  href="google.navigation:q=San+Francisco" 
-                    className="btn btn-primary-dm btn-default">Start</a>
+                    <a type="type"  href="http://maps.google.com/maps?saddr=New+York&daddr=San+Francisco" 
+                    className="btn btn-primary-dm btn-block btn-default">Start Navigation</a>
                     
                     <h4 className='font-thin card-title '>Donor Addresses</h4>
                     <p><a href="geo:50,10">Location 50/10</a></p>

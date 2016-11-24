@@ -4,7 +4,7 @@ import PledgeForm from './PledgeForm'
 var PledgeCard = React.createClass({
   render: function () {
     return (
-      <div className="card " style={{ marginTop: '.75rem' }}>
+      <div className="card ">
         <div className="card-header text-center">
           <h4 className=' font-thin'>Donation Pledge Confirmation</h4>
         </div>

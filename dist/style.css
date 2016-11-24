@@ -7823,31 +7823,31 @@ button.close {
   font-size: 18px;
   background: #1a3b7a;
 }
-.login-page .feature-section {
-  padding: 2rem;
-  color: #666;
-}
-.login-page .feature-section .section-header {
-  font-weight: 100;
-  font-size: 32px;
-}
-.login-page .feature-section .section-header extraLarge {
-  font-size: 100px;
-}
-.login-page .feature-section .title {
-  font-weight: 100;
-  font-size: 32px;
-}
-.login-page .feature-section .feature-desc {
-  font-weight: 100;
-  font-size: 20px;
-}
 .login-page .feature-section.main {
   color: #fff;
   background: #0099ff url(d58d3f0dd25f07d54170617292ba1263.png);
   background-repeat: repeat;
   background-size: 947px 530px;
   background-position: 50% -1%;
+}
+.feature-section {
+  padding: 2rem;
+  color: #666;
+}
+.feature-section .section-header {
+  font-weight: 100;
+  font-size: 32px;
+}
+.feature-section .section-header extraLarge {
+  font-size: 100px;
+}
+.feature-section .title {
+  font-weight: 100;
+  font-size: 32px;
+}
+.feature-section .feature-desc {
+  font-weight: 100;
+  font-size: 20px;
 }
 .container_1n45xpj {
   background-color: #710041 !important;
@@ -7950,6 +7950,11 @@ button.close {
 .pledge-logo-section .feature-desc {
   font-weight: 100;
   font-size: 20px;
+}
+@media (min-width: 768px) {
+  .pledge-logo-section {
+    padding: .75rem;
+  }
 }
 .input-underline {
   background: none;

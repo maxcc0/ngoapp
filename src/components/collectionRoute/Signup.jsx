@@ -27,7 +27,7 @@ var Modals = React.createClass({
     },
     handleSubmit() {
         this.refs.routeConfirmDialog.handleClose();
-    },
+    },//                <h2 className="card-title text-center no-margins font-thin">Thank you for your help!</h2>
     render: function () {
         return (
             <Dialog trigger={trigger} ref='routeConfirmDialog'
@@ -36,7 +36,6 @@ var Modals = React.createClass({
                 handleConfirm={this.handleConfirm}
                 handleCancel={this.handleCancel}
                 title={getTitle()}>
-                <h2 className="card-title text-center no-margins font-thin">Thank you for your help!</h2>
                 <h4 className='font-thin card-title no-margins'>Choose a drop off location</h4>
                 <br/>
             <Form {...this.props} handleSubmit={this.handleSubmit}/>

@@ -67,9 +67,9 @@ var PledgeForm = React.createClass({
 
   render: function () {
     const locations = [];
-    // if(_.isEmpty(this.state.dropLocations)) {
-    //   return <h4 className='font-thin'>No drop locations found :(</h4>;
-    // }
+    if(_.isEmpty(this.state.dropLocations)) {
+      return <h4 className='font-thin'>No drop locations found :(</h4>;
+    }
     
     _.forEach(this.state.dropLocations, function(item){
       locations.push(<RadioButton key={item.addressid + '_' + _.random(0, 100)}
@@ -79,6 +79,7 @@ var PledgeForm = React.createClass({
       />)
 
     })
+
     return (
       <div className='row'>
           <div className='col-xs-12'>
