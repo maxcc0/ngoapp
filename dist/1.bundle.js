@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 987:
+/***/ 990:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13,9 +13,9 @@ webpackJsonp([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(286);
+	var _reactRouter = __webpack_require__(258);
 
-	var _PledgeCard = __webpack_require__(988);
+	var _PledgeCard = __webpack_require__(991);
 
 	var _PledgeCard2 = _interopRequireDefault(_PledgeCard);
 
@@ -34,8 +34,8 @@ webpackJsonp([1],{
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4' },
-	          _react2.default.createElement('img', { src: __webpack_require__(991), width: '100%' }),
-	          _react2.default.createElement('img', { src: __webpack_require__(992), width: '100%' })
+	          _react2.default.createElement('img', { src: __webpack_require__(993), width: '100%' }),
+	          _react2.default.createElement('img', { src: __webpack_require__(994), width: '100%' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -61,7 +61,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 988:
+/***/ 991:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74,7 +74,7 @@ webpackJsonp([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _PledgeForm = __webpack_require__(989);
+	var _PledgeForm = __webpack_require__(992);
 
 	var _PledgeForm2 = _interopRequireDefault(_PledgeForm);
 
@@ -121,7 +121,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 989:
+/***/ 992:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -146,7 +146,7 @@ webpackJsonp([1],{
 
 	var _place2 = _interopRequireDefault(_place);
 
-	var _Location = __webpack_require__(990);
+	var _Location = __webpack_require__(979);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -322,57 +322,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 990:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.fetchAddress = fetchAddress;
-	exports.getGeoLocation = getGeoLocation;
-	function fetchAddress(lat, lng, cb) {
-	    var geocoder;
-	    geocoder = new google.maps.Geocoder();
-	    var latlng = new google.maps.LatLng(lat, lng);
-	    geocoder.geocode({
-	        'latLng': latlng
-	    }, function (results, status) {
-	        if (status === google.maps.GeocoderStatus.OK) {
-	            if (results[1]) {
-	                console.log(results[1]);
-	                cb(null, results[1].formatted_address);
-	            } else {
-	                cb(null, '');
-	            }
-	        } else {
-	            cb('Geocoder failed due to: ' + status, '');
-	        }
-	    });
-	}
-
-	function getGeoLocation(cb) {
-	    if (navigator.geolocation) {
-	        navigator.geolocation.getCurrentPosition(function (location) {
-	            cb(null, location);
-	        });
-	    } else {
-	        cb('not supported');
-	        alert('Geolocation is not supported in your browser');
-	    }
-	}
-
-/***/ },
-
-/***/ 991:
+/***/ 993:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "00d96eaeb1314ed3e291fe40dea6dfa7.jpg";
 
 /***/ },
 
-/***/ 992:
+/***/ 994:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "506a01626c2319957ee0848d0242c89f.jpg";

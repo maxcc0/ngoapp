@@ -33,7 +33,7 @@ var Modals = React.createClass({
                 handleCancel={this.handleCancel}
                 title={getTitle()}>
                 <Form/>
-                <p className="card-text text-center text-muted">Become a part of the intiative and contribute.</p>
+                <p className="card-text text-center text-muted"><small>Become a part of the intiative and contribute.</small></p>
             </Dialog>
         );
     }

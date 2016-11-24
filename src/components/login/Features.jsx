@@ -9,7 +9,8 @@ import AppsIcon from 'material-ui/svg-icons/navigation/apps';
 
 import RoomIcon from 'material-ui/svg-icons/maps/directions-walk';
 import PlaceIcon from 'material-ui/svg-icons/maps/place';
-import Signup from './Signup';
+import Signup from './SignupDialog';
+import Login from './LoginDialog';
 export default class Features extends React.Component {
     render() {
         const props = this.props;
@@ -206,7 +207,7 @@ class Pitch extends React.Component {
                                 
                             </div>
                             <div className='col-xs-6 '>
-                                <button type="submit" onClick={this.props.handleLogin} className="btn btn-white btn-outline btn-rounded btn-block btn-lg pull-right">Login</button>
+                            <Login/>
                             </div>
                         </div>
                         

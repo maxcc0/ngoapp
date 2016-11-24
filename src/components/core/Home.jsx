@@ -7,6 +7,10 @@ import $ from "jQuery";
 import classNames from "classnames";
 import PrimaryHeader from './PrimaryHeader';
 
+function renderBrandForFooter() {
+    return <img src={require("../../assets/images/logo_ngo.png")} style={{marginLeft: '10px'}} className="brand-logo" /> 
+}
+
 var HomePage = React.createClass({
   getInitialState: function(){
     return {

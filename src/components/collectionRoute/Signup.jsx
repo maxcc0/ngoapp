@@ -4,7 +4,7 @@ import Dialog from '../shared/overlays/SimpleDialog'
 import Form from './SignupForm';
 
 function trigger() {
-    return <button type="submit"  className="btn btn-block btn-primary-dm btn-default btn-lg">Drop Location</button>
+    return <button type="submit"  className="btn btn-block btn-primary-dm btn-default btn-lg">Select Drop Location</button>
 }
 
 function renderBrand() {

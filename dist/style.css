@@ -7684,7 +7684,7 @@ button.close {
      */
 }
 .dashboard-page .main {
-  /*padding: 20px;*/
+  /*padding: 10px;*/
   position: absolute;
   top: 56px;
   bottom: 0px;
@@ -7820,12 +7820,6 @@ button.close {
   font-size: 18px;
   background: #1a3b7a;
 }
-.login-page .page-footer {
-  padding: 2rem;
-  text-align: left;
-  font-size: 18px;
-  background: #1a3b7a;
-}
 .login-page .feature-section {
   padding: 2rem;
   color: #666;
@@ -7859,6 +7853,12 @@ button.close {
   background: linear-gradient(90deg, #710041, #A2474B) !important;
   height: 300px !important;
   position: relative !important;
+}
+.peachu {
+  background-color: #ffefd3 !important;
+  background: -webkit-linear-gradient(135deg, #ffefd3 0%, #fcdece 53%, #fdab93 100%) !important;
+  background: -webkit-linear-gradient(315deg, #ffefd3 0%, #fcdece 53%, #fdab93 100%) !important;
+  background: linear-gradient(135deg, #ffefd3 0%, #fcdece 53%, #fdab93 100%) !important;
 }
 .intro-header {
   height: 100%;
@@ -7919,6 +7919,12 @@ button.close {
   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
   -webkit-animation-duration: 1s;
   animation-duration: 2s;
+}
+.page-footer {
+  padding: .5rem;
+  text-align: left;
+  font-size: 14px;
+  background: #1a3b7a;
 }
 .pledge-logo-section {
   color: #666;
