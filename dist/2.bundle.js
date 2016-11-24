@@ -7332,15 +7332,6 @@ webpackJsonp([2],{
 	                    null,
 	                    _react2.default.createElement(
 	                        'a',
-	                        { href: 'google.navigation:q=50,10' },
-	                        'Navigation to 50/10'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    _react2.default.createElement(
-	                        'a',
 	                        { href: 'http://maps.google.com/maps?saddr=New+York&daddr=San+Francisco' },
 	                        'Route New York--> San Francisco'
 	                    )

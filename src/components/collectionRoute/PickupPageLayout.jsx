@@ -50,7 +50,7 @@ var PickupPageLayout = React.createClass({
           data: data,
           origin: new google.maps.LatLng(_origin.coords.latitude, _origin.coords.longitude),
           dest: new google.maps.LatLng(28.5789564, 73.683705),
-      waypoints: waypoints
+          waypoints: waypoints
     })
   },
   handlePickups(err, data) {

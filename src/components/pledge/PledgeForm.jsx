@@ -2,8 +2,10 @@ import React from 'react';
 import Formsy from 'formsy-react';
 import $ from 'jQuery';
 import PlaceIcon from 'material-ui/svg-icons/maps/place';
-import {fetchAddress, getGeoLocation} from '../../utils/Location';
+import {fetchAddress, getGeoLocation, fetchCoords} from '../../utils/Location';
+function _savePledge() {
 
+}
 const MyAppForm = React.createClass({
   getInitialState() {
 
@@ -25,8 +27,13 @@ const MyAppForm = React.createClass({
       canSubmit: false
     });
   },
-
+  handleFetchCoords(err, data) {
+    console.log(data);
+  },
   submit(model) {
+    // if(!this.state.geoLocation) {
+    //   fetchCoords(model.address, this.handleFetchCoords)
+    // }
     model.geoLocation = this.state.geoLocation;
     $.ajax({
 

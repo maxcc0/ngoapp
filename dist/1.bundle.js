@@ -155,6 +155,7 @@ webpackJsonp([1],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _savePledge() {}
 	var MyAppForm = _react2.default.createClass({
 	  displayName: 'MyAppForm',
 	  getInitialState: function getInitialState() {
@@ -176,7 +177,13 @@ webpackJsonp([1],{
 	      canSubmit: false
 	    });
 	  },
+	  handleFetchCoords: function handleFetchCoords(err, data) {
+	    console.log(data);
+	  },
 	  submit: function submit(model) {
+	    // if(!this.state.geoLocation) {
+	    //   fetchCoords(model.address, this.handleFetchCoords)
+	    // }
 	    model.geoLocation = this.state.geoLocation;
 	    _jQuery2.default.ajax({
 

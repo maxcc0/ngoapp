@@ -98232,6 +98232,7 @@
 	});
 	exports.fetchAddress = fetchAddress;
 	exports.getGeoLocation = getGeoLocation;
+	exports.fetchCoords = fetchCoords;
 	function fetchAddress(lat, lng, cb) {
 	    var geocoder;
 	    geocoder = new google.maps.Geocoder();
@@ -98261,6 +98262,19 @@
 	        cb('not supported');
 	        alert('Geolocation is not supported in your browser');
 	    }
+	}
+
+	function fetchCoords(address, cb) {
+	    var geocoder;
+	    geocoder = new google.maps.Geocoder();
+	    geocoder.geocode({ 'address': query }, function (results, status) {
+	        console.log(results);
+	        addresses = {};
+	        return cb(null, results);
+	        $.each(results, function (index, value) {
+	            addresses[index] = { "lat": value.geometry.location.$a, "lng": value.geometry.location.ab };
+	        });
+	    });
 	}
 
 /***/ },
