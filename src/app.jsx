@@ -38,7 +38,7 @@ const rootRoute = {
       childRoutes: [
         require('./components/dashboard'),
         require('./components/pledge'),
-        require('./components/collectionRoute')
+        require('./components/voluntaryPickup')
         
       ]
     },

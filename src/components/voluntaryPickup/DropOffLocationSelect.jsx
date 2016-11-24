@@ -30,7 +30,7 @@ const DL = React.createClass({
                 <p className="card-text text-center text-red-variant1">{this.props.error || null}</p>
                 <div className="form-group row">
                     <div className="col-sm-6 col-sm-offset-3">
-                        <button type="submit" className=" col-sm-6 col-sm-offset-3 btn btn-block btn-lg yellow-bg-v2 pull-right" disabled={!this.state.canSubmit}>Search</button>
+                        <button type="submit" className=" col-sm-6 col-sm-offset-3 btn btn-block btn-lg btn-primary-dm pull-right" disabled={!this.state.canSubmit}>Search</button>
                     </div></div>
             </Formsy.Form >
 

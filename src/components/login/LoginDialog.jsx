@@ -50,6 +50,7 @@ var Modals = React.createClass({
             <Dialog trigger={trigger} ref='login'
                 handleConfirm={this.handleConfirm}
                 handleCancel={this.handleCancel}
+                autoScrollBodyContent={true}
                 hideActions={true}
                 title={getTitle() }>
                 <Form handleLogin={this.handleLogin}/>

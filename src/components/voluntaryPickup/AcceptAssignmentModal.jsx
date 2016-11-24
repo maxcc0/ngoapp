@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import Dialog from '../shared/overlays/SimpleDialog'
 
 function trigger() {
-    return <button type="button"  className="btn btn-block yellow-bg-v2 btn-lg">Accept</button>
+    return <button type="button"  className="btn btn-block yellow-bg-v2 btn-lg">Confirm Pickup</button>
 }
 
 function renderBrand() {

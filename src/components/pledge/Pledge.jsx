@@ -17,7 +17,7 @@ var Settings = React.createClass({
           <div className='col-md-6'>
             <PledgeCard />
           </div>
-          <div className='col-md-2 '>
+          <div className='col-md-2 text-center'>
             <div>
               <img src={require("../../assets/images/logo_ngo.png") } width='200px'/>
             </div>

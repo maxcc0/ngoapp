@@ -16,6 +16,7 @@
                             <div>
                                 Start Location
                             </div>
+                            {props.startAddress || null}
                         </div>
                         <div className='col-xs-6 '>
                             <div className='pull-right text-right' >
@@ -26,7 +27,7 @@
                                     End Location
                                 </div>
 
-
+                                 {props.endAddress || null}
                             </div>
                         </div>
 

@@ -6,6 +6,7 @@ import {fetchAddress, getGeoLocation, fetchCoords} from '../../utils/Location';
 function _savePledge() {
 
 }
+import NavigationIcon from 'material-ui/svg-icons/maps/navigation';
 const MyAppForm = React.createClass({
   getInitialState() {
 
@@ -80,7 +81,8 @@ const MyAppForm = React.createClass({
         <button type="submit" className="btn btn-lg yellow-bg-v2" disabled={!this.state.canSubmit}>Confirm</button>
         </div>
         <div className='col-xs-6'>
-        <button type="button" onClick={this.getMyGeoLocation} className="btn  btn-primary-dm pull-right" ><PlaceIcon style={{verticalAlign: 'bottom'}} color={'#fff'}/>Use My Location</button>
+     
+        <button type="button" onClick={this.getMyGeoLocation} className="btn  btn-lg btn-primary-dm pull-right" ><PlaceIcon style={{verticalAlign: 'bottom'}} color={'#fff'}/>Use My Location</button>
         </div>
         
         
@@ -120,8 +122,9 @@ const MyOwnInput = React.createClass({
         <div className="col-sm-10">
           <input className="col-sm-2 form-control" type="text" onChange={this.changeValue} value={this.getValue() }/>
         </div>
-
-        <span>{errorMessage}</span>
+        <div className="col-sm-12 col-sm-offset-2">
+        <p className='text-red-variant1'>{errorMessage}</p>
+        </div>
       </div>
     );
   }

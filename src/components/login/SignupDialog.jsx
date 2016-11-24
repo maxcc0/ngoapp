@@ -32,6 +32,7 @@ var Modals = React.createClass({
                 handleConfirm={this.handleConfirm}
                 handleCancel={this.handleCancel}
                 hideActions={true}
+                 autoScrollBodyContent={true}
                 title={getTitle()}>
                 <Form/>
                 <p className="card-text text-center text-muted"><small>Become a part of the intiative and contribute.</small></p>
