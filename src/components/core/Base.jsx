@@ -12,18 +12,6 @@ const appTheme = {
   } 
 }
 
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: appTheme.palette.accent2,
-    //secondaryTextColor: appTheme.palette.accent3
-  },
-  raisedButton: {
-    primaryColor: appTheme.palette.accent2,
-    secondaryColor: appTheme.palette.accent3,
-    fontSize: 15
-  }
-});
-console.log(getMuiTheme())
 
 var Base = React.createClass({
   componentWillMount: function(){
@@ -39,7 +27,7 @@ var Base = React.createClass({
         var change = pathname;
 
   	return (
-      <MuiThemeProvider muiTheme={muiTheme}>
+      <MuiThemeProvider >
       <div className="ui-view">
         <div className="ui-base">
         	{<ReactCSSTransitionGroup component="div"

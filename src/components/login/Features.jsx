@@ -271,7 +271,7 @@ class JoyOfGiving extends React.Component {
                         <br/>
                         <h2 className='font-light'> How can you contribute?</h2>
                             <br/>
-                       <small></small>
+                       <h4 className='no-margins font-thin'>The art of giving is fathomless. We accept any non-monetary donation that you're willing to let go of to see a smile on someone else's face. Our donations range from wearable clothes you've outgrown to stationery you no longer use. The possibilities are endless. All you need is the will to donate.</h4>
                         <br/><br/><br/>
                     </div>
                     <div className='col-md-12'>

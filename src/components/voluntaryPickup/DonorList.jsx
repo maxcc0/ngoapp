@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
 import NavigationIcon from 'material-ui/svg-icons/maps/navigation';
+import PickupActions from './PickupActions';
+
 import _ from 'lodash';
                 // <p><a href="geo:50,10">Location 50/10</a></p>
                 // <p><a href="geo:Vienna">Location Vienna</a></p>
@@ -60,13 +62,15 @@ class DonorItem extends React.Component {
         let props = this.props;
         const donor = props.donor;
         return (
-            <div className='card-title'>
+            <div style={{borderBottom: '1px solid #666', borderBottomStyle: 'dashed'}} className='card-title' >
                 <PlaceIcon color={'#ff7e82'}/>
                 <div> {donor.donor_name} </div>
                 <div> <small className='text-muted'>{donor.donor_address} </small></div>
                 <div><CallIcon style={{ verticalAlign: 'bottom' }}
                     color={'#008489'}/><small>{donor.donor_contact}  { donor.donor_alternate_contact} </small></div>
-                <br/>
+                
+                <PickupActions/>
+
             </div>
         )
     }

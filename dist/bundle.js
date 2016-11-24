@@ -162,7 +162,7 @@
 	  childRoutes: [{
 	    component: _Home2.default,
 	    indexRoute: { component: _DashboardLayout2.default },
-	    childRoutes: [__webpack_require__(990), __webpack_require__(991), __webpack_require__(998)]
+	    childRoutes: [__webpack_require__(990), __webpack_require__(991), __webpack_require__(999)]
 	  }, {
 	    path: '/login',
 	    component: _Login2.default,
@@ -30168,18 +30168,6 @@
 	  }
 	};
 
-	var muiTheme = (0, _getMuiTheme2.default)({
-	  palette: {
-	    primary1Color: appTheme.palette.accent2
-	  },
-	  raisedButton: {
-	    primaryColor: appTheme.palette.accent2,
-	    secondaryColor: appTheme.palette.accent3,
-	    fontSize: 15
-	  }
-	});
-	console.log((0, _getMuiTheme2.default)());
-
 	var Base = _react2.default.createClass({
 	  displayName: 'Base',
 
@@ -30195,7 +30183,7 @@
 
 	    return _react2.default.createElement(
 	      _MuiThemeProvider2.default,
-	      { muiTheme: muiTheme },
+	      null,
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'ui-view' },
@@ -78459,7 +78447,11 @@
 	                            ' How can you contribute?'
 	                        ),
 	                        _react2.default.createElement('br', null),
-	                        _react2.default.createElement('small', null),
+	                        _react2.default.createElement(
+	                            'h4',
+	                            { className: 'no-margins font-thin' },
+	                            'The art of giving is fathomless. We accept any non-monetary donation that you\'re willing to let go of to see a smile on someone else\'s face. Our donations range from wearable clothes you\'ve outgrown to stationery you no longer use. The possibilities are endless. All you need is the will to donate.'
+	                        ),
 	                        _react2.default.createElement('br', null),
 	                        _react2.default.createElement('br', null),
 	                        _react2.default.createElement('br', null)
@@ -78781,6 +78773,7 @@
 	                handleConfirm: this.handleConfirm,
 	                handleCancel: this.handleCancel,
 	                hideActions: true,
+	                autoScrollBodyContent: true,
 	                title: getTitle() },
 	            _react2.default.createElement(_SignupForm2.default, null),
 	            _react2.default.createElement(
@@ -80703,6 +80696,7 @@
 	            { trigger: trigger, ref: 'login',
 	                handleConfirm: this.handleConfirm,
 	                handleCancel: this.handleCancel,
+	                autoScrollBodyContent: true,
 	                hideActions: true,
 	                title: getTitle() },
 	            _react2.default.createElement(_LoginForm2.default, { handleLogin: this.handleLogin }),
@@ -99425,7 +99419,8 @@
 /* 995 */,
 /* 996 */,
 /* 997 */,
-/* 998 */
+/* 998 */,
+/* 999 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -99442,7 +99437,7 @@
 	    _nProgress2.default.start();
 	    __webpack_require__.e/* nsure */(2, function (require) {
 	      __webpack_require__(357).done();
-	      cb(null, __webpack_require__(999).default);
+	      cb(null, __webpack_require__(1000).default);
 	    });
 	  }
 	};

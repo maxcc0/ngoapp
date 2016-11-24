@@ -19,7 +19,7 @@ webpackJsonp([1],{
 
 	var _PledgeCard2 = _interopRequireDefault(_PledgeCard);
 
-	var _PledgeOverview = __webpack_require__(995);
+	var _PledgeOverview = __webpack_require__(996);
 
 	var _PledgeOverview2 = _interopRequireDefault(_PledgeOverview);
 
@@ -38,8 +38,8 @@ webpackJsonp([1],{
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4' },
-	          _react2.default.createElement('img', { src: __webpack_require__(996), width: '100%' }),
-	          _react2.default.createElement('img', { src: __webpack_require__(997), width: '100%' })
+	          _react2.default.createElement('img', { src: __webpack_require__(997), width: '100%' }),
+	          _react2.default.createElement('img', { src: __webpack_require__(998), width: '100%' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -48,7 +48,7 @@ webpackJsonp([1],{
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'col-md-2 ' },
+	          { className: 'col-md-2 text-center' },
 	          _react2.default.createElement(
 	            'div',
 	            null,
@@ -103,10 +103,10 @@ webpackJsonp([1],{
 	      ),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'card-block text-center' },
+	        { className: 'card-block ' },
 	        _react2.default.createElement(
 	          'h2',
-	          { className: 'card-title no-margins font-thin' },
+	          { className: 'card-title text-center no-margins font-thin' },
 	          'Thank you for your help!'
 	        ),
 	        _react2.default.createElement('br', null),
@@ -153,9 +153,14 @@ webpackJsonp([1],{
 
 	var _Location = __webpack_require__(980);
 
+	var _navigation = __webpack_require__(995);
+
+	var _navigation2 = _interopRequireDefault(_navigation);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _savePledge() {}
+
 	var MyAppForm = _react2.default.createClass({
 	  displayName: 'MyAppForm',
 	  getInitialState: function getInitialState() {
@@ -240,7 +245,7 @@ webpackJsonp([1],{
 	          { className: 'col-xs-6' },
 	          _react2.default.createElement(
 	            'button',
-	            { type: 'button', onClick: this.getMyGeoLocation, className: 'btn  btn-primary-dm pull-right' },
+	            { type: 'button', onClick: this.getMyGeoLocation, className: 'btn  btn-lg btn-primary-dm pull-right' },
 	            _react2.default.createElement(_place2.default, { style: { verticalAlign: 'bottom' }, color: '#fff' }),
 	            'Use My Location'
 	          )
@@ -293,9 +298,13 @@ webpackJsonp([1],{
 	        _react2.default.createElement('input', { className: 'col-sm-2 form-control', type: 'text', onChange: this.changeValue, value: this.getValue() })
 	      ),
 	      _react2.default.createElement(
-	        'span',
-	        null,
-	        errorMessage
+	        'div',
+	        { className: 'col-sm-12 col-sm-offset-2' },
+	        _react2.default.createElement(
+	          'p',
+	          { className: 'text-red-variant1' },
+	          errorMessage
+	        )
 	      )
 	    );
 	  }
@@ -306,6 +315,44 @@ webpackJsonp([1],{
 /***/ },
 
 /***/ 995:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(81);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _pure = __webpack_require__(884);
+
+	var _pure2 = _interopRequireDefault(_pure);
+
+	var _SvgIcon = __webpack_require__(893);
+
+	var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MapsNavigation = function MapsNavigation(props) {
+	  return _react2.default.createElement(
+	    _SvgIcon2.default,
+	    props,
+	    _react2.default.createElement('path', { d: 'M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z' })
+	  );
+	};
+	MapsNavigation = (0, _pure2.default)(MapsNavigation);
+	MapsNavigation.displayName = 'MapsNavigation';
+	MapsNavigation.muiName = 'SvgIcon';
+
+	exports.default = MapsNavigation;
+
+/***/ },
+
+/***/ 996:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -540,14 +587,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 996:
+/***/ 997:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "00d96eaeb1314ed3e291fe40dea6dfa7.jpg";
 
 /***/ },
 
-/***/ 997:
+/***/ 998:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "506a01626c2319957ee0848d0242c89f.jpg";
