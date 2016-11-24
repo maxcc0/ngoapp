@@ -182,7 +182,7 @@ webpackJsonp([2],{
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'col-md-8 card-block', style: { height: 500, marginTop: '.75rem' } },
+	          { className: 'col-md-8', style: { height: 500 } },
 	          _react2.default.createElement(_Map2.default, { origin: this.state.origin, dest: this.state.dest, waypoints: this.state.waypoints })
 	        )
 	      )

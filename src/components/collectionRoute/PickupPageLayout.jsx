@@ -133,7 +133,7 @@ var PickupPageLayout = React.createClass({
             </div>
           </div>
 
-          <div className='col-md-8 card-block' style={{ height: 500, marginTop: '.75rem' }}>
+          <div className='col-md-8' style={{ height: 500}}>
             <Map origin={this.state.origin} dest={this.state.dest} waypoints={this.state.waypoints}/>
           </div>
         </div>
