@@ -7788,13 +7788,6 @@ button.close {
   position: relative;
   top: -60px;
 }
-.login-page .login-backdrop {
-  background: -webkit-linear-gradient(top, rgba(1, 1, 1, 0) 0%, rgba(1, 1, 1, 0.6) 70%);
-  background: linear-gradient(to bottom, rgba(1, 1, 1, 0) 0%, rgba(1, 1, 1, 0.6) 70%);
-  /* padding: 3em;*/
-  height: 100%;
-  /*position: absolute;*/
-}
 .login-page h1 {
   font-weight: 100;
   font-size: 70px;
@@ -7825,7 +7818,7 @@ button.close {
 }
 .login-page .feature-section.main {
   color: #fff;
-  background: #0099ff url(d58d3f0dd25f07d54170617292ba1263.png);
+  background: #2b252c;
   background-repeat: repeat;
   background-size: 947px 530px;
   background-position: 50% -1%;
@@ -7929,12 +7922,17 @@ button.close {
   font-size: 14px;
   background: #1a3b7a;
 }
+.login-backdrop {
+  background: -webkit-linear-gradient(top, rgba(1, 1, 1, 0) 0%, rgba(1, 1, 1, 0.6) 70%);
+  background: linear-gradient(to bottom, rgba(1, 1, 1, 0) 0%, rgba(1, 1, 1, 0.6) 70%);
+  /* padding: 3em;*/
+  height: 100%;
+  /*position: absolute;*/
+}
 .pledge-logo-section {
   color: #666;
-  background: #0099ff url(d58d3f0dd25f07d54170617292ba1263.png);
-  background-repeat: repeat;
-  background-size: 947px 530px;
-  background-position: 50% -1%;
+  background: url(1aea83310e5e08d96c06bfeaa4cb3b2a.jpg) no-repeat center center;
+  background-size: cover;
 }
 .pledge-logo-section .section-header {
   font-weight: 100;
@@ -8153,6 +8151,14 @@ to prevent collapsing during animation*/
 .card-success {
   background-color: #5cb85c;
   border-color: #5cb85c;
+}
+.card-primary-dm {
+  background-color: #095695;
+  border-color: #095695;
+}
+.card-brown-dm {
+  background-color: #943634;
+  border-color: #943634;
 }
 .card-punch {
   background-color: #f25278;

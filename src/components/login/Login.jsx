@@ -66,7 +66,7 @@ var LoginPage = React.createClass({
             <div className='' >
             <div className='login-header row'>
               <div style={{width: '200px', padding: '.25rem', paddingLeft: '1rem'}}>
-              <SideMenu/>   {renderBrand()}
+              <SideMenu/>
               </div>
              </div>
              <Intro handleLogin={this.handleLogin}/>
@@ -76,7 +76,7 @@ var LoginPage = React.createClass({
               
              <div className='page-footer  text-right font-light'>
 
-                    Copyright. All rights reserverd. {renderBrandForFooter()}
+                    Copyright. Do Mutthi Ka Dum. All rights reserverd. 
         
              </div>
           </div>

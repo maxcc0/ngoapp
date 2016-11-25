@@ -4,7 +4,6 @@ render() {
     return (
         <section className='.feature-section'>
         <JoyOfGiving/>
-        <Benefits/>
         </section>
     )
 }
@@ -21,15 +20,15 @@ class Benefits extends React.Component {
                         <div className='card-block'>
                             <div className='title'>Clothes</div>
                             <span className='text-muted feature-desc'>
-                                Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.
+                                We are willing to take any clothes that you may not wish to use again. However, keep in mind that the clothes you donate are clean and can be used again by someone.
                             </span>
                         </div>
                     </div>
                     <div className='col-sm-6'>
                         <div className='card-block'>
-                            <div className='title'>Books</div>
+                            <div className='title'>Books & Stationery</div>
                             <span className='text-muted feature-desc'>
-                                Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.
+                                You may donate any books that you or your children will not use in the future.  The books should be in a usable condition, i.e., they should not be torn or be missing pages. You may also donate old colors, pencils, pens etc. However, make sure that the pens you donate do have ink left in them.
                             </span>
                         </div>
                     </div>
@@ -40,15 +39,15 @@ class Benefits extends React.Component {
                         <div className='card-block'>
                             <div className='title'>Toys</div>
                             <span className='text-muted feature-desc'>
-                                Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.
+                                Toys are another item that you can donate. You may donate any toy, there is no age group limit to that, however, please ensure that any toy you donate is not broken or missing any <parts className=""></parts>
                             </span>
                         </div>
                     </div>
                     <div className='col-sm-6'>
                         <div className='card-block'>
-                            <div className='title'>Stationery</div>
+                            <div className='title'>Food Items</div>
                             <span className='text-muted feature-desc'>
-                                Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.</span>
+                                You may also donate any excess food items. However, please try and ensure that the food you donate is not too old and can still be consumed.</span>
                         </div>
                     </div>
 
@@ -56,9 +55,9 @@ class Benefits extends React.Component {
                 <div className='row feature-section'>
                     <div className='col-sm-6'>
                         <div className='card-block'>
-                            <div className='title'>Time</div>
+                            <div className='title'>Unexpired Medicines</div>
                             <span className='text-muted feature-desc'>
-                                Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.</span>
+                                You may also donate unexpired medicines. The medicines should be those that can be obtained without any prescription.</span>
                         </div>
                     </div>
                     <div className='col-sm-6'>
@@ -79,10 +78,10 @@ class JoyOfGiving extends React.Component {
                 <div className="row text-center">
                     <div className="col-md-12">
                         <br/>
-                        <h2 className='font-light'> How can you contribute?</h2>
+                        <h2 className='font-light'> What can you donate?</h2>
                             <br/>
                        <small></small>
-                        <br/><br/><br/>
+                        <br/>
                     </div>
                     <div className='col-md-12'>
                     <Benefits/>

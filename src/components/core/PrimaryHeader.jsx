@@ -30,13 +30,13 @@ export default class PrimaryHeader extends React.Component {
   }
 
   handleChange = (event, index, value) => this.setState({value});
-
+//          <BrandLogo/>
   render() {
     return (
       <Toolbar className='app-header'>
         <ToolbarGroup firstChild={true}>
           <Sidebar/>
-          <BrandLogo/>
+
         </ToolbarGroup>
 
 

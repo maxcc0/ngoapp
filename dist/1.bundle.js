@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 992:
+/***/ 991:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15,16 +15,20 @@ webpackJsonp([1],{
 
 	var _reactRouter = __webpack_require__(258);
 
-	var _PledgeCard = __webpack_require__(993);
+	var _PledgeCard = __webpack_require__(992);
 
 	var _PledgeCard2 = _interopRequireDefault(_PledgeCard);
 
-	var _PledgeOverview = __webpack_require__(996);
+	var _PledgeOverview = __webpack_require__(995);
 
 	var _PledgeOverview2 = _interopRequireDefault(_PledgeOverview);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// <div className='col-md-4'>
+	// <img src={require("../../assets/images/pledge_kids.jpg") } width='100%'/>
+	// <img src={require("../../assets/images/donate.jpg") } width='100%'/>
+	// </div>
 	var Settings = _react2.default.createClass({
 	  displayName: 'Settings',
 
@@ -37,23 +41,17 @@ webpackJsonp([1],{
 	        { className: 'row pledge-logo-section' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'col-md-4' },
-	          _react2.default.createElement('img', { src: __webpack_require__(997), width: '100%' }),
-	          _react2.default.createElement('img', { src: __webpack_require__(998), width: '100%' })
+	          { className: 'col-md-3 text-center' },
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement('img', { src: __webpack_require__(947), width: '200px' })
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-6' },
 	          _react2.default.createElement(_PledgeCard2.default, null)
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col-md-2 text-center' },
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement('img', { src: __webpack_require__(948), width: '200px' })
-	          )
 	        )
 	      ),
 	      _react2.default.createElement(_PledgeOverview2.default, null)
@@ -66,7 +64,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 993:
+/***/ 992:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79,7 +77,7 @@ webpackJsonp([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _PledgeForm = __webpack_require__(994);
+	var _PledgeForm = __webpack_require__(993);
 
 	var _PledgeForm2 = _interopRequireDefault(_PledgeForm);
 
@@ -126,7 +124,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 994:
+/***/ 993:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -139,21 +137,21 @@ webpackJsonp([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _formsyReact = __webpack_require__(965);
+	var _formsyReact = __webpack_require__(964);
 
 	var _formsyReact2 = _interopRequireDefault(_formsyReact);
 
-	var _jQuery = __webpack_require__(767);
+	var _jQuery = __webpack_require__(766);
 
 	var _jQuery2 = _interopRequireDefault(_jQuery);
 
-	var _place = __webpack_require__(959);
+	var _place = __webpack_require__(958);
 
 	var _place2 = _interopRequireDefault(_place);
 
-	var _Location = __webpack_require__(980);
+	var _Location = __webpack_require__(979);
 
-	var _navigation = __webpack_require__(995);
+	var _navigation = __webpack_require__(994);
 
 	var _navigation2 = _interopRequireDefault(_navigation);
 
@@ -314,7 +312,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 995:
+/***/ 994:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -327,11 +325,11 @@ webpackJsonp([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _pure = __webpack_require__(884);
+	var _pure = __webpack_require__(883);
 
 	var _pure2 = _interopRequireDefault(_pure);
 
-	var _SvgIcon = __webpack_require__(893);
+	var _SvgIcon = __webpack_require__(892);
 
 	var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
 
@@ -352,7 +350,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 996:
+/***/ 995:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -361,23 +359,23 @@ webpackJsonp([1],{
 	    value: true
 	});
 
-	var _getPrototypeOf = __webpack_require__(769);
+	var _getPrototypeOf = __webpack_require__(768);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-	var _classCallCheck2 = __webpack_require__(795);
+	var _classCallCheck2 = __webpack_require__(794);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createClass2 = __webpack_require__(796);
+	var _createClass2 = __webpack_require__(795);
 
 	var _createClass3 = _interopRequireDefault(_createClass2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(800);
+	var _possibleConstructorReturn2 = __webpack_require__(799);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(847);
+	var _inherits2 = __webpack_require__(846);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -401,8 +399,7 @@ webpackJsonp([1],{
 	            return _react2.default.createElement(
 	                'section',
 	                { className: '.feature-section' },
-	                _react2.default.createElement(JoyOfGiving, null),
-	                _react2.default.createElement(Benefits, null)
+	                _react2.default.createElement(JoyOfGiving, null)
 	            );
 	        }
 	    }]);
@@ -443,7 +440,7 @@ webpackJsonp([1],{
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'text-muted feature-desc' },
-	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                                'We are willing to take any clothes that you may not wish to use again. However, keep in mind that the clothes you donate are clean and can be used again by someone.'
 	                            )
 	                        )
 	                    ),
@@ -456,12 +453,12 @@ webpackJsonp([1],{
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'title' },
-	                                'Books'
+	                                'Books & Stationery'
 	                            ),
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'text-muted feature-desc' },
-	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                                'You may donate any books that you or your children will not use in the future.  The books should be in a usable condition, i.e., they should not be torn or be missing pages. You may also donate old colors, pencils, pens etc. However, make sure that the pens you donate do have ink left in them.'
 	                            )
 	                        )
 	                    )
@@ -483,7 +480,8 @@ webpackJsonp([1],{
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'text-muted feature-desc' },
-	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                                'Toys are another item that you can donate. You may donate any toy, there is no age group limit to that, however, please ensure that any toy you donate is not broken or missing any ',
+	                                _react2.default.createElement('parts', { className: '' })
 	                            )
 	                        )
 	                    ),
@@ -496,12 +494,12 @@ webpackJsonp([1],{
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'title' },
-	                                'Stationery'
+	                                'Food Items'
 	                            ),
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'text-muted feature-desc' },
-	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                                'You may also donate any excess food items. However, please try and ensure that the food you donate is not too old and can still be consumed.'
 	                            )
 	                        )
 	                    )
@@ -518,12 +516,12 @@ webpackJsonp([1],{
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'title' },
-	                                'Time'
+	                                'Unexpired Medicines'
 	                            ),
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'text-muted feature-desc' },
-	                                'Some text that says what type of clothes etc. We will put some fancy icons over here so that it looks cool.'
+	                                'You may also donate unexpired medicines. The medicines should be those that can be obtained without any prescription.'
 	                            )
 	                        )
 	                    ),
@@ -563,12 +561,10 @@ webpackJsonp([1],{
 	                        _react2.default.createElement(
 	                            'h2',
 	                            { className: 'font-light' },
-	                            ' How can you contribute?'
+	                            ' What can you donate?'
 	                        ),
 	                        _react2.default.createElement('br', null),
 	                        _react2.default.createElement('small', null),
-	                        _react2.default.createElement('br', null),
-	                        _react2.default.createElement('br', null),
 	                        _react2.default.createElement('br', null)
 	                    ),
 	                    _react2.default.createElement(
@@ -584,20 +580,6 @@ webpackJsonp([1],{
 	    }]);
 	    return JoyOfGiving;
 	}(_react2.default.Component);
-
-/***/ },
-
-/***/ 997:
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "00d96eaeb1314ed3e291fe40dea6dfa7.jpg";
-
-/***/ },
-
-/***/ 998:
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "506a01626c2319957ee0848d0242c89f.jpg";
 
 /***/ }
 
