@@ -8,6 +8,7 @@ import _ from 'lodash';
                 // <p><a href="geo:?z=5&q=New+York">Zoom 5, Search for New York</a></p>
                 // <p><a href="geo:?q=San+Francisco&z=15">Zoom 15, Search for San Francisco</a></p>
                 // <p><a href="google.navigation:q=San+Francisco">Navigation to San Francisco</a></p>
+                //<p><a href="http://maps.google.com/maps?saddr=New+York&daddr=San+Francisco">Route New York--> San Francisco</a></p>
 function encode(str) {
     return str.split(' ').join('+'); 
 }
@@ -48,7 +49,7 @@ export default class DropLocationList extends React.Component {
                 
                 <h4 className='font-thin card-title'>Donor Addresses</h4>
                 {donors}
-                <p><a href="http://maps.google.com/maps?saddr=New+York&daddr=San+Francisco">Route New York--> San Francisco</a></p>
+                
             </div>
         )
     }

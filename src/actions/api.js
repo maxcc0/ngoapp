@@ -12,7 +12,7 @@ function _makeAjax(type, data, url, cb) {
     error: function (jqXHR, exception) {
       var msg = '';
       if (jqXHR.status === 0) {
-        msg = 'Not connect.\n Verify Network.';
+        msg = 'Connection Failed.\n Verify Network.';
       } else if (jqXHR.status == 404) {
         msg = 'Requested page not found. [404]';
       } else if (jqXHR.status == 500) {

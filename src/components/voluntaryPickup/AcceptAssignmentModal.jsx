@@ -11,7 +11,7 @@ function renderBrand() {
 
 function getTitle() {
     return (
-        <h4 className='font-thin no-margins text-center'>{renderBrand()} <div style={{display: 'inline-block'}} className=' text-center'>Volunteer Drop Route COnfirmation</div></h4>
+        <h4 className='font-thin no-margins text-center'>{renderBrand()} <div style={{display: 'inline-block'}} className=' text-center'>Volunteer Drop Route Confirmation</div></h4>
     )
 }
 
@@ -24,7 +24,7 @@ var Modals = React.createClass({
     },
 
     render: function () {
-        const message = <h4 className='text-muted font-thin no-borders'>The addresses shown will be assigned to you for pickup.</h4>
+        const message = <h4 className='text-muted font-thin no-borders'>The addresses shown in the list will be assigned to you for pickup.</h4>
         return (
             <Dialog trigger={trigger} ref='routeConfirmDialog'
                 autoScrollBodyContent={true}

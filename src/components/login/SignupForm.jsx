@@ -74,8 +74,8 @@ import React from 'react';
       return (
         <div className="form-group row">
           <div className="col-sm-6 col-sm-offset-3">
-            <input className="form-control" placeholder={this.props.label} type="text" onChange={this.changeValue} value={this.getValue()}/>
-            <p className='help-block'>{errorMessage}</p>
+            <input className="form-control" placeholder={this.props.label} type={this.props.type || 'text'} onChange={this.changeValue} value={this.getValue()}/>
+            <p className='help-block text-red-variant1'>{errorMessage}</p>
           </div>
           
           

@@ -13,19 +13,32 @@ export function fetchAddress(lat, lng, cb) {
                 cb(null, '')
             }
         } else {
+            alert('Geolocation is not supported in your browser');
             cb('Geocoder failed due to: ' + status, '')
         }
     });
 }
 
 export function getGeoLocation(cb) {
+   let geoTimeout = '5000';
+   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    geoTimeout = '15000'
+}
+ function error (err) {
+            alert(err);
+    return cb('not supported');
+        }
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (location) {
       cb(null, location);
-    });
+    }, error, {
+        enableHighAccuracy: true,
+        timeout : geoTimeout,
+        maximumAge: 0
+       });
   } else {
-    cb('not supported');
     alert('Geolocation is not supported in your browser');
+    return cb('not supported');
   }
 
 }
