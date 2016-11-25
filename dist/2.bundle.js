@@ -7326,6 +7326,7 @@ webpackJsonp([2],{
 	// <p><a href="geo:?z=5&q=New+York">Zoom 5, Search for New York</a></p>
 	// <p><a href="geo:?q=San+Francisco&z=15">Zoom 15, Search for San Francisco</a></p>
 	// <p><a href="google.navigation:q=San+Francisco">Navigation to San Francisco</a></p>
+	//<p><a href="http://maps.google.com/maps?saddr=New+York&daddr=San+Francisco">Route New York--> San Francisco</a></p>
 	function encode(str) {
 	    return str.split(' ').join('+');
 	}
@@ -7386,16 +7387,7 @@ webpackJsonp([2],{
 	                    { className: 'font-thin card-title' },
 	                    'Donor Addresses'
 	                ),
-	                donors,
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    _react2.default.createElement(
-	                        'a',
-	                        { href: 'http://maps.google.com/maps?saddr=New+York&daddr=San+Francisco' },
-	                        'Route New York--> San Francisco'
-	                    )
-	                )
+	                donors
 	            );
 	        }
 	    }]);
@@ -8285,7 +8277,7 @@ webpackJsonp([2],{
 	        _react2.default.createElement(
 	            'div',
 	            { style: { display: 'inline-block' }, className: ' text-center' },
-	            'Volunteer Drop Route COnfirmation'
+	            'Volunteer Drop Route Confirmation'
 	        )
 	    );
 	}
@@ -8302,7 +8294,7 @@ webpackJsonp([2],{
 	        var message = _react2.default.createElement(
 	            'h4',
 	            { className: 'text-muted font-thin no-borders' },
-	            'The addresses shown will be assigned to you for pickup.'
+	            'The addresses shown in the list will be assigned to you for pickup.'
 	        );
 	        return _react2.default.createElement(_SimpleDialog2.default, { trigger: trigger, ref: 'routeConfirmDialog',
 	            autoScrollBodyContent: true,

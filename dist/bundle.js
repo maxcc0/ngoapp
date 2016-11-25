@@ -79669,10 +79669,10 @@
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'col-sm-6 col-sm-offset-3' },
-	        _react2.default.createElement('input', { className: 'form-control', placeholder: this.props.label, type: 'text', onChange: this.changeValue, value: this.getValue() }),
+	        _react2.default.createElement('input', { className: 'form-control', placeholder: this.props.label, type: this.props.type || 'text', onChange: this.changeValue, value: this.getValue() }),
 	        _react2.default.createElement(
 	          'p',
-	          { className: 'help-block' },
+	          { className: 'help-block text-red-variant1' },
 	          errorMessage
 	        )
 	      )
@@ -80858,7 +80858,7 @@
 	    error: function error(jqXHR, exception) {
 	      var msg = '';
 	      if (jqXHR.status === 0) {
-	        msg = 'Not connect.\n Verify Network.';
+	        msg = 'Connection Failed.\n Verify Network.';
 	      } else if (jqXHR.status == 404) {
 	        msg = 'Requested page not found. [404]';
 	      } else if (jqXHR.status == 500) {
@@ -98241,19 +98241,32 @@
 	                cb(null, '');
 	            }
 	        } else {
+	            alert('Geolocation is not supported in your browser');
 	            cb('Geocoder failed due to: ' + status, '');
 	        }
 	    });
 	}
 
 	function getGeoLocation(cb) {
+	    var geoTimeout = '5000';
+	    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+	        geoTimeout = '15000';
+	    }
+	    function error(err) {
+	        alert(err);
+	        return cb('not supported');
+	    }
 	    if (navigator.geolocation) {
 	        navigator.geolocation.getCurrentPosition(function (location) {
 	            cb(null, location);
+	        }, error, {
+	            enableHighAccuracy: true,
+	            timeout: geoTimeout,
+	            maximumAge: 0
 	        });
 	    } else {
-	        cb('not supported');
 	        alert('Geolocation is not supported in your browser');
+	        return cb('not supported');
 	    }
 	}
 
