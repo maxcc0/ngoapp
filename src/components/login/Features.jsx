@@ -198,7 +198,7 @@ class Pitch extends React.Component {
             <div className='row feature-section main text-center'>
                 <div ><span className='section-header'> <small><small></small></small></span></div>
                 <div className='col-md-4'>
-                    <div className='card card-block text-center card-success card-inverse pitch-card'>
+                    <div className='card card-block text-center card-success card-inverse'>
                         <h2 className='title no-margins'> Welcome Volunteers </h2>
                         <br/><br/><br/><br/>
                         <div className='row text-left'>
@@ -216,11 +216,11 @@ class Pitch extends React.Component {
                 </div>
 
                 
-                <div className='col-md-4  pitch-card'>
+                <div className='col-md-4 '>
                         <img src={require("../../assets/images/logo_ngo.png") } width='200px'/>
                 </div>
                 <div className='col-md-4'>
-                    <div className='card card-block text-center card-punch card-inverse pitch-card'>
+                    <div className='card card-block text-center card-punch card-inverse'>
                         <h2 className='title no-margins'> Welcome Donors </h2>
                         
                         <br/><br/><br/><br/>
