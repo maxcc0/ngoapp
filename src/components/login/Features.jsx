@@ -266,7 +266,7 @@ class BecomeAVolunteer extends React.Component {
 class JoyOfGiving extends React.Component {
     render() {
         return (
-            <div className='row peachu text-muted'>
+            <div className='peachu text-muted'>
                 <div className="row text-center">
                     <div className="col-md-12">
                         <br/>

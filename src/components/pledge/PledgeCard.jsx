@@ -12,7 +12,7 @@ var PledgeCard = React.createClass({
           <h2 className="card-title text-center no-margins font-thin">Thank you for your help!</h2>
           <br/>
           <PledgeForm/>
-          <p className="card-text">We thank you for your contribution.A volunteer will get in touch with you soon.</p>
+          <p className="card-text text-center">We thank you for your contribution. Our volunteer will get in touch with you soon.</p>
         </div>
       </div>
     );

@@ -15,14 +15,14 @@ import Base from './components/core/Base';
 import Dashboard from './components/core/Home';
 import Login from './components/login/Login';
 import Pledge from './components/pledge/Pledge'
-//import DashboardLayout from './components/dashboard/DashboardLayout';
+import VoluntaryPickup from './components/voluntaryPickup/PickupPageLayout'
 import auth from './utils/auth';
 NProgress.configure({ showSpinner: false });
-// function requireAuth(nextState, replaceState) {
-//    if (!auth.loggedIn())
-//      replaceState({ nextPathname: nextState.location.pathname }, '/login')
-//   console.log(nextState)
-// }
+function requireAuth(nextState, replace) {
+  if (!auth.loggedIn())
+  replace('/login');
+    //replaceState({ nextPathname: nextState.location.pathname }, '/login')
+}
 //  const history = useBasename(createHashHistory)({
 //     queryKey: false
 //  })
@@ -41,9 +41,14 @@ const rootRoute = {
           path: 'pledge',
           component: Pledge
         },
+         {
+          path: 'voluntaryPickup',
+          component: VoluntaryPickup,
+          onEnter: requireAuth
+        },
         //  require('./components/dashboard'),
         //require('./components/pledge'),
-        require('./components/voluntaryPickup')
+       // require('./components/voluntaryPickup')
 
       ]
     },

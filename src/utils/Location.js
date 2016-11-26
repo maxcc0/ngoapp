@@ -19,7 +19,7 @@ export function fetchAddress(lat, lng, cb) {
     });
 }
 
-export function getGeoLocationMain(cb) {
+export function getGeoLocationV1(cb) {
    let geoTimeout = '5000';
    console.log('getting locaion')
 //    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -34,7 +34,7 @@ export function getGeoLocationMain(cb) {
     navigator.geolocation.getCurrentPosition(function (location) {
       cb(null, location);
     }, error, {
-        enableHighAccuracy: true,
+        enableHighAccuracy: false,
         timeout : geoTimeout,
         maximumAge: 0
        });
@@ -48,7 +48,7 @@ export function getGeoLocation(cb) {
 
     console.log('getting location for mobile')
     if (geoPosition.init()) {  // Geolocation Initialisation
-        geoPosition.getCurrentPosition(success_callback, error_callback, { enableHighAccuracy: true });
+        geoPosition.getCurrentPosition(success_callback, error_callback);
     } else {
         alert('Geolocation is not supported in your browser');
         return cb('not supported');
@@ -60,7 +60,7 @@ export function getGeoLocation(cb) {
         return cb(null, location);
     }
 
-    function error_callback(location) {
+    function error_callback(err) {
         alert(err && err.message);
         return cb(err);
     }
@@ -84,13 +84,14 @@ export function getGeoLocationv4(cb) {
 export function fetchCoords(address, cb) {
     var geocoder;
     geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': query }, function(results, status) {
+    geocoder.geocode({ 'address': address, componentRestrictions: {
+        country: 'IN'
+    } }, function(results, status) {
         console.log(results);
-        addresses = {};
         return cb(null, results);
-        $.each(results, function(index, value){
-            addresses[index] = {"lat":value.geometry.location.$a,"lng":value.geometry.location.ab}
-        })
+        // $.each(results, function(index, value){
+        //     addresses[index] = {"lat":value.geometry.location.$a,"lng":value.geometry.location.ab}
+        // })
     });
 }
 

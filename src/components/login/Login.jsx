@@ -45,17 +45,12 @@ var LoginPage = React.createClass({
   },
 
   handleLogin: function (e) {
-    //e.preventDefault();
-    this.context.router.pushState(null, '/voluntarypickup');
-    // this.transitionTo('dashboard');
-
+    this.context.router.push('/voluntarypickup');
     return false;
   },
   handlePledge: function (e) {
     e.preventDefault();
-    this.context.router.pushState(null, '/pledge');
-    // this.transitionTo('dashboard');
-
+    this.context.router.push('/pledge');
     return false;
   },
   render: function () {

@@ -7,17 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>Domutti</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVQQRi4wxJBGztIjoyj-e_1QL-gBZIVjw"></script>
     <!-- inject:app:css -->
     <!-- endinject -->
     <link rel="stylesheet" href="style.css"></link>
+    <script>
+    			$(document).ready(function(e) {
+                    $.ajax({
+								type:'post',
+								data:'&task=login',
+								url:'checksession.php',
+								success:function(response){
+									window.location= 'https://www.socialpixe.com/socialpixe/react/#/login';
+									var GetMultiResponse= response.split(',');
+									if(GetMultiResponse[0] === 1)
+											{
+												alert(GetMultiResponse[1]);
+												$('#checkSession').html(GetMultiResponse[1]);
+											}
+											else if(GetMultiResponse[0] === 0) 
+											{
+												alert(GetMultiResponse[1]);
+												window.location= GetMultiResponse[1];
+											}
+								}
+						})
+                });
+    </script>
   </head>
   <body>
     <div id="react-app"></div>
-    <script src="./geoPosition.js"></script>
+    <div id="checkSession"></div>
+        <script src="./geoPosition.js"></script>
     <script src="./geo-min.js"></script>
     <script src="./bundle.js"></script>
     <!-- inject:app:js -->
     <!-- endinject -->
+    
   </body>
 </html>

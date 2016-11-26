@@ -7851,6 +7851,7 @@ button.close {
   position: relative !important;
 }
 .peachu {
+  padding: .75rem;
   background-color: #ffefd3 !important;
   background: -webkit-linear-gradient(135deg, #ffefd3 0%, #fcdece 53%, #fdab93 100%) !important;
   background: -webkit-linear-gradient(315deg, #ffefd3 0%, #fcdece 53%, #fdab93 100%) !important;
@@ -7931,7 +7932,9 @@ button.close {
 }
 .pledge-logo-section {
   color: #666;
-  background: url(1aea83310e5e08d96c06bfeaa4cb3b2a.jpg) no-repeat center center;
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(1aea83310e5e08d96c06bfeaa4cb3b2a.jpg) no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(1aea83310e5e08d96c06bfeaa4cb3b2a.jpg) no-repeat center center;
+  /*background: url('../../images/login_bg.jpg') no-repeat center center;*/
   background-size: cover;
 }
 .pledge-logo-section .section-header {
