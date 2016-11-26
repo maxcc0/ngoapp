@@ -1,18 +1,21 @@
+import '../lib/geoPosition';
 import React from 'react';
 import { render } from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin'; 
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { browserHistory } from 'react-router'
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 import { createHashHistory, useBasename } from 'history';
-import { Router , useRouterHistory  } from 'react-router';
+import { Router, useRouterHistory  } from 'react-router';
 import "./assets/styles/app.less";
 import NProgress from 'nProgress';
+
 import Base from './components/core/Base';
 import Dashboard from './components/core/Home';
 import Login from './components/login/Login';
-import DashboardLayout from './components/dashboard/DashboardLayout';
+import Pledge from './components/pledge/Pledge'
+//import DashboardLayout from './components/dashboard/DashboardLayout';
 import auth from './utils/auth';
 NProgress.configure({ showSpinner: false });
 // function requireAuth(nextState, replaceState) {
@@ -23,28 +26,30 @@ NProgress.configure({ showSpinner: false });
 //  const history = useBasename(createHashHistory)({
 //     queryKey: false
 //  })
- // useRouterHistory creates a composable higher-order function
+// useRouterHistory creates a composable higher-order function
 const history = useRouterHistory(createHashHistory)({ queryKey: false });
-
 
 const rootRoute = {
   path: '/',
   component: Base,
-  indexRoute: {component: Dashboard},
-  childRoutes: [ 
+  indexRoute: { component: Dashboard },
+  childRoutes: [
     {
       component: Dashboard,
-      indexRoute: {component: DashboardLayout},
       childRoutes: [
-        require('./components/dashboard'),
-        require('./components/pledge'),
+        {
+          path: 'pledge',
+          component: Pledge
+        },
+        //  require('./components/dashboard'),
+        //require('./components/pledge'),
         require('./components/voluntaryPickup')
-        
+
       ]
     },
     {
       path: '/login',
-      component:Login,
+      component: Login,
       childRoutes: [
       ]
     }

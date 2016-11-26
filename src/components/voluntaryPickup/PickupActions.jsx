@@ -8,7 +8,12 @@ import Assignment from 'material-ui/svg-icons/action/assignment-ind';
 
 const favoritesIcon = <FontIcon className="material-icons" >assignment_ind</FontIcon>;
 const nearbyIcon = <IconLocationOn />;
+const actionsMap = {
+    0: 'assigned',
+    1: 'picked',
+    2: 'problem'
 
+}
 /**
  * A simple example of `BottomNavigation`, with three labels and icons
  * provided. The selected `BottomNavigationItem` is determined by application
@@ -19,9 +24,13 @@ class BottomNavigationExampleSimple extends Component {
     selectedIndex: 0,
   };
 
-  select = (index) => this.setState({selectedIndex: index});
-
+  //select = (index) => this.setState({selectedIndex: index});
+  select(index) {
+    this.props.updateDonationStatus(this.props.donor, actionsMap[index])  
+    this.setState({selectedIndex: index});
+  }
   render() {
+    this.select = this.select.bind(this);
     return (
       <div className='text-center'>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>

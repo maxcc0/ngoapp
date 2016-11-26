@@ -55,6 +55,7 @@ const MyAppForm = React.createClass({
   },
   handleGeoLocation(err, data) {
     if(err) {
+      this.setState({geoLocationError: err.message || 'Something went wrong while fetching your location.'})
       return
     }
     this.setState({geoLocation: data});

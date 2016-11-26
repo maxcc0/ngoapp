@@ -46,7 +46,9 @@ module.exports = {
    plugins: [
     new ExtractTextPlugin('style.css', {allChunks: false}),
     new CopyWebpackPlugin([
-      { from: './src/index.html', to: 'index.html' }
+      { from: './src/index.html', to: 'index.html' },
+       { from: './lib/geoPosition.js', to: 'geoPosition.js' },
+       { from: './lib/geo-min.js', to: 'geo-min.js' }
     ])
   ],
   resolve: {

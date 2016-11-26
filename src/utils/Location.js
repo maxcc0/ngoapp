@@ -21,12 +21,14 @@ export function fetchAddress(lat, lng, cb) {
 
 export function getGeoLocation(cb) {
    let geoTimeout = '5000';
+   console.log('getting locaion')
    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    geoTimeout = '15000'
+       console.log(navigator)
+    return getGeoLocationMobile(cb)
 }
  function error (err) {
-            alert(err);
-    return cb('not supported');
+   alert(err && err.message);
+    return cb(err);
         }
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (location) {
@@ -40,9 +42,45 @@ export function getGeoLocation(cb) {
     alert('Geolocation is not supported in your browser');
     return cb('not supported');
   }
-
 }
 
+export function getGeoLocationMobile(cb) {
+
+    console.log('getting location for mobile')
+    if (geoPosition.init()) {  // Geolocation Initialisation
+        geoPosition.getCurrentPosition(success_callback, error_callback, { enableHighAccuracy: true });
+    } else {
+        alert('Geolocation is not supported in your browser');
+        return cb('not supported');
+    }
+    // geoPositionSimulator.init(); 
+
+    // p : geolocation object
+    function success_callback(location) {
+        return cb(null, location);
+    }
+
+    function error_callback(location) {
+        alert(err && err.message);
+        return cb(err);
+    }
+}
+export function getGeoLocationv4(cb) {
+
+
+    if(geo_position_js.init()){ 
+        geo_position_js.getCurrentPosition(success_callback,error_callback); } else{ 
+            alert('Geolocation is not supported in your browser');
+    return cb('not supported');}
+                function success_callback(location){
+        return cb(null, location);
+    }
+
+    function error_callback(location){
+       alert(err && err.message);
+        return cb(err);
+    }
+}
 export function fetchCoords(address, cb) {
     var geocoder;
     geocoder = new google.maps.Geocoder();

@@ -15,14 +15,15 @@ const DirectionsExampleGoogleMap = withGoogleMap(props => (
 export default class DirectionsExample extends Component {
 
   state = {
-    origin: new google.maps.LatLng(18.5789564 , 73.683705),
-    destination: new google.maps.LatLng(28.5789564, 73.683705),
+    // origin: new google.maps.LatLng(18.5789564 , 73.683705),
+    // destination: new google.maps.LatLng(28.5789564, 73.683705),
+    origin: null,
+    destination: null,
     waypoints: [],
-    directions: null,
+    directions: null
   }
   componentWillReceiveProps(np) {
     const DirectionsService = new google.maps.DirectionsService({ draggable: true });
-    console.log(np)
     if (np.origin && np.dest) {
     DirectionsService.route({
       origin: np.origin,
@@ -41,27 +42,28 @@ export default class DirectionsExample extends Component {
     });  }
   }
   componentDidMount() {
-    const DirectionsService = new google.maps.DirectionsService({ draggable: true });
-    // if (this.props.origin && this.props.dest) {
-    //   DirectionsService.route({
-    //     origin: this.props.origin,
-    //     destination: this.props.dest,
-    //     //waypoints: this.props.waypoints,
-    //     travelMode: google.maps.TravelMode.DRIVING,
-    //   }, (result, status) => {
-    //     if (status === google.maps.DirectionsStatus.OK) {
-    //       this.setState({
-    //         directions: result,
-    //       });
-    //     } else {
-    //       console.error(`error fetching directions ${result}`);
-    //     }
-    //   });
-    // }
+    // const DirectionsService = new google.maps.DirectionsService({ draggable: true });
+    // // if (this.props.origin && this.props.dest) {
+    // //   DirectionsService.route({
+    // //     origin: this.props.origin,
+    // //     destination: this.props.dest,
+    // //     //waypoints: this.props.waypoints,
+    // //     travelMode: google.maps.TravelMode.DRIVING,
+    // //   }, (result, status) => {
+    // //     if (status === google.maps.DirectionsStatus.OK) {
+    // //       this.setState({
+    // //         directions: result,
+    // //       });
+    // //     } else {
+    // //       console.error(`error fetching directions ${result}`);
+    // //     }
+    // //   });
+    // // }
 
   }
 
   render() {
+    if(google) {
     return (
       <DirectionsExampleGoogleMap
         containerElement={
@@ -73,6 +75,8 @@ export default class DirectionsExample extends Component {
         center={this.state.origin}
         directions={this.state.directions}
       />
-    );
+    )
+    }
+
   }
 }

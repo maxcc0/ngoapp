@@ -45,5 +45,8 @@ module.exports = {
     },
     fetchDropLocations(cb) {
       _makeAjax('get', { }, 'https://www.socialpixe.com/socialpixe/react/droplocations.php', cb);
+    },
+    updateDonationStatus(donation, cb){
+       _makeAjax('post', {data: donation }, 'https://www.socialpixe.com/socialpixe/react/updateDonation.php', cb);
     }
 }

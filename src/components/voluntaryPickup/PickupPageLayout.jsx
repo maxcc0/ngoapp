@@ -23,6 +23,10 @@ function _fetchDropOffLocations(cb) {
   webapi.fetchDropLocations(cb);
 }
 
+function _updateDonationStatus(donation, cb) {
+  webapi.updateDonationStatus(donation, cb);
+}
+
 let _dest = null;
 let _origin = null;
 
@@ -31,6 +35,7 @@ var PickupPageLayout = React.createClass({
   getInitialState() {
     return {
       dropOffLocations: [],
+      geoLocationError: null,
       selectedDL: null,
       data: null,
       origin: null,
@@ -91,18 +96,32 @@ var PickupPageLayout = React.createClass({
 
   handleGeoLocation(err, data) {
     if (err) {
-      alert('Failed to get location. Please enable geo location in brower');
+      this.setState({geoLocationError: err.message || 'Something went wrong while fetching your location.'});
+      return
     }
     _origin = data;
     _fetchPickups(data, _dest, this.handlePickups);
   },
-
 
   fetchPickups(dest) {
     _dest = dest;
     this.getMyGeoLocation();
   },
 
+  handleDonationStatusChanged(err, donation) {
+    if(err) {
+      return alert('Could not update status. Please try again in sometime.')
+    }
+    alert('Status changed successfully')
+    //update donation object in this.state.data
+  },
+
+  updateDonationStatus(data, status) {
+    const donation = _.clone(data);
+    donation.status = status;
+    _updateDonationStatus(donation, this.handleDonationStatusChange)
+  },
+  
   handleAssign(err, data) {
     if (err) {
       this.setState({ assignmentError: 'Failed to assign route. ' + err })
@@ -117,14 +136,20 @@ var PickupPageLayout = React.createClass({
     const dest = _dest && _dest.address;
     //const origin = _origin && _origin.formatted_address;
     //<PathPoints startAddress={dest} endAddress={origin}/>
+
     if (this.state.data && this.state.data.length) {
       return (
         <div>
           <p className="card-text text-center text-red-variant1">{this.state.assignmentError || null}</p>
           <Accept assignRoute={this.assignRoute}/>
           <br/><br/>
-          <DonorList data={this.state.data} dropOffLocation={dest}/>
+          <DonorList data={this.state.data} dropOffLocation={dest} updateDonationStatus={this.updateDonationStatus}/>
         </div>
+      )
+      }else {
+        return (
+        <div>
+          <p className="card-text text-center text-red-variant1">No Addresses Found</p></div>
       )
 
     }
@@ -147,6 +172,7 @@ var PickupPageLayout = React.createClass({
 
             <div className='card-block'>
               <DropOffLocationSelect options={this.state.dropOffLocations} fetchPickups={this.fetchPickups}/>
+              <p className="card-text text-center text-red-variant1">{this.state.geoLocationError || null}</p>
               {this.renderAddresses() }
             </div>
           </div>

@@ -37,7 +37,7 @@ export default class DropLocationList extends React.Component {
 
         const donors = [];
         _.forEach(props.data, function (item) {
-            donors.push(<DonorItem donor={item}/>)
+            donors.push(<DonorItem donor={item} updateDonationStatus={props.updateDonationStatus}/>)
         });
 
         return (
@@ -69,8 +69,8 @@ class DonorItem extends React.Component {
                 <div> <small className='text-muted'>{donor.donor_address} </small></div>
                 <div><CallIcon style={{ verticalAlign: 'bottom' }}
                     color={'#008489'}/><small>{donor.donor_contact}  { donor.donor_alternate_contact} </small></div>
-                
-                <PickupActions/>
+                 
+                <PickupActions {...props}/>
 
             </div>
         )
