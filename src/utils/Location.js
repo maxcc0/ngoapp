@@ -19,13 +19,13 @@ export function fetchAddress(lat, lng, cb) {
     });
 }
 
-export function getGeoLocation(cb) {
+export function getGeoLocationMain(cb) {
    let geoTimeout = '5000';
    console.log('getting locaion')
-   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-       console.log(navigator)
-    return getGeoLocationMobile(cb)
-}
+//    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+//        console.log(navigator)
+//     return getGeoLocationMobile(cb)
+// }
  function error (err) {
    alert(err && err.message);
     return cb(err);
@@ -44,7 +44,7 @@ export function getGeoLocation(cb) {
   }
 }
 
-export function getGeoLocationMobile(cb) {
+export function getGeoLocation(cb) {
 
     console.log('getting location for mobile')
     if (geoPosition.init()) {  // Geolocation Initialisation
