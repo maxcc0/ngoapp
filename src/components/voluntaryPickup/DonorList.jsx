@@ -47,7 +47,7 @@ export default class DropLocationList extends React.Component {
                         >Start Navigation<NavigationIcon style={{ verticalAlign: 'bottom' }} color={'#ff7e82'}/></a>
                 </div>}
                 
-                <h4 className='font-thin card-title'>Donor Addresses</h4>
+                <h4 className='font-thin card-title'>Donor Addresses ({donors.length})</h4>
                 {donors}
                 
             </div>

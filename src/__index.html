@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"> 
+    <meta charset=utf-8> 
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Domutti</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=true&key=AIzaSyAVQQRi4wxJBGztIjoyj-e_1QL-gBZIVjw"></script>
+    <!-- inject:app:css -->
+    <!-- endinject -->
+    <link rel="stylesheet" href="style.css"></link>
+   
+  </head>
+  <body>
+  
+    <div id="react-app"></div> 
+    <div id="checkSession" style="display:none"><?php include 'checksession.php'; ?></div>
+        <script src="./geoPosition.js"></script>
+    <script src="./geo-min.js"></script>
+    <script src="./bundle.js"></script>
+    <script type="text/javascript" src="geolocator.min.js"></script>
+<script type="text/javascript">
+
+    geolocator.config({
+        language: "en",
+        google: {
+            version: "3",
+            key: "YOUR-GOOGLE-API-KEY"
+        }
+    });
+
+    window.onload = function () {
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumWait: 10000,     // max wait time for desired accuracy
+            maximumAge: 0,          // disable cache
+            desiredAccuracy: 30,    // meters
+            fallbackToIP: true,     // fallback to IP if Geolocation fails or rejected
+            addressLookup: true,    // requires Google API key if true
+            timezone: true,         // requires Google API key if true
+            map: "map-canvas",      // interactive map element id (or options object)
+            staticMap: true         // map image URL (boolean or options object)
+        };
+        geolocator.locate(options, function (err, location) {
+            if (err) return console.log(err);
+            console.log(location);
+        });
+    };
+
+</script>
+    <!-- inject:app:js -->
+    <!-- endinject -->
+    
+  </body>
+</html>

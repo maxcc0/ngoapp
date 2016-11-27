@@ -38,9 +38,15 @@ var Modals = React.createClass({
     },
 
     handleResponse(err, data) {
-        if(err) {
+        if(err || data === 404) {
            return this.setState({loginError: 'Failed to login. ' + err})
-        } 
+        }
+        console.log('logged in');
+        console.log(data)
+
+$('#checkSession').text(data); 
+
+        
         this.refs.login.handleClose();
         this.props.handleLogin();  
     },

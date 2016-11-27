@@ -29,14 +29,18 @@ export default class DirectionsExample extends Component {
       origin: np.origin,
       destination: np.dest,
       waypoints: np.waypoints,
+      optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING,
     }, (result, status) => {
       if (status === google.maps.DirectionsStatus.OK) {
         this.setState({
           directions: result,
         });
+        console.log(result)
+        var route = result;
       } else {
         console.error(`error fetching directions ${result}`);
+        console.log(result);
     }
 
     });  }

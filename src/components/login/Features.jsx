@@ -275,12 +275,6 @@ class JoyOfGiving extends React.Component {
                        <h4 className='no-margins font-thin'>The art of giving is fathomless. We accept any non-monetary donation that you're willing to let go of to see a smile on someone else's face. Our donations range from wearable clothes you've outgrown to stationery you no longer use. The possibilities are endless. All you need is the will to donate.</h4>
                         <br/><br/><br/>
                     </div>
-                    <div className='col-md-12'>
-                    <br/><br/>
-                        <form role="form" onSubmit={this.props.handleLogin}>
-                            <button type="button" onClick={this.props.handlePledge}  className="btn  btn-white text-muted btn-outline btn-lg btn-rounded">Pledge A Donation</button>
-                        </form>
-                    </div>
                 </div>
                 <br/><br/>
             </div>

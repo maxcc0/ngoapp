@@ -31,7 +31,7 @@ module.exports = {
   },
 
   loggedIn() {
-    return $('#checkSession').text()
+    return $('#checkSession').text().trim();
     //return !!localStorage.token
   },
 

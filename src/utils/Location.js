@@ -6,11 +6,12 @@ export function fetchAddress(lat, lng, cb) {
         'latLng': latlng
     }, function (results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
+            console.log(results)
             if (results[1]) {
                 console.log(results[1]);
                 cb(null, results[1].formatted_address)
             } else {
-                cb(null, '')
+                cb(null, 'Some Random Address')
             }
         } else {
             alert('Geolocation is not supported in your browser');
@@ -48,15 +49,14 @@ export function getGeoLocation(cb) {
 
     console.log('getting location for mobile')
     if (geoPosition.init()) {  // Geolocation Initialisation
-        geoPosition.getCurrentPosition(success_callback, error_callback);
+        geoPosition.getCurrentPosition(success_callback, error_callback, {enableHighAccuracy:true});
     } else {
         alert('Geolocation is not supported in your browser');
         return cb('not supported');
     }
-    // geoPositionSimulator.init(); 
 
-    // p : geolocation object
     function success_callback(location) {
+        console.log(location);
         return cb(null, location);
     }
 

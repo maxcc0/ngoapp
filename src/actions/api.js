@@ -31,22 +31,51 @@ function _makeAjax(type, data, url, cb) {
   })
 }
 module.exports = {
+  createPledge(model, cb) {
+ _makeAjax('post', { DATAasdasd: model }, 
+      'https://www.socialpixe.com/socialpixe/react/api/myphp.php', cb);
+  },
   fetchPickupLocations(origin, dest, cb) {
       _makeAjax('post', { origin: origin, dest: dest }, 
-      'https://www.socialpixe.com/socialpixe/react/fetchPickups.php', cb);
+      'https://www.socialpixe.com/socialpixe/react/api/fetchPickups.php', cb);
     },
-    assignVoluteer(data, cb) {
-      _makeAjax('post', { data: data }, 
-      'https://www.socialpixe.com/socialpixe/react/assignVolunteer.php', cb);
+    assignVoluteer(data, id, cb) {
+      _makeAjax('post', { data: data, id:id }, 
+      'https://www.socialpixe.com/socialpixe/react/api/assignVolunteer.php', cb);
     },
     login(data, cb) {
       _makeAjax('post', { data: data }, 
-      'https://www.socialpixe.com/socialpixe/react/login.php', cb);
+      'https://www.socialpixe.com/socialpixe/react/api/login.php', cb);
     },
     fetchDropLocations(cb) {
-      _makeAjax('get', { }, 'https://www.socialpixe.com/socialpixe/react/droplocations.php', cb);
+      _makeAjax('get', { }, 'https://www.socialpixe.com/socialpixe/react/api/droplocations.php', cb);
     },
     updateDonationStatus(donation, cb){
-       _makeAjax('post', {data: donation }, 'https://www.socialpixe.com/socialpixe/react/updateDonation.php', cb);
+       _makeAjax('post', {data: donation }, 'https://www.socialpixe.com/socialpixe/react/api/updateDonation.php', cb);
     }
 }
+
+// module.exports = {
+//   createPledge(model, cb) {
+//      _makeAjax('post', { DATAasdasd: model }, 
+//       'api/myphp.php', cb);
+//   },
+//   fetchPickupLocations(origin, dest, cb) {
+//       _makeAjax('post', { origin: origin, dest: dest }, 
+//       'api/fetchPickups.php', cb);
+//     },
+//     assignVoluteer(data, id, cb) {
+//       _makeAjax('post', { data: data, id:id }, 
+//       'api/assignVolunteer.php', cb);
+//     },
+//     login(data, cb) {
+//       _makeAjax('post', { data: data }, 
+//       'api/login.php', cb);
+//     },
+//     fetchDropLocations(cb) {
+//       _makeAjax('get', { }, 'api/droplocations.php', cb);
+//     },
+//     updateDonationStatus(donation, cb){
+//        _makeAjax('post', {data: donation }, 'api/updateDonation.php', cb);
+//     }
+// }

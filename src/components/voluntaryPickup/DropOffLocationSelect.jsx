@@ -26,10 +26,10 @@ const DL = React.createClass({
     render() {
         return (
             <Formsy.Form onValidSubmit= { this.submit } onValid= { this.enableButton } onInvalid= { this.disableButton } >
-                <Select required name='dropOffLocation' options={this.props.options} title='Select Drop Off Location'/>
+                <Select required name='dropOffLocation' options={this.props.options} value={this.props.options && this.props.options[0] && this.props.options[0].address} title='Select Drop Off Location'/>
                 <p className="card-text text-center text-red-variant1">{this.props.error || null}</p>
                 <div className="form-group row">
-                    <div className="col-sm-6 col-sm-offset-3">
+                    <div className="col-xs-12">
                         <button type="submit" className=" col-sm-6 col-sm-offset-3 btn btn-block btn-lg btn-primary-dm pull-right" disabled={!this.state.canSubmit}>Search</button>
                     </div></div>
             </Formsy.Form >

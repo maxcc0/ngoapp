@@ -80909,9 +80909,14 @@
 	        _login(model, this.handleResponse);
 	    },
 	    handleResponse: function handleResponse(err, data) {
-	        if (err) {
+	        if (err || data === 404) {
 	            return this.setState({ loginError: 'Failed to login. ' + err });
 	        }
+	        console.log('logged in');
+	        console.log(data);
+
+	        (0, _jQuery2.default)('#checkSession').text(data);
+
 	        this.refs.login.handleClose();
 	        this.props.handleLogin();
 	    },
@@ -81104,8 +81109,8 @@
 	  fetchPickupLocations: function fetchPickupLocations(origin, dest, cb) {
 	    _makeAjax('post', { origin: origin, dest: dest }, 'https://www.socialpixe.com/socialpixe/react/fetchPickups.php', cb);
 	  },
-	  assignVoluteer: function assignVoluteer(data, cb) {
-	    _makeAjax('post', { data: data }, 'https://www.socialpixe.com/socialpixe/react/assignVolunteer.php', cb);
+	  assignVoluteer: function assignVoluteer(data, id, cb) {
+	    _makeAjax('post', { data: data, id: id }, 'https://www.socialpixe.com/socialpixe/react/assignVolunteer.php', cb);
 	  },
 	  login: function login(data, cb) {
 	    _makeAjax('post', { data: data }, 'https://www.socialpixe.com/socialpixe/react/login.php', cb);
@@ -81117,6 +81122,27 @@
 	    _makeAjax('post', { data: donation }, 'https://www.socialpixe.com/socialpixe/react/updateDonation.php', cb);
 	  }
 	};
+
+	// module.exports = {
+	//   fetchPickupLocations(origin, dest, cb) {
+	//       _makeAjax('post', { origin: origin, dest: dest }, 
+	//       'api/fetchPickups.php', cb);
+	//     },
+	//     assignVoluteer(data, id, cb) {
+	//       _makeAjax('post', { data: data, id:id }, 
+	//       'api/assignVolunteer.php', cb);
+	//     },
+	//     login(data, cb) {
+	//       _makeAjax('post', { data: data }, 
+	//       'api/login.php', cb);
+	//     },
+	//     fetchDropLocations(cb) {
+	//       _makeAjax('get', { }, 'api/droplocations.php', cb);
+	//     },
+	//     updateDonationStatus(donation, cb){
+	//        _makeAjax('post', {data: donation }, 'api/updateDonation.php', cb);
+	//     }
+	// }
 
 /***/ },
 /* 975 */
@@ -81401,29 +81427,32 @@
 	  submit: function submit(model) {
 	    console.log('submitting form');
 	    var self = this;
-	    model.geoLocation = self.state.geoLocation;
-	    _jQuery2.default.ajax({
+	    function submitData() {
+	      model.geoLocation = self.state.geoLocation;
+	      _jQuery2.default.ajax({
 
-	      type: 'post',
-	      data: { DATAasdasd: model },
-	      url: 'https://www.socialpixe.com/socialpixe/react/myphp.php',
-	      success: function success(response) {
-	        alert(response);
+	        type: 'post',
+	        data: { DATAasdasd: model },
+	        url: 'api/myphp.php',
+	        success: function success(response) {
+	          alert('Thanks for your donation.');
+	        }
+	      });
+	    }
+
+	    (0, _Location.fetchCoords)(model.address, function (err, data) {
+	      if (err || _lodash2.default.isEmpty(data) || !data[1]) {
+	        return self.setState({ geoLocationError: 'Hmmm.. we could not locate your address. Please try changinga few keywords address.' });
 	      }
+	      submitdata();
 	    });
-
-	    // fetchCoords(model.address, function (err, data) {
-	    //   if (err || _.isEmpty(data)) {
-	    //     return self.setState({ geoLocationError: 'Hmmm.. we could not locate your address. Please try changing keywords in the entered address.' })
-	    //   }
-	    //   submitdata();
-	    // })
 	  },
 	  handleAddress: function handleAddress(err, address) {
 	    if (err) {
 	      this.setState({ geoLocationError: 'Could not fetch your location from geo services. Please add your address.' });
 	      return;
 	    }
+	    //alert(address);
 	    this.setState({ address: address });
 	  },
 	  handleGeoLocation: function handleGeoLocation(err, data) {
@@ -81432,6 +81461,7 @@
 	      return;
 	    }
 	    this.setState({ geoLocation: data });
+	    //alert(data.coords.latitude + ' ' + data.coords.longitude);
 	    (0, _Location.fetchAddress)(data.coords.latitude, data.coords.longitude, this.handleAddress);
 	  },
 	  getMyGeoLocation: function getMyGeoLocation() {
@@ -81442,7 +81472,7 @@
 	      _formsyReact2.default.Form,
 	      { onValidSubmit: this.submit, onValid: this.enableButton, onInvalid: this.disableButton },
 	      _react2.default.createElement(MyOwnInput, { name: 'name', label: 'Name', required: true }),
-	      _react2.default.createElement(Address, { name: 'address', getMyGeoLocation: this.getMyGeoLocation, placeholder: 'Please hit the icon for fetching address', value: this.state.address, label: 'Address', required: true }),
+	      _react2.default.createElement(Address, { name: 'address', getMyGeoLocation: this.getMyGeoLocation, error: this.state.geoLocationError, placeholder: 'Please hit the icon for fetching address', value: this.state.address, label: 'Address', required: true }),
 	      _react2.default.createElement(MyOwnInput, { name: 'email', label: 'Email', validations: 'isEmail', validationError: 'This is not a valid email' }),
 	      _react2.default.createElement(MyOwnInput, { name: 'contact', label: 'Contact#', required: true }),
 	      _react2.default.createElement(MyOwnInput, { name: 'contact_alternate', label: 'Alternate Contact#' }),
@@ -81460,11 +81490,6 @@
 	            'Confirm'
 	          )
 	        )
-	      ),
-	      _react2.default.createElement(
-	        'p',
-	        { className: 'card-text text-center text-red-variant1' },
-	        this.state.geoLocationError || null
 	      )
 	    );
 	  }
@@ -81542,7 +81567,7 @@
 
 	    // An error message is returned ONLY if the component is invalid
 	    // or the server has returned an error message
-	    var errorMessage = this.getErrorMessage();
+	    var errorMessage = this.getErrorMessage() || this.props.error;
 
 	    return _react2.default.createElement(
 	      'div',
@@ -81561,7 +81586,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col-xs-10' },
-	            _react2.default.createElement('input', { className: 'form-control', disabled: true, placeholder: this.props.placeholder || null, type: 'text', onChange: this.changeValue, value: this.getValue() })
+	            _react2.default.createElement('input', { className: 'form-control', placeholder: this.props.placeholder || null, type: 'text', onChange: this.changeValue, value: this.getValue() })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -81574,9 +81599,10 @@
 	          )
 	        )
 	      ),
+	      _react2.default.createElement('div', { className: 'col-sm-2 ' }),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'col-sm-12 col-sm-offset-2' },
+	        { className: 'col-sm-10' },
 	        _react2.default.createElement(
 	          'p',
 	          { className: 'text-red-variant1' },
@@ -98562,11 +98588,12 @@
 	        'latLng': latlng
 	    }, function (results, status) {
 	        if (status === google.maps.GeocoderStatus.OK) {
+	            console.log(results);
 	            if (results[1]) {
 	                console.log(results[1]);
 	                cb(null, results[1].formatted_address);
 	            } else {
-	                cb(null, '');
+	                cb(null, 'Some Random Address');
 	            }
 	        } else {
 	            alert('Geolocation is not supported in your browser');
@@ -98614,6 +98641,8 @@
 
 	    // p : geolocation object
 	    function success_callback(location) {
+	        // alert(location);
+	        console.log(location);
 	        return cb(null, location);
 	    }
 
@@ -98978,8 +99007,8 @@
 	  _api2.default.fetchPickupLocations(origin, dest, cb);
 	}
 
-	function _assignVolunteer(data, cb) {
-	  _api2.default.assignVoluteer(data, cb);
+	function _assignVolunteer(data, id, cb) {
+	  _api2.default.assignVoluteer(data, id, cb);
 	}
 
 	function _fetchDropOffLocations(cb) {
@@ -99080,7 +99109,7 @@
 	    console.log('assigment complete');
 	  },
 	  assignRoute: function assignRoute() {
-	    _assignVolunteer(this.state.data, this.handleAssign);
+	    _assignVolunteer(this.state.data, (0, _jQuery2.default)('#checkSession').text(), this.handleAssign);
 	  },
 	  renderAddresses: function renderAddresses() {
 	    var dest = _dest && _dest.address;
@@ -108165,7 +108194,7 @@
 	    this.onChange(false);
 	  },
 	  loggedIn: function loggedIn() {
-	    return (0, _jQuery2.default)('#checkSession').text();
+	    return (0, _jQuery2.default)('#checkSession').text().trim();
 	    //return !!localStorage.token
 	  },
 	  onChange: function onChange() {}

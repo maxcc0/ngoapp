@@ -15,8 +15,8 @@ function _fetchPickups(origin, dest, cb) {
   webapi.fetchPickupLocations(origin, dest, cb);
 }
 
-function _assignVolunteer(data, cb) {
-  webapi.assignVoluteer(data, cb);
+function _assignVolunteer(data, id, cb) {
+  webapi.assignVoluteer(data, id, cb);
 }
 
 function _fetchDropOffLocations(cb) {
@@ -54,11 +54,13 @@ var PickupPageLayout = React.createClass({
         stopover: true
       });
     });
-
+    const destCoords = _dest.geolocation.split(',')
+    const destLat = 
     this.setState({
+      
       data: data,
       origin: new google.maps.LatLng(_origin.coords.latitude, _origin.coords.longitude),
-      dest: new google.maps.LatLng(18.5793, 73.9089),
+      dest: new google.maps.LatLng(destCoords[0], destCoords[1]),
       waypoints: waypoints
     })
   },
@@ -69,6 +71,8 @@ var PickupPageLayout = React.createClass({
     }
     if (!_.isEmpty(JSON.parse(data))) {
       this.setWayPoints(JSON.parse(data));
+    }else {
+      this.setState({data: []});
     }
 
   },
@@ -99,6 +103,8 @@ var PickupPageLayout = React.createClass({
       this.setState({geoLocationError: err.message || 'Something went wrong while fetching your location.'});
       return
     }
+    console.log('fetching pickups')
+    console.log(data)
     _origin = data;
     _fetchPickups(data, _dest, this.handlePickups);
   },
@@ -129,14 +135,15 @@ var PickupPageLayout = React.createClass({
     console.log('assigment complete')
   },
   assignRoute() {
-    _assignVolunteer(this.state.data, this.handleAssign)
+    _assignVolunteer(this.state.data, $('#checkSession').text(), this.handleAssign)
   },
 
   renderAddresses() {
     const dest = _dest && _dest.address;
     //const origin = _origin && _origin.formatted_address;
     //<PathPoints startAddress={dest} endAddress={origin}/>
-
+    console.log(this.state.data)
+    if(!this.state.data) return null
     if (this.state.data && this.state.data.length) {
       return (
         <div>
@@ -149,7 +156,7 @@ var PickupPageLayout = React.createClass({
       }else {
         return (
         <div>
-          <p className="card-text text-center text-red-variant1">No Addresses Found</p></div>
+          <p className="card-text text-center">No Addresses Found</p></div>
       )
 
     }

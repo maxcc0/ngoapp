@@ -5,9 +5,12 @@ import _ from 'lodash';
 import PlaceIcon from 'material-ui/svg-icons/maps/place';
 import IconButton from 'material-ui/IconButton';
 import {fetchAddress, getGeoLocation, fetchCoords} from '../../utils/Location';
-function _savePledge() {
+import webapi from '../../actions/api';
 
+function _savePledge(data, cb) {
+  webapi.createPledge(data, cb);
 }
+
 import NavigationIcon from 'material-ui/svg-icons/maps/navigation';
 const MyAppForm = React.createClass({
   getInitialState() {
@@ -15,8 +18,15 @@ const MyAppForm = React.createClass({
     return {
       canSubmit: false,
       geoLocation: null,
-      address: null,
-      geoLocationError: null
+      address: '',
+      geoLocationError: null,
+      donation_options: [
+        {key: 'toys', value: 'Toys'},
+        {key: 'clothes', value: 'Clothes'},
+        {key: 'bns', value: 'Books & Stationery'},
+         {key: 'fooditems', value: 'Food Items'},
+            {key: 'meds', value: 'Unexpired Medicines'}
+      ]
     }
   },
 
@@ -33,27 +43,29 @@ const MyAppForm = React.createClass({
   handleFetchCoords(err, data) {
     console.log(data);
   },
-
+  handleSavePledgeResponse(err, data){
+    if(err) {
+      alert('Something went wrong. Could not submit request.')
+    }
+    alert('Request Submitted. Thanks for your contribution.')
+  },
+  
   submit(model) {
+    console.log(model)
     console.log('submitting form')
     const self = this;
-        model.geoLocation = self.state.geoLocation;
-        $.ajax({
-
-          type: 'post',
-          data: { DATAasdasd: model },
-          url: 'https://www.socialpixe.com/socialpixe/react/myphp.php',
-          success: function (response) {
-            alert(response);
-          }
-        })
-
-      // fetchCoords(model.address, function (err, data) {
-      //   if (err || _.isEmpty(data)) {
-      //     return self.setState({ geoLocationError: 'Hmmm.. we could not locate your address. Please try changing keywords in the entered address.' })
-      //   }
-      //   submitdata();
-      // })
+      model.geoLocation =self.state.geoLocation;
+      _savePledge(model, self.handleSavePledgeResponse)
+    // fetchCoords(model.address, function (err, data) {
+    //   if (err || _.isEmpty(data)) {
+    //     return self.setState({ geoLocationError: 'We could not locate your address. Please try changinga few keywords address.' })
+    //   }
+    //   if (data[0].formatted_address.toLowercase() != model.address.toLowercase()) {
+    //     return self.setState({ geoLocationError: 'We could not locate your address. Please try changinga few keywords address.' })
+    //   }
+    //   model.geoLocation =self.state.geoLocation;
+    //   _savePledge(model, self.handleSavePledgeResponse)
+    // })
 
   },
   handleAddress(err, address) {
@@ -61,6 +73,7 @@ const MyAppForm = React.createClass({
       this.setState({ geoLocationError: 'Could not fetch your location from geo services. Please add your address.' })
       return
     }
+//alert(address);
     this.setState({ address: address });
   },
   handleGeoLocation(err, data) {
@@ -69,6 +82,7 @@ const MyAppForm = React.createClass({
       return
     }
     this.setState({ geoLocation: data });
+    //alert(data.coords.latitude + ' ' + data.coords.longitude);
     fetchAddress(data.coords.latitude, data.coords.longitude, this.handleAddress)
   },
 
@@ -81,11 +95,11 @@ const MyAppForm = React.createClass({
       <Formsy.Form onValidSubmit= { this.submit } onValid= { this.enableButton } onInvalid= { this.disableButton } >
         <MyOwnInput name="name" label='Name' required/>
 
-        <Address name="address" getMyGeoLocation={this.getMyGeoLocation} placeholder='Please hit the icon for fetching address' value={this.state.address} label='Address' required/>
+        <Address required name="address" getMyGeoLocation={this.getMyGeoLocation} error={this.state.geoLocationError} placeholder='Please hit the icon for fetching address' value={this.state.address} label='Address' required/>
         <MyOwnInput name="email" label='Email'  validations="isEmail" validationError="This is not a valid email"/>
         <MyOwnInput name="contact" label='Contact#'   required/>
         <MyOwnInput name="contact_alternate" label='Alternate Contact#'/>
-        <MyOwnInput name="donation_type" label='Donate' required/>
+        <Select required name='donation_type' options={this.state.donation_options} value={this.state.donation_options[0].value} label='Donate'/>
         <div className="form-group row text-left">
           <div className='col-sm-2 '>
           </div>
@@ -95,7 +109,6 @@ const MyAppForm = React.createClass({
 
 
         </div>
-        <p className="card-text text-center text-red-variant1">{this.state.geoLocationError || null}</p>
       </Formsy.Form >
     );
   }
@@ -161,7 +174,7 @@ const Address = React.createClass({
 
     // An error message is returned ONLY if the component is invalid
     // or the server has returned an error message
-    const errorMessage = this.getErrorMessage();
+    const errorMessage = this.getErrorMessage() || this.props.error;
 
     return (
       <div className="form-group row">
@@ -169,7 +182,7 @@ const Address = React.createClass({
         <div className="col-sm-10">
         <div className='row'>
           <div className='col-xs-10'>
-            <input className="form-control"  disabled placeholder={this.props.placeholder || null} type="text" onChange={this.changeValue} value={this.getValue() }/>
+            <input className="form-control"   placeholder={this.props.placeholder || null} type="text" onChange={this.changeValue} value={this.getValue() }/>
           </div>
           <div className='col-xs-2'>
             <IconButton style={{height: '34px', padding: '0'}} tooltipPosition="top-center" tooltip="Fetch My Location" onClick={this.props.getMyGeoLocation}>
@@ -180,11 +193,52 @@ const Address = React.createClass({
 
 
         </div>
-        <div className="col-sm-12 col-sm-offset-2">
+        <div className='col-sm-2 '>
+        </div>
+        <div className="col-sm-10">
           <p className='text-red-variant1'>{errorMessage}</p>
         </div>
       </div>
     );
   }
 });
+const Select = React.createClass({
+    mixins: [Formsy.Mixin],
+
+    changeValue(event) {
+        this.setValue(event.currentTarget.value);
+    },
+    // componentWillReceiveProps(np) {
+    //     const v = np.options && np.options[0].address;
+    //     this.setValue(v)
+    // },
+    render() {
+        const className = 'form-group' + (this.props.className || ' ') +
+            (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
+        const errorMessage = this.getErrorMessage();
+        const helpMessage = this.props.helpMessage || null;
+
+        const options = this.props.options.map((option, i) => (
+            <option key={option.key + option.value} value={option.value}>
+                {option.value}
+            </option>
+        ));
+
+        return (
+                <div className="form-group row">
+        <label for="inputEmail3" className="col-sm-2 col-form-label">{this.props.label}</label>
+        <div className="col-sm-10">
+
+         <select className='form-control' name={this.props.name} onChange={this.changeValue} value={this.getValue() }>
+                    {options}
+                </select></div>
+        <div className="col-xs-12 col-sm-offset-2">
+        <span className='help-block text-muted'>{helpMessage}</span>
+          <p className='text-red-variant1'>{errorMessage}</p>
+        </div></div>
+        );
+    }
+
+});
+
 export default MyAppForm;
