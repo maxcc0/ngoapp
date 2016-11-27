@@ -58,7 +58,7 @@ if($RESULT->num_rows > 0)
         $LATS = explode(', ',$ROW['geoLocation']);
         if(calculate_distance(''.$NEW[0].'',''.$NEW[1].'',$LATS[0],$LATS[1],'K') <= '1')
         {
-           $ARRAY[]  = array('donation_id'=>$ROW['UID'], 'donor_name'=>$ROW['name'], 'donor_address'=>$ROW['address'], 'donor_contact'=>$ROW['contact'], 'donor_location'=>$ROW['geoLocation']);
+           $ARRAY[]  = array('donation_id'=>$ROW['UID'], 'donor_name'=>$ROW['name'], 'donor_address'=>$ROW['address'], 'donor_contact'=>$ROW['contact'], 'donation_status'=>$ROW['donation_status'], 'donor_location'=>$ROW['geoLocation']);
         }
     }
     echo json_encode($ARRAY)    ;

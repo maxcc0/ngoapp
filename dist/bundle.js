@@ -84,11 +84,11 @@
 
 	var _Pledge2 = _interopRequireDefault(_Pledge);
 
-	var _PickupPageLayout = __webpack_require__(983);
+	var _PickupPageLayout = __webpack_require__(984);
 
 	var _PickupPageLayout2 = _interopRequireDefault(_PickupPageLayout);
 
-	var _auth = __webpack_require__(1133);
+	var _auth = __webpack_require__(1134);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
@@ -78682,21 +78682,6 @@
 	                        _react2.default.createElement('br', null),
 	                        _react2.default.createElement('br', null),
 	                        _react2.default.createElement('br', null)
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-12' },
-	                        _react2.default.createElement('br', null),
-	                        _react2.default.createElement('br', null),
-	                        _react2.default.createElement(
-	                            'form',
-	                            { role: 'form', onSubmit: this.props.handleLogin },
-	                            _react2.default.createElement(
-	                                'button',
-	                                { type: 'button', onClick: this.props.handlePledge, className: 'btn  btn-white text-muted btn-outline btn-lg btn-rounded' },
-	                                'Pledge A Donation'
-	                            )
-	                        )
 	                    )
 	                ),
 	                _react2.default.createElement('br', null),
@@ -81106,24 +81091,31 @@
 	  });
 	}
 	module.exports = {
+	  createPledge: function createPledge(model, cb) {
+	    _makeAjax('post', { DATAasdasd: model }, 'https://www.socialpixe.com/socialpixe/react/api/myphp.php', cb);
+	  },
 	  fetchPickupLocations: function fetchPickupLocations(origin, dest, cb) {
-	    _makeAjax('post', { origin: origin, dest: dest }, 'https://www.socialpixe.com/socialpixe/react/fetchPickups.php', cb);
+	    _makeAjax('post', { origin: origin, dest: dest }, 'https://www.socialpixe.com/socialpixe/react/api/fetchPickups.php', cb);
 	  },
 	  assignVoluteer: function assignVoluteer(data, id, cb) {
-	    _makeAjax('post', { data: data, id: id }, 'https://www.socialpixe.com/socialpixe/react/assignVolunteer.php', cb);
+	    _makeAjax('post', { data: data, id: id }, 'https://www.socialpixe.com/socialpixe/react/api/assignVolunteer.php', cb);
 	  },
 	  login: function login(data, cb) {
-	    _makeAjax('post', { data: data }, 'https://www.socialpixe.com/socialpixe/react/login.php', cb);
+	    _makeAjax('post', { data: data }, 'https://www.socialpixe.com/socialpixe/react/api/login.php', cb);
 	  },
 	  fetchDropLocations: function fetchDropLocations(cb) {
-	    _makeAjax('get', {}, 'https://www.socialpixe.com/socialpixe/react/droplocations.php', cb);
+	    _makeAjax('get', {}, 'https://www.socialpixe.com/socialpixe/react/api/droplocations.php', cb);
 	  },
 	  updateDonationStatus: function updateDonationStatus(donation, cb) {
-	    _makeAjax('post', { data: donation }, 'https://www.socialpixe.com/socialpixe/react/updateDonation.php', cb);
+	    _makeAjax('post', { data: donation }, 'https://www.socialpixe.com/socialpixe/react/api/updateDonation.php', cb);
 	  }
 	};
 
 	// module.exports = {
+	//   createPledge(model, cb) {
+	//      _makeAjax('post', { DATAasdasd: model }, 
+	//       'api/myphp.php', cb);
+	//   },
 	//   fetchPickupLocations(origin, dest, cb) {
 	//       _makeAjax('post', { origin: origin, dest: dest }, 
 	//       'api/fetchPickups.php', cb);
@@ -81254,7 +81246,7 @@
 
 	var _PledgeCard2 = _interopRequireDefault(_PledgeCard);
 
-	var _PledgeOverview = __webpack_require__(982);
+	var _PledgeOverview = __webpack_require__(983);
 
 	var _PledgeOverview2 = _interopRequireDefault(_PledgeOverview);
 
@@ -81366,6 +81358,10 @@
 	  value: true
 	});
 
+	var _defineProperty2 = __webpack_require__(979);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
 	var _react = __webpack_require__(82);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -81378,7 +81374,7 @@
 
 	var _jQuery2 = _interopRequireDefault(_jQuery);
 
-	var _lodash = __webpack_require__(979);
+	var _lodash = __webpack_require__(980);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -81390,15 +81386,21 @@
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Location = __webpack_require__(980);
+	var _Location = __webpack_require__(981);
 
-	var _navigation = __webpack_require__(981);
+	var _api = __webpack_require__(974);
+
+	var _api2 = _interopRequireDefault(_api);
+
+	var _navigation = __webpack_require__(982);
 
 	var _navigation2 = _interopRequireDefault(_navigation);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _savePledge() {}
+	function _savePledge(data, cb) {
+	  _api2.default.createPledge(data, cb);
+	}
 
 	var MyAppForm = _react2.default.createClass({
 	  displayName: 'MyAppForm',
@@ -81407,8 +81409,9 @@
 	    return {
 	      canSubmit: false,
 	      geoLocation: null,
-	      address: null,
-	      geoLocationError: null
+	      address: '',
+	      geoLocationError: null,
+	      donation_options: [{ key: 'toys', value: 'Toys' }, { key: 'clothes', value: 'Clothes' }, { key: 'bns', value: 'Books & Stationery' }, { key: 'fooditems', value: 'Food Items' }, { key: 'meds', value: 'Unexpired Medicines' }]
 	    };
 	  },
 	  enableButton: function enableButton() {
@@ -81424,28 +81427,28 @@
 	  handleFetchCoords: function handleFetchCoords(err, data) {
 	    console.log(data);
 	  },
+	  handleSavePledgeResponse: function handleSavePledgeResponse(err, data) {
+	    if (err) {
+	      alert('Something went wrong. Could not submit request.');
+	    }
+	    alert('Request Submitted. Thanks for your contribution.');
+	  },
 	  submit: function submit(model) {
+	    console.log(model);
 	    console.log('submitting form');
 	    var self = this;
-	    function submitData() {
-	      model.geoLocation = self.state.geoLocation;
-	      _jQuery2.default.ajax({
-
-	        type: 'post',
-	        data: { DATAasdasd: model },
-	        url: 'api/myphp.php',
-	        success: function success(response) {
-	          alert('Thanks for your donation.');
-	        }
-	      });
-	    }
-
-	    (0, _Location.fetchCoords)(model.address, function (err, data) {
-	      if (err || _lodash2.default.isEmpty(data) || !data[1]) {
-	        return self.setState({ geoLocationError: 'Hmmm.. we could not locate your address. Please try changinga few keywords address.' });
-	      }
-	      submitdata();
-	    });
+	    model.geoLocation = self.state.geoLocation;
+	    _savePledge(model, self.handleSavePledgeResponse);
+	    // fetchCoords(model.address, function (err, data) {
+	    //   if (err || _.isEmpty(data)) {
+	    //     return self.setState({ geoLocationError: 'We could not locate your address. Please try changinga few keywords address.' })
+	    //   }
+	    //   if (data[0].formatted_address.toLowercase() != model.address.toLowercase()) {
+	    //     return self.setState({ geoLocationError: 'We could not locate your address. Please try changinga few keywords address.' })
+	    //   }
+	    //   model.geoLocation =self.state.geoLocation;
+	    //   _savePledge(model, self.handleSavePledgeResponse)
+	    // })
 	  },
 	  handleAddress: function handleAddress(err, address) {
 	    if (err) {
@@ -81472,11 +81475,11 @@
 	      _formsyReact2.default.Form,
 	      { onValidSubmit: this.submit, onValid: this.enableButton, onInvalid: this.disableButton },
 	      _react2.default.createElement(MyOwnInput, { name: 'name', label: 'Name', required: true }),
-	      _react2.default.createElement(Address, { name: 'address', getMyGeoLocation: this.getMyGeoLocation, error: this.state.geoLocationError, placeholder: 'Please hit the icon for fetching address', value: this.state.address, label: 'Address', required: true }),
+	      _react2.default.createElement(Address, (0, _defineProperty3.default)({ required: true, name: 'address', getMyGeoLocation: this.getMyGeoLocation, error: this.state.geoLocationError, placeholder: 'Please hit the icon for fetching address', value: this.state.address, label: 'Address' }, 'required', true)),
 	      _react2.default.createElement(MyOwnInput, { name: 'email', label: 'Email', validations: 'isEmail', validationError: 'This is not a valid email' }),
 	      _react2.default.createElement(MyOwnInput, { name: 'contact', label: 'Contact#', required: true }),
 	      _react2.default.createElement(MyOwnInput, { name: 'contact_alternate', label: 'Alternate Contact#' }),
-	      _react2.default.createElement(MyOwnInput, { name: 'donation_type', label: 'Donate', required: true }),
+	      _react2.default.createElement(Select, { required: true, name: 'donation_type', options: this.state.donation_options, value: this.state.donation_options[0].value, label: 'Donate' }),
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'form-group row text-left' },
@@ -81612,10 +81615,100 @@
 	    );
 	  }
 	});
+	var Select = _react2.default.createClass({
+	  displayName: 'Select',
+
+	  mixins: [_formsyReact2.default.Mixin],
+
+	  changeValue: function changeValue(event) {
+	    this.setValue(event.currentTarget.value);
+	  },
+
+	  // componentWillReceiveProps(np) {
+	  //     const v = np.options && np.options[0].address;
+	  //     this.setValue(v)
+	  // },
+	  render: function render() {
+	    var className = 'form-group' + (this.props.className || ' ') + (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
+	    var errorMessage = this.getErrorMessage();
+	    var helpMessage = this.props.helpMessage || null;
+
+	    var options = this.props.options.map(function (option, i) {
+	      return _react2.default.createElement(
+	        'option',
+	        { key: option.key + option.value, value: option.value },
+	        option.value
+	      );
+	    });
+
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'form-group row' },
+	      _react2.default.createElement(
+	        'label',
+	        { 'for': 'inputEmail3', className: 'col-sm-2 col-form-label' },
+	        this.props.label
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-sm-10' },
+	        _react2.default.createElement(
+	          'select',
+	          { className: 'form-control', name: this.props.name, onChange: this.changeValue, value: this.getValue() },
+	          options
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-xs-12 col-sm-offset-2' },
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'help-block text-muted' },
+	          helpMessage
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          { className: 'text-red-variant1' },
+	          errorMessage
+	        )
+	      )
+	    );
+	  }
+	});
+
 	exports.default = MyAppForm;
 
 /***/ },
 /* 979 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _defineProperty = __webpack_require__(797);
+
+	var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (obj, key, value) {
+	  if (key in obj) {
+	    (0, _defineProperty2.default)(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
+
+	  return obj;
+	};
+
+/***/ },
+/* 980 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -98567,7 +98660,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(435)(module)))
 
 /***/ },
-/* 980 */
+/* 981 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -98632,16 +98725,13 @@
 	    console.log('getting location for mobile');
 	    if (geoPosition.init()) {
 	        // Geolocation Initialisation
-	        geoPosition.getCurrentPosition(success_callback, error_callback);
+	        geoPosition.getCurrentPosition(success_callback, error_callback, { enableHighAccuracy: true });
 	    } else {
 	        alert('Geolocation is not supported in your browser');
 	        return cb('not supported');
 	    }
-	    // geoPositionSimulator.init(); 
 
-	    // p : geolocation object
 	    function success_callback(location) {
-	        // alert(location);
 	        console.log(location);
 	        return cb(null, location);
 	    }
@@ -98683,7 +98773,7 @@
 	}
 
 /***/ },
-/* 981 */
+/* 982 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98720,7 +98810,7 @@
 	exports.default = MapsNavigation;
 
 /***/ },
-/* 982 */
+/* 983 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98952,7 +99042,7 @@
 	}(_react2.default.Component);
 
 /***/ },
-/* 983 */
+/* 984 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98967,7 +99057,7 @@
 
 	var _reactRouter = __webpack_require__(259);
 
-	var _Map = __webpack_require__(984);
+	var _Map = __webpack_require__(985);
 
 	var _Map2 = _interopRequireDefault(_Map);
 
@@ -98983,15 +99073,15 @@
 
 	var _DonorList2 = _interopRequireDefault(_DonorList);
 
-	var _DropOffLocationSelect = __webpack_require__(1130);
+	var _DropOffLocationSelect = __webpack_require__(1131);
 
 	var _DropOffLocationSelect2 = _interopRequireDefault(_DropOffLocationSelect);
 
-	var _Path = __webpack_require__(1131);
+	var _Path = __webpack_require__(1132);
 
 	var _Path2 = _interopRequireDefault(_Path);
 
-	var _AcceptAssignmentModal = __webpack_require__(1132);
+	var _AcceptAssignmentModal = __webpack_require__(1133);
 
 	var _AcceptAssignmentModal2 = _interopRequireDefault(_AcceptAssignmentModal);
 
@@ -98999,7 +99089,7 @@
 
 	var _api2 = _interopRequireDefault(_api);
 
-	var _Location = __webpack_require__(980);
+	var _Location = __webpack_require__(981);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -99045,11 +99135,12 @@
 	        stopover: true
 	      });
 	    });
+	    var destCoords = _dest.geolocation.split(',');
+	    var destLat = this.setState({
 
-	    this.setState({
 	      data: data,
 	      origin: new google.maps.LatLng(_origin.coords.latitude, _origin.coords.longitude),
-	      dest: new google.maps.LatLng(18.5793, 73.9089),
+	      dest: new google.maps.LatLng(destCoords[0], destCoords[1]),
 	      waypoints: waypoints
 	    });
 	  },
@@ -99059,6 +99150,8 @@
 	    }
 	    if (!_.isEmpty(JSON.parse(data))) {
 	      this.setWayPoints(JSON.parse(data));
+	    } else {
+	      this.setState({ data: [] });
 	    }
 	  },
 	  handleDropLocationData: function handleDropLocationData(err, data) {
@@ -99083,6 +99176,8 @@
 	      this.setState({ geoLocationError: err.message || 'Something went wrong while fetching your location.' });
 	      return;
 	    }
+	    console.log('fetching pickups');
+	    console.log(data);
 	    _origin = data;
 	    _fetchPickups(data, _dest, this.handlePickups);
 	  },
@@ -99115,7 +99210,8 @@
 	    var dest = _dest && _dest.address;
 	    //const origin = _origin && _origin.formatted_address;
 	    //<PathPoints startAddress={dest} endAddress={origin}/>
-
+	    console.log(this.state.data);
+	    if (!this.state.data) return null;
 	    if (this.state.data && this.state.data.length) {
 	      return _react2.default.createElement(
 	        'div',
@@ -99136,7 +99232,7 @@
 	        null,
 	        _react2.default.createElement(
 	          'p',
-	          { className: 'card-text text-center text-red-variant1' },
+	          { className: 'card-text text-center' },
 	          'No Addresses Found'
 	        )
 	      );
@@ -99192,7 +99288,7 @@
 	exports.default = PickupPageLayout;
 
 /***/ },
-/* 984 */
+/* 985 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -99225,11 +99321,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _lodash = __webpack_require__(979);
+	var _lodash = __webpack_require__(980);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _reactGoogleMaps = __webpack_require__(985);
+	var _reactGoogleMaps = __webpack_require__(986);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -99279,14 +99375,18 @@
 	          origin: np.origin,
 	          destination: np.dest,
 	          waypoints: np.waypoints,
+	          optimizeWaypoints: true,
 	          travelMode: google.maps.TravelMode.DRIVING
 	        }, function (result, status) {
 	          if (status === google.maps.DirectionsStatus.OK) {
 	            _this2.setState({
 	              directions: result
 	            });
+	            console.log(result);
+	            var route = result;
 	          } else {
 	            console.error('error fetching directions ' + result);
+	            console.log(result);
 	          }
 	        });
 	      }
@@ -99332,7 +99432,7 @@
 	exports.default = DirectionsExample;
 
 /***/ },
-/* 985 */
+/* 986 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -99341,7 +99441,7 @@
 	  value: true
 	});
 
-	var _withGoogleMap = __webpack_require__(986);
+	var _withGoogleMap = __webpack_require__(987);
 
 	Object.defineProperty(exports, "withGoogleMap", {
 	  enumerable: true,
@@ -99452,7 +99552,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 986 */
+/* 987 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -99461,11 +99561,11 @@
 	  value: true
 	});
 
-	var _objectWithoutProperties2 = __webpack_require__(987);
+	var _objectWithoutProperties2 = __webpack_require__(988);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -99591,7 +99691,7 @@
 	} /* global google */
 
 /***/ },
-/* 987 */
+/* 988 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -99608,35 +99708,6 @@
 	  }
 
 	  return target;
-	};
-
-/***/ },
-/* 988 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	exports.__esModule = true;
-
-	var _defineProperty = __webpack_require__(797);
-
-	var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (obj, key, value) {
-	  if (key in obj) {
-	    (0, _defineProperty2.default)(obj, key, {
-	      value: value,
-	      enumerable: true,
-	      configurable: true,
-	      writable: true
-	    });
-	  } else {
-	    obj[key] = value;
-	  }
-
-	  return obj;
 	};
 
 /***/ },
@@ -99705,7 +99776,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -104043,7 +104114,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -104316,7 +104387,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -104465,7 +104536,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -104612,7 +104683,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -104766,7 +104837,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -104930,7 +105001,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -105064,7 +105135,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -105184,7 +105255,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -105288,7 +105359,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -105451,7 +105522,7 @@
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(988);
+	var _defineProperty2 = __webpack_require__(979);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -105969,13 +106040,13 @@
 
 	var _jQuery2 = _interopRequireDefault(_jQuery);
 
-	var _lodash = __webpack_require__(979);
+	var _lodash = __webpack_require__(980);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
 	var _reactRouter = __webpack_require__(259);
 
-	var _Location = __webpack_require__(980);
+	var _Location = __webpack_require__(981);
 
 	var _RadioButton = __webpack_require__(1114);
 
@@ -107142,7 +107213,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _navigation = __webpack_require__(981);
+	var _navigation = __webpack_require__(982);
 
 	var _navigation2 = _interopRequireDefault(_navigation);
 
@@ -107150,11 +107221,11 @@
 
 	var _PickupActions2 = _interopRequireDefault(_PickupActions);
 
-	var _lodash = __webpack_require__(979);
+	var _lodash = __webpack_require__(980);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _call = __webpack_require__(1129);
+	var _call = __webpack_require__(1130);
 
 	var _call2 = _interopRequireDefault(_call);
 
@@ -107228,7 +107299,9 @@
 	                _react2.default.createElement(
 	                    'h4',
 	                    { className: 'font-thin card-title' },
-	                    'Donor Addresses'
+	                    'Donor Addresses (',
+	                    donors.length,
+	                    ')'
 	                ),
 	                donors
 	            );
@@ -107351,6 +107424,10 @@
 
 	var _assignmentInd2 = _interopRequireDefault(_assignmentInd);
 
+	var _fiberNew = __webpack_require__(1129);
+
+	var _fiberNew2 = _interopRequireDefault(_fiberNew);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var favoritesIcon = _react2.default.createElement(
@@ -107360,9 +107437,10 @@
 	);
 	var nearbyIcon = _react2.default.createElement(_locationOn2.default, null);
 	var actionsMap = {
-	  0: 'assigned',
-	  1: 'picked',
-	  2: 'problem'
+	  0: 'created',
+	  1: 'assigned',
+	  2: 'collected',
+	  4: 'problem'
 
 	};
 	/**
@@ -107400,6 +107478,11 @@
 	      this.setState({ selectedIndex: index });
 	    }
 	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(np) {
+	      this.setState({ selectedIndex: _.findKey(np.donor, np.donor.donation_status) || null });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -107412,24 +107495,31 @@
 	          _BottomNavigation.BottomNavigation,
 	          { selectedIndex: this.state.selectedIndex },
 	          _react2.default.createElement(_BottomNavigation.BottomNavigationItem, {
-	            label: 'Assigned',
-	            icon: _react2.default.createElement(_assignmentInd2.default, { style: { margin: 'auto' } }),
+	            label: 'Open', disabled: true,
+	            icon: _react2.default.createElement(_fiberNew2.default, { style: { margin: 'auto' } }),
 	            onTouchTap: function onTouchTap() {
 	              return _this2.select(0);
 	            }
 	          }),
 	          _react2.default.createElement(_BottomNavigation.BottomNavigationItem, {
-	            label: 'Picked',
-	            icon: _react2.default.createElement(_checkCircle2.default, { style: { margin: 'auto' } }),
+	            label: 'Assigned', disabled: true,
+	            icon: _react2.default.createElement(_assignmentInd2.default, { style: { margin: 'auto' } }),
 	            onTouchTap: function onTouchTap() {
 	              return _this2.select(1);
 	            }
 	          }),
 	          _react2.default.createElement(_BottomNavigation.BottomNavigationItem, {
-	            label: 'Problem',
-	            icon: _react2.default.createElement(_report2.default, { style: { margin: 'auto' } }),
+	            label: 'Picked', disabled: true,
+	            icon: _react2.default.createElement(_checkCircle2.default, { style: { margin: 'auto' } }),
 	            onTouchTap: function onTouchTap() {
 	              return _this2.select(2);
+	            }
+	          }),
+	          _react2.default.createElement(_BottomNavigation.BottomNavigationItem, {
+	            label: 'Problem', disabled: true,
+	            icon: _react2.default.createElement(_report2.default, { style: { margin: 'auto' } }),
+	            onTouchTap: function onTouchTap() {
+	              return _this2.select(3);
 	            }
 	          })
 	        )
@@ -107839,6 +107929,43 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var AvFiberNew = function AvFiberNew(props) {
+	  return _react2.default.createElement(
+	    _SvgIcon2.default,
+	    props,
+	    _react2.default.createElement('path', { d: 'M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zM8.5 15H7.3l-2.55-3.5V15H3.5V9h1.25l2.5 3.5V9H8.5v6zm5-4.74H11v1.12h2.5v1.26H11v1.11h2.5V15h-4V9h4v1.26zm7 3.74c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1V9h1.25v4.51h1.13V9.99h1.25v3.51h1.12V9h1.25v5z' })
+	  );
+	};
+	AvFiberNew = (0, _pure2.default)(AvFiberNew);
+	AvFiberNew.displayName = 'AvFiberNew';
+	AvFiberNew.muiName = 'SvgIcon';
+
+	exports.default = AvFiberNew;
+
+/***/ },
+/* 1130 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(82);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _pure = __webpack_require__(884);
+
+	var _pure2 = _interopRequireDefault(_pure);
+
+	var _SvgIcon = __webpack_require__(893);
+
+	var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var CommunicationCall = function CommunicationCall(props) {
 	  return _react2.default.createElement(
 	    _SvgIcon2.default,
@@ -107853,7 +107980,7 @@
 	exports.default = CommunicationCall;
 
 /***/ },
-/* 1130 */
+/* 1131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -107870,7 +107997,7 @@
 
 	var _formsyReact2 = _interopRequireDefault(_formsyReact);
 
-	var _lodash = __webpack_require__(979);
+	var _lodash = __webpack_require__(980);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -107900,7 +108027,7 @@
 	        return _react2.default.createElement(
 	            _formsyReact2.default.Form,
 	            { onValidSubmit: this.submit, onValid: this.enableButton, onInvalid: this.disableButton },
-	            _react2.default.createElement(Select, { required: true, name: 'dropOffLocation', options: this.props.options, title: 'Select Drop Off Location' }),
+	            _react2.default.createElement(Select, { required: true, name: 'dropOffLocation', options: this.props.options, value: this.props.options && this.props.options[0] && this.props.options[0].address, title: 'Select Drop Off Location' }),
 	            _react2.default.createElement(
 	                'p',
 	                { className: 'card-text text-center text-red-variant1' },
@@ -107911,7 +108038,7 @@
 	                { className: 'form-group row' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-sm-6 col-sm-offset-3' },
+	                    { className: 'col-xs-12' },
 	                    _react2.default.createElement(
 	                        'button',
 	                        { type: 'submit', className: ' col-sm-6 col-sm-offset-3 btn btn-block btn-lg btn-primary-dm pull-right', disabled: !this.state.canSubmit },
@@ -107979,7 +108106,7 @@
 	exports.default = DL;
 
 /***/ },
-/* 1131 */
+/* 1132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -108081,7 +108208,7 @@
 	exports.default = DropLocationList;
 
 /***/ },
-/* 1132 */
+/* 1133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -108153,7 +108280,7 @@
 	exports.default = Modals;
 
 /***/ },
-/* 1133 */
+/* 1134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
