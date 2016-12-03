@@ -12,16 +12,19 @@ import "./assets/styles/app.less";
 import NProgress from 'nProgress';
 
 import Base from './components/core/Base';
-import Dashboard from './components/core/Home';
+import Home from './components/core/Home';
+import Dashboard from './components/dashboard/DashboardLayout';
 import Login from './components/login/Login';
 import Pledge from './components/pledge/Pledge'
 import VoluntaryPickup from './components/voluntaryPickup/PickupPageLayout'
 import auth from './utils/auth';
+
+
 NProgress.configure({ showSpinner: false });
 function requireAuth(nextState, replace) {
-  if (!auth.loggedIn())
-  replace('/login');
-    //replaceState({ nextPathname: nextState.location.pathname }, '/login')
+  if (!auth.loggedIn()) {
+   replace('/login');
+  }
 }
 //  const history = useBasename(createHashHistory)({
 //     queryKey: false
@@ -32,10 +35,10 @@ const history = useRouterHistory(createHashHistory)({ queryKey: false });
 const rootRoute = {
   path: '/',
   component: Base,
-  indexRoute: { component: Dashboard },
+  indexRoute: { component: Home },
   childRoutes: [
     {
-      component: Dashboard,
+      component: Home,
       childRoutes: [
         {
           path: 'pledge',
@@ -46,10 +49,10 @@ const rootRoute = {
           component: VoluntaryPickup,
           onEnter: requireAuth
         },
-        //  require('./components/dashboard'),
-        //require('./components/pledge'),
-       // require('./components/voluntaryPickup')
-
+         {
+          path: 'dashboard',
+          component: Dashboard
+        }
       ]
     },
     {
@@ -65,14 +68,3 @@ render(
   <Router history={history} routes={rootRoute} />,
   document.getElementById('react-app')
 )
-// render (
-//   <Router history={history}>
-//   <Route path="/" component={Base}>
-//     <IndexRoute component={Dashboard}/>
-//     <Route path="pickup" component={Login} />
-//     <Route path="pledge" component={Login} />
-//     <Route path="login" component={Login} />
-//   </Route>
-// </Router>,
-// document.getElementById('react-app')
-// )

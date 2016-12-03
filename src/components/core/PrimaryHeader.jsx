@@ -1,17 +1,14 @@
 import React from 'react';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
-import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
+import NavigationExpandMoreIcon from 'material-ui/svg-icons/action/account-circle';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
-
-import Sidebar from './Sidebar';
-import PrimaryHeaderContent from '../base/PrimaryHeaderContent';
+import ActionHome from 'material-ui/svg-icons/action/home';
+import auth from '../../utils/auth';
+import Menu from './Menu';
 
 const BrandLogo = () => (
   <div style={{ 'lineHeight': 50 + 'px', marginLeft: '10px' }}>
@@ -19,6 +16,28 @@ const BrandLogo = () => (
       <img src={require("../../assets/images/logo_ngo.png") }  className="brand-logo"/></a>
     </div>
 );
+
+
+function _getUserIcon() {
+if(auth.loggedIn()) {
+  return (
+    <IconMenu iconButtonElement={<IconButton iconStyle={styles.smallIcon} className='text-white-base'>
+          <NavigationExpandMoreIcon className='text-white-base'/></IconButton>}>
+            <MenuItem onTouchTap={this.props.logout} primaryText="Logout" />
+          </IconMenu>
+  )
+}
+return null
+}
+
+const styles = {
+  smallIcon: {
+    width: 36,
+    height: 36,
+  }
+};
+
+
 
 export default class PrimaryHeader extends React.Component {
 
@@ -35,11 +54,15 @@ export default class PrimaryHeader extends React.Component {
     return (
       <Toolbar className='app-header'>
         <ToolbarGroup firstChild={true}>
-          <Sidebar/>
-
+          <Menu/>
+          <IconButton href= '#/login' style={{padding: '6px'} } iconStyle={styles.smallIcon}>
+            <ActionHome color='#666'
+      hoverColor={'#ff5a5f'}/>
+          </IconButton>
         </ToolbarGroup>
-
-
+        <ToolbarGroup>
+          {_getUserIcon.call(this)}
+        </ToolbarGroup>
       </Toolbar>
     );
   }

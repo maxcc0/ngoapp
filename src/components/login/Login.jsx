@@ -12,7 +12,7 @@ import Features from './Features';
 import Intro from './Intro';
 
 import HamburgerMenu from 'material-ui/svg-icons/navigation/menu';
-import SideMenu from '../core/Sidebar';
+import SideMenu from '../core/Menu';
 function renderBrand() {
     return <img src={require("../../assets/images/logo_ngo.png")} style={{verticalAlign: 'super', marginLeft: '10px'}} className="brand-logo" /> 
 }
@@ -55,7 +55,6 @@ var LoginPage = React.createClass({
   },
   render: function () {
     return (
-      <MuiThemeProvider >
         <div>
           <div className="login-page intro-header">
             <div className='' >
@@ -77,7 +76,6 @@ var LoginPage = React.createClass({
           </div>
          
         </div>
-      </MuiThemeProvider>
     );
   }
 

@@ -48,18 +48,42 @@ $NEW = explode(', ',$EXPO[0]);
 $ARRAY = array();
 
 
-$SELECT = "SELECT * FROM ngo_pledge_table ";
+$SELECT = "SELECT * FROM ngo_pledge_table where donation_status = 'created' OR donation_status = 'assigned' OR donation_status = 'picked'";
+
+$RESULT1 = $Connect->query($SELECT);
+if($RESULT1->num_rows > 0)
+{
+    while($ROW = $RESULT1->fetch_assoc())
+    {
+        $PLEDGESTATUS = $ROW['donation_status'];
+        $ASSIGNEDONDATE = $ROW['assigned_on_date'];
+        $UID = $ROW['UID'];
+
+        if( $PLEDGESTATUS === 'assigned' && $ASSIGNEDONDATE !== NULL && 
+        strtotime("now") > strtotime("+4 hours", strtotime($ASSIGNEDONDATE))){
+            $UPDATE = "UPDATE ngo_pledge_table SET assigned_to = NULL, donation_status = 'created', assigned_on_date=NULL where UID = '".$UID."'";
+              $Connect->query($UPDATE); 
+            }    
+    };
+}
+
 $RESULT = $Connect->query($SELECT);
 $ARRAY = array();
 if($RESULT->num_rows > 0)
 {
     while($ROW = $RESULT->fetch_assoc())
     {
-        $LATS = explode(', ',$ROW['geoLocation']);
-        if(calculate_distance(''.$NEW[0].'',''.$NEW[1].'',$LATS[0],$LATS[1],'K') <= '1')
+            
+        if ($ROW['donation_status'] === 'created' || ($ROW['donation_status'] ==='assigned' && $ROW['assigned_to'] === $_SESSION['USER_ACTIVE'])
+        || ($ROW['donation_status'] === 'picked' && $ROW['picked_by'] === $_SESSION['USER_ACTIVE'])){
+
+           $LATS = explode(', ',$ROW['geoLocation']);
+        if(calculate_distance($NEW[0],$NEW[1],$LATS[0],$LATS[1],'K') <= '1')
         {
-           $ARRAY[]  = array('donation_id'=>$ROW['UID'], 'donor_name'=>$ROW['name'], 'donor_address'=>$ROW['address'], 'donor_contact'=>$ROW['contact'], 'donation_status'=>$ROW['donation_status'], 'donor_location'=>$ROW['geoLocation']);
+           $ARRAY[]  = array('donation_id'=>$ROW['UID'], 'donor_name'=>$ROW['name'], 'donor_address'=>$ROW['address'], 'donor_contact'=>$ROW['contact'], 'donation_status'=>$ROW['donation_status'], 'donation_type'=>$ROW['donation_type'], 'donor_location'=>$ROW['geoLocation']);
+        }  
         }
+                
     }
     echo json_encode($ARRAY)    ;
 }

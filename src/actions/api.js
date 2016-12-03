@@ -5,6 +5,7 @@ function _makeAjax(type, data, url, cb) {
 
     type: type,
     data: data,
+    cache: false,
     url: url,
     success: function (response) {
       cb(null, response)
@@ -15,7 +16,9 @@ function _makeAjax(type, data, url, cb) {
         msg = 'Connection Failed.\n Verify Network.';
       } else if (jqXHR.status == 404) {
         msg = 'Requested page not found. [404]';
-      } else if (jqXHR.status == 500) {
+      }else if (jqXHR.status == 412) {
+        msg = 'Review data and re-submit. ' + jqXHR.responseText;
+      }  else if (jqXHR.status == 500) {
         msg = 'Internal Server Error [500].';
       } else if (exception === 'parsererror') {
         msg = 'Requested JSON parse failed.';
@@ -30,32 +33,56 @@ function _makeAjax(type, data, url, cb) {
     }
   })
 }
+
+const baseUrl = 'https://www.socialpixe.com/socialpixe/react/';
+
 module.exports = {
+    signup(model, cb) {
+     _makeAjax('post', { DATAasdasd: model }, 
+      baseUrl + 'api/signup.php', cb);
+  },
   createPledge(model, cb) {
  _makeAjax('post', { DATAasdasd: model }, 
-      'https://www.socialpixe.com/socialpixe/react/api/myphp.php', cb);
+      baseUrl +'api/myphp.php', cb);
   },
   fetchPickupLocations(origin, dest, cb) {
       _makeAjax('post', { origin: origin, dest: dest }, 
-      'https://www.socialpixe.com/socialpixe/react/api/fetchPickups.php', cb);
+      baseUrl + 'api/fetchPickups.php', cb);
     },
-    assignVoluteer(data, id, cb) {
-      _makeAjax('post', { data: data, id:id }, 
-      'https://www.socialpixe.com/socialpixe/react/api/assignVolunteer.php', cb);
-    },
+    fetchAllPledges(cb){
+       _makeAjax('get', {}, baseUrl + 'api/alldonations.php', cb);
+     },
+
+    fetchUsers(cb){
+       _makeAjax('get', {}, baseUrl + 'api/fetchusers.php', cb);
+     },
     login(data, cb) {
       _makeAjax('post', { data: data }, 
-      'https://www.socialpixe.com/socialpixe/react/api/login.php', cb);
+      baseUrl + 'api/login.php', cb);
+    },
+    logout(cb) {
+      _makeAjax('post', {}, 
+      baseUrl + 'api/logout.php', cb);
     },
     fetchDropLocations(cb) {
-      _makeAjax('get', { }, 'https://www.socialpixe.com/socialpixe/react/api/droplocations.php', cb);
+      _makeAjax('get', { }, baseUrl + 'api/droplocations.php', cb);
     },
     updateDonationStatus(donation, cb){
-       _makeAjax('post', {data: donation }, 'https://www.socialpixe.com/socialpixe/react/api/updateDonation.php', cb);
-    }
+       _makeAjax('post', {data: donation }, baseUrl + 'api/updatepledgestatus.php', cb);
+     },
+      submitAssignment(donation, cb){
+       _makeAjax('post', {data: donation }, baseUrl + 'api/submitAssignment.php', cb);
+     },
+    assignRoute(donation, cb){
+       _makeAjax('post', {data: donation }, baseUrl + 'api/changepledgestatus.php', cb);
+     }
 }
 
 // module.exports = {
+//   signup(model, cb) {
+//      _makeAjax('post', { DATAasdasd: model }, 
+//       'api/signup.php', cb);
+//   },
 //   createPledge(model, cb) {
 //      _makeAjax('post', { DATAasdasd: model }, 
 //       'api/myphp.php', cb);
@@ -63,10 +90,6 @@ module.exports = {
 //   fetchPickupLocations(origin, dest, cb) {
 //       _makeAjax('post', { origin: origin, dest: dest }, 
 //       'api/fetchPickups.php', cb);
-//     },
-//     assignVoluteer(data, id, cb) {
-//       _makeAjax('post', { data: data, id:id }, 
-//       'api/assignVolunteer.php', cb);
 //     },
 //     login(data, cb) {
 //       _makeAjax('post', { data: data }, 
@@ -76,6 +99,9 @@ module.exports = {
 //       _makeAjax('get', { }, 'api/droplocations.php', cb);
 //     },
 //     updateDonationStatus(donation, cb){
-//        _makeAjax('post', {data: donation }, 'api/updateDonation.php', cb);
+//        _makeAjax('post', {data: donation }, 'api/changepledgestatus.php', cb);
 //     }
+ //   assignRoute(donation, cb){
+ //      _makeAjax('post', {data: donation }, 'https://www.socialpixe.com/socialpixe/react/api/changepledgestatus.php', cb);
+ //    }
 // }

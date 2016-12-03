@@ -1,12 +1,21 @@
 import React from 'react';
 import { Link } from "react-router";
+import { History } from 'history';
 import PledgeCard from './PledgeCard'
 import PledgeOverview from './PledgeOverview'
-          // <div className='col-md-4'>
-          // <img src={require("../../assets/images/pledge_kids.jpg") } width='100%'/>
-          // <img src={require("../../assets/images/donate.jpg") } width='100%'/>
-          // </div>
-var Settings = React.createClass({
+
+var Pledge = React.createClass({
+  mixins: [History],
+
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+  
+  handlePledge: function () {
+    this.context.router.push('/login');
+    return false;
+  },
+
   render: function () {
     return (
       <div key="pledge" className="reports-page">
@@ -20,7 +29,7 @@ var Settings = React.createClass({
 
       
           <div className='col-md-6'>
-            <PledgeCard />
+            <PledgeCard handlePledge={this.handlePledge}/>
           </div>
          
 
@@ -32,4 +41,4 @@ var Settings = React.createClass({
 
 });
 
-export default Settings;
+export default Pledge;

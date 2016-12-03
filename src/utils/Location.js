@@ -6,9 +6,9 @@ export function fetchAddress(lat, lng, cb) {
         'latLng': latlng
     }, function (results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
-            console.log(results)
+            //console.log(results)
             if (results[1]) {
-                console.log(results[1]);
+                //console.log(results[1]);
                 cb(null, results[1].formatted_address)
             } else {
                 cb(null, 'Some Random Address')
@@ -20,30 +20,30 @@ export function fetchAddress(lat, lng, cb) {
     });
 }
 
-export function getGeoLocationV1(cb) {
-   let geoTimeout = '5000';
-   console.log('getting locaion')
-//    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-//        console.log(navigator)
-//     return getGeoLocationMobile(cb)
+// export function getGeoLocationV1(cb) {
+//    let geoTimeout = '5000';
+//    console.log('getting locaion')
+// //    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+// //        console.log(navigator)
+// //     return getGeoLocationMobile(cb)
+// // }
+//  function error (err) {
+//    alert(err && err.message);
+//     return cb(err);
+//         }
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function (location) {
+//       cb(null, location);
+//     }, error, {
+//         enableHighAccuracy: false,
+//         timeout : geoTimeout,
+//         maximumAge: 0
+//        });
+//   } else {
+//     alert('Geolocation is not supported in your browser');
+//     return cb('not supported');
+//   }
 // }
- function error (err) {
-   alert(err && err.message);
-    return cb(err);
-        }
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (location) {
-      cb(null, location);
-    }, error, {
-        enableHighAccuracy: false,
-        timeout : geoTimeout,
-        maximumAge: 0
-       });
-  } else {
-    alert('Geolocation is not supported in your browser');
-    return cb('not supported');
-  }
-}
 
 export function getGeoLocation(cb) {
 
@@ -56,31 +56,31 @@ export function getGeoLocation(cb) {
     }
 
     function success_callback(location) {
-        console.log(location);
+        //console.log(location);
         return cb(null, location);
     }
 
     function error_callback(err) {
-        alert(err && err.message);
+        //alert(err && err.message);
         return cb(err);
     }
 }
-export function getGeoLocationv4(cb) {
+// export function getGeoLocationv4(cb) {
 
 
-    if(geo_position_js.init()){ 
-        geo_position_js.getCurrentPosition(success_callback,error_callback); } else{ 
-            alert('Geolocation is not supported in your browser');
-    return cb('not supported');}
-                function success_callback(location){
-        return cb(null, location);
-    }
+//     if(geo_position_js.init()){ 
+//         geo_position_js.getCurrentPosition(success_callback,error_callback); } else{ 
+//             alert('Geolocation is not supported in your browser');
+//     return cb('not supported');}
+//                 function success_callback(location){
+//         return cb(null, location);
+//     }
 
-    function error_callback(location){
-       alert(err && err.message);
-        return cb(err);
-    }
-}
+//     function error_callback(location){
+//        alert(err && err.message);
+//         return cb(err);
+//     }
+// }
 export function fetchCoords(address, cb) {
     var geocoder;
     geocoder = new google.maps.Geocoder();

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'database.class.php';
+include 'rest.php';
 
 $DB = new database;
 $Connect = $DB->connect_database();
@@ -33,6 +34,11 @@ if($_POST['data'])
 					}
 			else
 			{
-				echo 404;
+				
+		$protocol = (isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1');
+        header($protocol . ' ' . 412);
+		header('Content-Type: application/json');
+				echo json_encode('Username or password is incorrect.');
+		exit;
 			}
 	}

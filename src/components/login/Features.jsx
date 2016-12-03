@@ -19,114 +19,12 @@ export default class Features extends React.Component {
                 <Pitch {...props}/>
                 <JoyOfGiving {...props}/>
                 <Benefits/>
-                
-                
-    
             </div>
         )
     }
 }
+    
 
-
-function getFeatureList() {
-    return [
-        {
-            featureTitle: 'Focus on Business Logic',
-            featureDesc: 'Most of the UI components are ready so that you  can focus on the business logic.'
-        },
-        {
-            featureTitle: 'Focus on Business Logic',
-            featureDesc: 'Most of the UI components are ready so that you  can focus on the business logic.'
-        }
-    ]
-}
-function getBadgeCount(count) {
-    return <Badge badgeContent={count} primary={true}
-        badgeStyle={{ height: '30px', width: '30px', color: '#fff', fontSize: '18px', fontWeight: 100, backgroundColor: '#5677fc' }} />
-}
-function getBadgeChecked() {
-    return <Badge badgeContent={<NotificationsIcon style={{ color: '#fff' }}/>}
-        badgeStyle={{ height: '60px', width: '60px', color: '#fff', fontSize: '30px', fontWeight: 100, backgroundColor: '#74ba00' }} />
-}
-function getBadgeLoop() {
-    return <Badge badgeContent={<LoopIcon style={{ color: '#fff' }}/>}
-        badgeStyle={{ height: '60px', width: '60px', fontSize: '30px', fontWeight: 100, backgroundColor: '#0099ff' }} />
-}
-function getBadgeLaptop() {
-    return <Badge badgeContent={<LaptopIcon style={{ color: '#fff' }}/>}
-        badgeStyle={{ height: '60px', width: '60px', fontSize: '30px', fontWeight: 100, backgroundColor: '#0099ff' }} />
-}
-function getBadgeSettings() {
-    return <Badge badgeContent={<SettingsIcon style={{ color: '#fff' }}/>}
-        badgeStyle={{ height: '60px', width: '60px', fontSize: '30px', fontWeight: 100, backgroundColor: '#0099ff' }} />
-}
-function getBadgeSettingsv2() {
-    return <Badge badgeContent={<SettingsIcon style={{ color: '#fff' }}/>}
-        badgeStyle={{ height: '60px', width: '60px', fontSize: '30px', fontWeight: 100, backgroundColor: '#5677fc' }} />
-}
-function getBadgeComponents() {
-    return <Badge badgeContent={<AppsIcon style={{ color: '#fff' }}/>}
-        badgeStyle={{ height: '60px', width: '60px', fontSize: '30px', fontWeight: 100, backgroundColor: '#5677fc' }} />
-}
-
-
-class Overview extends React.Component {
-    render() {
-        return (
-            <section>
-                <div className='row feature-section bg-white-base text-center'>
-                    <div ><span className='section-header'>App Development Flow <small><small>Current State</small></small></span></div>
-                    <br/><br/>
-                    <div className='col-md-4'>
-                        {getBadgeSettings(1) }<br/><br/>
-                        <div className='card-block'>
-                            <div className='title'>Setup Framework</div>
-                            <span className='text-muted feature-desc'>
-                                Setup basic app framework using the right tools.
-                            </span>
-                        </div>
-                        
-                    </div>
-                    <div className='col-md-4'>
-                        {getBadgeLaptop(2) }<br/><br/>
-                        <div className='card-block'>
-                            <div className='title'>Build & Paint UI</div>
-                            <span className='text-muted feature-desc'>
-                                Enhance the UI layer by applying correct theme, setting typography,
-                                making the basic screen layout.
-                            </span>
-                        </div>
-                    </div>
-                    <div className='col-md-4'>
-                        {getBadgeLoop(3) }<br/><br/>
-                        <div className='card-block'>
-                            <div className='title'>Develop</div>
-                            <span className='text-muted feature-desc'>
-                                Based on business needs, continuously develop/enhance the UI.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className='row feature-section bg-white-base text-center'>
-                    <div ><span className='section-header'>App Development Flow <small><small>Intended</small></small></span></div>
-                    <br/><br/>
-                    <div className='col-md-4'>
-                        {getBadgeLoop(3) }<br/><br/>
-                        <div className='card-block'>
-                            <div className='title'>Develop Faster</div>
-                            <span className='text-muted feature-desc'>
-                                Build on top of a tested base app.
-                                Based on business needs, continously develop/enhance the UI.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        )
-    }
-
-}
 class Benefits extends React.Component {
 
 
@@ -204,7 +102,7 @@ class Pitch extends React.Component {
                         <br/><br/><br/><br/>
                         <div className='row text-left'>
                             <div className='col-xs-6'>
-                            <Signup/>
+                            <Signup {...this.props}/>
                                 
                             </div>
                             <div className='col-xs-6 '>

@@ -28,7 +28,7 @@ const MyAppForm = React.createClass({
     return (
       <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
         <MyOwnInput name="email" label='Email' validations="isEmail" validationError="This is not a valid email"/>
-        <MyOwnInput name="password" label='password'  type='password' required/>
+        <MyOwnInput name="password" label='Password'  type='password' required/>
         <div className="form-group row">
           <div className="col-sm-6 col-sm-offset-3">
             <button type="submit" className=" col-sm-6 col-sm-offset-3 btn btn-block btn-lg yellow-bg-v2 pull-right" disabled={!this.state.canSubmit}>Login</button>
@@ -66,7 +66,7 @@ const MyOwnInput = React.createClass({
       <div className="form-group row">
         <div className="col-sm-6 col-sm-offset-3">
           <input className="form-control" placeholder={this.props.label} type={this.props.type || 'text'} onChange={this.changeValue} value={this.getValue() }/>
-          <p className='help-block'>{errorMessage}</p>
+          <p className='help-block text-red-variant1'>{errorMessage}</p>
         </div>
 
 

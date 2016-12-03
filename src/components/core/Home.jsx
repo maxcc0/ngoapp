@@ -10,7 +10,11 @@ import PrimaryHeader from './PrimaryHeader';
 function renderBrandForFooter() {
     return <img src={require("../../assets/images/logo_ngo.png")} style={{marginLeft: '10px'}} className="brand-logo" /> 
 }
+import webapi from '../../actions/api';
 
+function _logout(cb) {
+
+}
 var HomePage = React.createClass({
   getInitialState: function(){
     return {
@@ -32,12 +36,29 @@ var HomePage = React.createClass({
     router: React.PropTypes.func
   },
 
+  gotohome() {
+    
+  },
+  
+  logout() {
+    console.log('logging out')
+    const self = this;
+    webapi.logout(function (err, data) {
+      if(err) {
+        return 
+      }
+      window.location.reload()
+      //self.context.router.push('/login');
+      return false;
+    })
+  },
+  
   render: function() {
     const { pathname } = this.props.location;
     
     return (
         <div className="dashboard-page ui-view">
-          <PrimaryHeader></PrimaryHeader>
+          <PrimaryHeader logout={this.logout}></PrimaryHeader>
           <div className="container-fluid"> 
             <div className="row">  
                 {React.cloneElement(<div className="main ui-view">{this.props.children}</div> || <div />, { key: pathname })}

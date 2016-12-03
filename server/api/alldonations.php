@@ -9,7 +9,7 @@ if($RESULT->num_rows > 0)
 {
     while($ROWS = $RESULT->fetch_assoc())
     {
-        $ARRAY[]  = array('donation_id'=>$ROWS['UID'], 'donor_name'=>$ROWS['name'], 'donor_address'=>$ROWS['address'], 'donor_contact'=>$ROWS['contact'], 'donor_location'=>$ROWS['geoLocation'], 'contact_alternate'=>$ROWS['contact_alternate'], 'created_by'=>$ROWS['created_by'], 'assigned_to'=>$ROWS['assigned_to'], 'assigned_on_date'=>$ROWS['assigned_on_date'], 'picked_by'=>$ROWS['picked_by'], 'closed_by'=>$ROWS['closed_by']);
+        $ARRAY[]  = array('donation_id'=>$ROWS['UID'], 'donor_name'=>$ROWS['name'], 'donor_address'=>$ROWS['address'], 'donor_contact'=>$ROWS['contact'], 'donor_location'=>$ROWS['geoLocation'], 'contact_alternate'=>$ROWS['contact_alternate'], 'created_by'=>$ROWS['created_by'], 'assigned_to'=>$ROWS['assigned_to'], 'assigned_on_date'=>$ROWS['assigned_on_date'], 'picked_by'=>$ROWS['picked_by'], 'closed_by'=>$ROWS['closed_by'], 'status'=>$ROWS['donation_status']);
     }
     echo json_encode($ARRAY);
 }

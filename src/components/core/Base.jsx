@@ -11,7 +11,9 @@ const appTheme = {
     accent4: '#dd4343' 
   } 
 }
-
+const muiTheme = getMuiTheme({
+  fontFamily: "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+});
 
 var Base = React.createClass({
   componentWillMount: function(){
@@ -25,9 +27,9 @@ var Base = React.createClass({
         var change = 'internal';
     else
         var change = pathname;
-
+        console.log(muiTheme)
   	return (
-      <MuiThemeProvider >
+      <MuiThemeProvider muiTheme={muiTheme}>
       <div className="ui-view">
         <div className="ui-base">
         	{<ReactCSSTransitionGroup component="div"

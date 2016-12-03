@@ -9,10 +9,9 @@ import Open from 'material-ui/svg-icons/av/fiber-new';
 const favoritesIcon = <FontIcon className="material-icons" >assignment_ind</FontIcon>;
 const nearbyIcon = <IconLocationOn />;
 const actionsMap = {
-    0: 'created',
-    1: 'assigned',
-    2: 'collected',
-    4: 'problem'
+  'assigned': 0,
+  'picked': 1,
+  'problem': 2
 
 }
 /**
@@ -21,43 +20,57 @@ const actionsMap = {
  * state (for instance, by the URL).
  */
 class BottomNavigationExampleSimple extends Component {
-  state = {
-    selectedIndex: 0,
-  };
 
+  constructor(props) {
+    super(props);
+    const index = actionsMap[props.donor.donation_status];
+    this.state = {selectedIndex: index};
+  }
+          // <BottomNavigationItem
+          //   label="Problem" disabled
+          //   icon={<ProblemIcon style={{margin: 'auto'}}/>}
+          //   onTouchTap={() => this.select(3)}
+          // />
   //select = (index) => this.setState({selectedIndex: index});
   select(index) {
-    this.props.updateDonationStatus(this.props.donor, actionsMap[index])  
+    const status = _.findKey(actionsMap, function(item){
+      return item === index;
+    });
+    this.props.updateDonationStatus(this.props.donor, status  );
     this.setState({selectedIndex: index});
   }
   componentWillReceiveProps(np){
-    this.setState({selectedIndex: _.findKey(np.donor, np.donor.donation_status) || null})
+    const index = actionsMap[np.donor.donation_status];
+    this.setState({selectedIndex: index})
   }
   render() {
+    console.log(this.state.selectedIndex)
     this.select = this.select.bind(this);
+    const pledge = this.props.donor;
+        //           <BottomNavigationItem
+        //     label="Open" disabled
+        //     icon={<Open style={{margin: 'auto'}}/>}
+        //     onTouchTap={() => this.select(0)}
+        //   />
+        //  <BottomNavigationItem
+        //     label="Assigned" disabled
+        //     icon={<Assignment style={{margin: 'auto'}}/>}
+        //     onTouchTap={() => this.select(1)}
+        //   />
     return (
       <div className='text-center'>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
-              <BottomNavigationItem
-            label="Open" disabled
-            icon={<Open style={{margin: 'auto'}}/>}
-            onTouchTap={() => this.select(0)}
+        <BottomNavigationItem disabled
+             label="Assigned"
+             icon={<Assignment style={{margin: 'auto'}}/>}
+             onTouchTap={() => this.select(0)}
           />
-         <BottomNavigationItem
-            label="Assigned" disabled
-            icon={<Assignment style={{margin: 'auto'}}/>}
+          <BottomNavigationItem
+            label="Picked"
+            icon={<DoneIcon style={{margin: 'auto'}}/>}
             onTouchTap={() => this.select(1)}
           />
-          <BottomNavigationItem
-            label="Picked" disabled
-            icon={<DoneIcon style={{margin: 'auto'}}/>}
-            onTouchTap={() => this.select(2)}
-          />
-          <BottomNavigationItem
-            label="Problem" disabled
-            icon={<ProblemIcon style={{margin: 'auto'}}/>}
-            onTouchTap={() => this.select(3)}
-          />
+
         </BottomNavigation>
       </div>
     );

@@ -6,6 +6,7 @@ import PlaceIcon from 'material-ui/svg-icons/maps/place';
 import IconButton from 'material-ui/IconButton';
 import {fetchAddress, getGeoLocation, fetchCoords} from '../../utils/Location';
 import webapi from '../../actions/api';
+import GeoSuggestAddress from '../shared/form-fields/GeoSuggest';
 
 function _savePledge(data, cb) {
   webapi.createPledge(data, cb);
@@ -21,11 +22,11 @@ const MyAppForm = React.createClass({
       address: '',
       geoLocationError: null,
       donation_options: [
-        {key: 'toys', value: 'Toys'},
-        {key: 'clothes', value: 'Clothes'},
-        {key: 'bns', value: 'Books & Stationery'},
-         {key: 'fooditems', value: 'Food Items'},
-            {key: 'meds', value: 'Unexpired Medicines'}
+        { key: 'toys', value: 'Toys' },
+        { key: 'clothes', value: 'Clothes' },
+        { key: 'bns', value: 'Books & Stationery' },
+        { key: 'fooditems', value: 'Food Items' },
+        { key: 'meds', value: 'Unexpired Medicines' }
       ]
     }
   },
@@ -43,19 +44,12 @@ const MyAppForm = React.createClass({
   handleFetchCoords(err, data) {
     console.log(data);
   },
-  handleSavePledgeResponse(err, data){
-    if(err) {
-      alert('Something went wrong. Could not submit request.')
-    }
-    alert('Request Submitted. Thanks for your contribution.')
-  },
-  
+
   submit(model) {
-    console.log(model)
-    console.log('submitting form')
     const self = this;
-      model.geoLocation =self.state.geoLocation;
-      _savePledge(model, self.handleSavePledgeResponse)
+    model.geoLocation = self.state.geoLocation;
+    model.donation_type = JSON.stringify(model.donation_type);
+    _savePledge(model, self.props.handleSavePledgeResponse)
     // fetchCoords(model.address, function (err, data) {
     //   if (err || _.isEmpty(data)) {
     //     return self.setState({ geoLocationError: 'We could not locate your address. Please try changinga few keywords address.' })
@@ -63,8 +57,7 @@ const MyAppForm = React.createClass({
     //   if (data[0].formatted_address.toLowercase() != model.address.toLowercase()) {
     //     return self.setState({ geoLocationError: 'We could not locate your address. Please try changinga few keywords address.' })
     //   }
-    //   model.geoLocation =self.state.geoLocation;
-    //   _savePledge(model, self.handleSavePledgeResponse)
+    //   console.log(data);
     // })
 
   },
@@ -73,7 +66,7 @@ const MyAppForm = React.createClass({
       this.setState({ geoLocationError: 'Could not fetch your location from geo services. Please add your address.' })
       return
     }
-//alert(address);
+    //alert(address);
     this.setState({ address: address });
   },
   handleGeoLocation(err, data) {
@@ -81,6 +74,7 @@ const MyAppForm = React.createClass({
       this.setState({ geoLocationError: err.message || 'Something went wrong while fetching your location.' })
       return
     }
+    console.log(data);
     this.setState({ geoLocation: data });
     //alert(data.coords.latitude + ' ' + data.coords.longitude);
     fetchAddress(data.coords.latitude, data.coords.longitude, this.handleAddress)
@@ -89,17 +83,47 @@ const MyAppForm = React.createClass({
   getMyGeoLocation() {
     getGeoLocation(this.handleGeoLocation)
   },
-
+ 
+  setGeoLocation(location) {
+    const geoLocation = {coords: {}};
+    geoLocation.coords.latitude = location.location.lat;
+    geoLocation.coords.longitude = location.location.lng;
+    this.setState({ geoLocation: geoLocation });
+  },
+  handleChange(value) {
+    console.log(value);
+  },
+ // <Address required name="address" getMyGeoLocation={this.getMyGeoLocation} error={this.state.geoLocationError} placeholder='Please hit the icon for fetching address' value={this.state.address} label='Address' required/>
   render() {
     return (
       <Formsy.Form onValidSubmit= { this.submit } onValid= { this.enableButton } onInvalid= { this.disableButton } >
         <MyOwnInput name="name" label='Name' required/>
-
-        <Address required name="address" getMyGeoLocation={this.getMyGeoLocation} error={this.state.geoLocationError} placeholder='Please hit the icon for fetching address' value={this.state.address} label='Address' required/>
+        <GeoSuggestAddress required name="address" 
+        setGeoLocation={this.setGeoLocation} 
+        getMyGeoLocation={this.getMyGeoLocation} 
+        error={this.state.geoLocationError} 
+        placeholder='Start typing the address' 
+        value={this.state.address}
+        label='Address'/>
         <MyOwnInput name="email" label='Email'  validations="isEmail" validationError="This is not a valid email"/>
-        <MyOwnInput name="contact" label='Contact#'   required/>
-        <MyOwnInput name="contact_alternate" label='Alternate Contact#'/>
-        <Select required name='donation_type' options={this.state.donation_options} value={this.state.donation_options[0].value} label='Donate'/>
+        <MyOwnInput maxLength='10' name="contact" validations={{
+          isNumeric: true,
+          isLength: 10
+        }} validationErrors={{
+          isNumeric: 'Please enter a valid number',
+          isLength: ''
+        }}        label='Contact#'   required/>
+        <MyOwnInput name="contact_alternate"
+          validations={{
+            isNumeric: true,
+            isLength: 10
+          }}
+          validationErrors={{
+            isNumeric: 'Please enter a valid number',
+            isLength: ''
+          }}
+          maxLength='10' label='Alternate Contact#'/>
+        <Select  handleChange={this.handleChange} required name='donation_type' options={this.state.donation_options} value={this.state.donation_options[0].value} label='Donate'/>
         <div className="form-group row text-left">
           <div className='col-sm-2 '>
           </div>
@@ -142,7 +166,7 @@ const MyOwnInput = React.createClass({
         <label for="inputEmail3" className="col-sm-2 col-form-label">{this.props.label}</label>
         <div className="col-sm-10">
 
-          <input className="col-sm-2 form-control"  placeholder={this.props.placeholder || null} type="text" onChange={this.changeValue} value={this.getValue() }/>
+          <input maxLength={this.props.maxLength || null} className="col-sm-2 form-control"  placeholder={this.props.placeholder || null} type="text" onChange={this.changeValue} value={this.getValue() }/>
         </div>
         <div className="col-xs-12 col-sm-offset-2">
           <p className='text-red-variant1'>{errorMessage}</p>
@@ -180,15 +204,15 @@ const Address = React.createClass({
       <div className="form-group row">
         <label for="inputEmail3" className="col-sm-2 col-form-label">{this.props.label}</label>
         <div className="col-sm-10">
-        <div className='row'>
-          <div className='col-xs-10'>
-            <input className="form-control"   placeholder={this.props.placeholder || null} type="text" onChange={this.changeValue} value={this.getValue() }/>
-          </div>
-          <div className='col-xs-2'>
-            <IconButton style={{height: '34px', padding: '0'}} tooltipPosition="top-center" tooltip="Fetch My Location" onClick={this.props.getMyGeoLocation}>
-              <PlaceIcon style={{ verticalAlign: 'bottom' }} color={'#ff7e82'}/>
-            </IconButton>
-          </div></div>
+          <div className='row'>
+            <div className='col-xs-10'>
+              <input className="form-control"   placeholder={this.props.placeholder || null} type="text" onChange={this.changeValue} value={this.getValue() }/>
+            </div>
+            <div className='col-xs-2'>
+              <IconButton style={{ height: '34px', padding: '0' }} tooltipPosition="top-center" tooltip="Fetch My Location" onClick={this.props.getMyGeoLocation}>
+                <PlaceIcon style={{ verticalAlign: 'bottom' }} color={'#ff7e82'}/>
+              </IconButton>
+            </div></div>
 
 
 
@@ -203,42 +227,47 @@ const Address = React.createClass({
   }
 });
 const Select = React.createClass({
-    mixins: [Formsy.Mixin],
+  mixins: [Formsy.Mixin],
 
-    changeValue(event) {
-        this.setValue(event.currentTarget.value);
-    },
-    // componentWillReceiveProps(np) {
-    //     const v = np.options && np.options[0].address;
-    //     this.setValue(v)
-    // },
-    render() {
-        const className = 'form-group' + (this.props.className || ' ') +
-            (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
-        const errorMessage = this.getErrorMessage();
-        const helpMessage = this.props.helpMessage || null;
+  changeValue(event) {
+      var options = event.target.options;
+  var value = [];
+  for (var i = 0, l = options.length; i < l; i++) {
+    if (options[i].selected) {
+      value.push(options[i].value);
+    }
+  }
+    this.setValue(value);
+  },
 
-        const options = this.props.options.map((option, i) => (
-            <option key={option.key + option.value} value={option.value}>
-                {option.value}
-            </option>
-        ));
+  render() {
+    const className = 'form-group' + (this.props.className || ' ') +
+      (this.showRequired() ? 'required' : this.showError() ? 'error' : '');
+    const errorMessage = this.getErrorMessage();
+    const helpMessage = this.props.helpMessage || null;
 
-        return (
-                <div className="form-group row">
+    const options = this.props.options.map((option, i) => (
+      <option key={option.key + option.value} value={option.value}>
+        {option.value}
+      </option>
+    ));
+
+    return (
+      <div className="form-group row">
         <label for="inputEmail3" className="col-sm-2 col-form-label">{this.props.label}</label>
         <div className="col-sm-10">
 
-         <select className='form-control' name={this.props.name} onChange={this.changeValue} value={this.getValue() }>
-                    {options}
-                </select></div>
+          <select multiple className='form-control' name={this.props.name} onChange={this.changeValue} value={this.getValue()}>
+            {options}
+          </select>
+          
+        </div>
         <div className="col-xs-12 col-sm-offset-2">
-        <span className='help-block text-muted'>{helpMessage}</span>
+          <span className='help-block text-muted'>{helpMessage}</span>
           <p className='text-red-variant1'>{errorMessage}</p>
         </div></div>
-        );
-    }
-
+    );
+  }
 });
 
 export default MyAppForm;

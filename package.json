@@ -1,14 +1,12 @@
 {
   "name": "ngoapp",
   "description": "",
-  "author": "Jiten Poddar",
+  "author": "JP",
   "private": true,
   "version": "0.1.0",
   "license": "MIT",
   "main": "static",
   "scripts": {
-    "open": "gulp open",
-    "gulp": "gulp",
     "start": "webpack-dev-server --content-base dist/ --config webpack.dev.config.js --watch --progress --inline --hot",
     "build": "webpack --config webpack.dev.config.js"
   },
@@ -69,5 +67,7 @@
     "react-tap-event-plugin": "^1.0.0"
   },
   "dependencies": {
+    "react-addons-shallow-compare": "^15.4.1",
+    "react-geosuggest": "^2.0.0"
   }
 }

@@ -10,7 +10,7 @@ var transitionTo = Router.transitionTo;
 
 
 function trigger() {
-    return <button type="submit" block className="btn btn-block btn-outline btn-white btn-default btn-lg">Login</button>
+    return <button type="submit" className="btn btn-block btn-outline btn-white btn-default btn-lg">Login</button>
 }
 
 function renderBrand() {
@@ -26,27 +26,24 @@ function _login(model, cb) {
     webApi.login(model, cb);
 }
 
-var Modals = React.createClass({
+var LoginDialog = React.createClass({
     getInitialState() {
         return {
+            loginID: '',
             loginError: ''
         }
     },
 
     handleLogin(model) {
+        global.username = model.email;
         _login(model, this.handleResponse)
     },
 
     handleResponse(err, data) {
-        if(err || data === 404) {
+        if(err) {
            return this.setState({loginError: 'Failed to login. ' + err})
         }
-        console.log('logged in');
-        console.log(data)
-
-$('#checkSession').text(data); 
-
-        
+        $('#checkSession').text(data); 
         this.refs.login.handleClose();
         this.props.handleLogin();  
     },
@@ -68,4 +65,4 @@ $('#checkSession').text(data);
 
 });
 
-export default Modals;
+export default LoginDialog;

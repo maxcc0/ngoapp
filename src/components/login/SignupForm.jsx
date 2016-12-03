@@ -1,10 +1,12 @@
 import React from 'react';
  import Formsy from 'formsy-react';
  import $ from 'jQuery';
+
  
   const MyAppForm = React.createClass({
     getInitialState() {
       return {
+        signupError: null,
         canSubmit: false
       }
     },
@@ -20,15 +22,7 @@ import React from 'react';
     },
     
     submit(model) {
-          $.ajax({
-
-      type: 'post',
-      data: { DATAasdasd: model },
-      url: 'https://www.socialpixe.com/socialpixe/react/signup.php',
-      success: function (response) {
-        alert(response);
-      }
-    })
+      this.props.handleConfirm(model);
     },
 
     render() {
@@ -36,13 +30,23 @@ import React from 'react';
         <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
           <MyOwnInput name="name" label='Name' required/>
             <MyOwnInput name="email" label='Email'  validations="isEmail" validationError="This is not a valid email"/>
-             <MyOwnInput name="contact" label='Contact#'   required/>
+             <MyOwnInput maxLength='10' name="contact" label='Contact#' 
+             
+             validations={{
+            isNumeric: true,
+            isLength: 10
+          }}
+          validationErrors={{
+            isNumeric: 'Please enter a valid number',
+            isLength: ''
+          }}
+           required/>
              <MyOwnInput name="password" label='password'  type='password' required/>
              <div className="form-group row">
           <div className="col-sm-6 col-sm-offset-3">
           <button type="submit" className=" col-sm-6 col-sm-offset-3 btn btn-block btn-lg yellow-bg-v2 pull-right" disabled={!this.state.canSubmit}>Signup</button>
           </div></div>
-          
+            
         </Formsy.Form>
       );
     }
@@ -74,7 +78,7 @@ import React from 'react';
       return (
         <div className="form-group row">
           <div className="col-sm-6 col-sm-offset-3">
-            <input className="form-control" placeholder={this.props.label} type={this.props.type || 'text'} onChange={this.changeValue} value={this.getValue()}/>
+            <input className="form-control" maxLength={this.props.maxLength || null} placeholder={this.props.label} type={this.props.type || 'text'} onChange={this.changeValue} value={this.getValue()}/>
             <p className='help-block text-red-variant1'>{errorMessage}</p>
           </div>
           

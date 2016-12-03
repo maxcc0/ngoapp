@@ -64,6 +64,17 @@
     background-color: #095695;
     border-color: #095695;
 }
+.card-success-special-brand {
+	background-image: linear-gradient(-135deg, #86D600 0%, #74BA00 100%);
+	background-color: #74BA00;
+	.title {
+		color: #fff!important;
+	}
+	.card-text {
+		color: rgba(255,255,255,.65);;
+		
+	} 
+}
 .card-brown-dm {
     background-color: #943634;
     border-color: #943634;
@@ -178,8 +189,38 @@
 		
 	} 
 }
-.toastr-notification {
-    top: 58px;
-    bottom: inherit!important;
-    transform: translate(50px, 20px);
+// .toastr-notification {
+//     top: 58px;
+//     bottom: inherit!important;
+//     transform: translate(50px, 20px);
+// }
+
+.fui-panel{
+    .fui-panel-primary& {
+        .fui-panel-header {
+            background-color: @brand-primary-color!important;
+        }
+    }
+    .fui-panel-info&{
+        .fui-panel-header {
+            background-color: @brand-info-color!important;
+        }
+    }
+    .fui-panel-success&{
+        .fui-panel-header {
+            background-color: @brand-success-color!important;
+            background-image: linear-gradient(-135deg, #86D600 0%, #74BA00 100%);
+        }
+    }
+    .fui-panel-warning&{
+        .fui-panel-header {
+            background-color: @brand-warning-color!important;
+        }
+    }
+
+    .fui-panel-danger&{
+        .fui-panel-header {
+            background-color: @brand-error-color!important;
+        }
+    }
 }

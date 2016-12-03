@@ -24,10 +24,10 @@ var Modals = React.createClass({
     },
 
     render: function () {
-        const message = <h4 className='text-muted font-thin no-borders'>The addresses shown in the list will be assigned to you for pickup.</h4>
+        const message = <div className='text-center'>The addresses shown in the list will be assigned to you for pickup.</div>
         return (
             <Dialog trigger={trigger} ref='routeConfirmDialog'
-                autoScrollBodyContent={true}
+                
                 handleConfirm={this.handleConfirm}
                 handleCancel={this.handleCancel}
                 title={getTitle()}
