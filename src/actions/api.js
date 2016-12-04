@@ -34,8 +34,8 @@ function _makeAjax(type, data, url, cb) {
   })
 }
 
-const baseUrl = 'https://www.socialpixe.com/socialpixe/react/';
-
+//const baseUrl = 'https://www.socialpixe.com/socialpixe/react/';
+const baseUrl = '';
 module.exports = {
     signup(model, cb) {
      _makeAjax('post', { DATAasdasd: model }, 
