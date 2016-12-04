@@ -8,7 +8,7 @@ import { History } from 'history';
 import HamburgerMenu from 'material-ui/svg-icons/navigation/menu';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { Link } from "react-router";
-
+import auth from '../../utils/auth';
 var Menu = React.createClass({
   getInitialState() {
     return {
@@ -27,11 +27,18 @@ var Menu = React.createClass({
     return false;
   },
   
+  getDashboard() {
+    if(auth.loggedIn()) {
+      return <MenuItem primaryText="Dashboard" onTouchTap={this.gotodashboard}/>
+    }
+    return false
+  },
+
   render() {
     return (
         <IconButton  style={{padding: 0, marginLeft:'1rem'}} onClick={this.handleToggle}>
                    <IconMenu iconButtonElement={<HamburgerMenu className='app-header-menu-icon'/>}>
-            <MenuItem primaryText="Dashboard" onTouchTap={this.gotodashboard}/>
+                   {this.getDashboard()}
             <MenuItem primaryText="Events" href='http://domutthi.org/events.html' target='_blank'/>
             <MenuItem primaryText="Picture Gallery" href='http://domutthi.org/index.html' target='_blank' />
             <MenuItem primaryText="About Us" href='http://domutthi.org/about-us.html' target='_blank'/>

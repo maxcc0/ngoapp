@@ -3,14 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Route, DefaultRoute, RouteHandler } from "react-router";
-const appTheme = {
-  palette: {
-    accent1: '#36a372',
-    accent2: '#74ba00',
-    accent3: '#1a3b7a',
-    accent4: '#dd4343' 
-  } 
-}
+
 const muiTheme = getMuiTheme({
   fontFamily: "Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
 });
@@ -27,7 +20,7 @@ var Base = React.createClass({
         var change = 'internal';
     else
         var change = pathname;
-        console.log(muiTheme)
+
   	return (
       <MuiThemeProvider muiTheme={muiTheme}>
       <div className="ui-view">

@@ -51,7 +51,15 @@ module.exports = {
        { from: './lib/geo-min.js', to: 'geo-min.js' },
        { from: './lib/geolocator.min.js', to: 'geolocator.min.js' },
        { from: './server' }
-    ])
+    ]),
+    new webpack.DefinePlugin({'process.env.NODE_ENV': '"production"'}),
+    new webpack.optimize.DedupePlugin(),
+     new webpack.optimize.UglifyJsPlugin({
+        compressor: {screw_ie8: true, keep_fnames: true, warnings: false},
+        mangle: {screw_ie8: true, keep_fnames: true}
+      }),
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.optimize.AggressiveMergingPlugin(),
   ],
   resolve: {
     extensions: ['', '.js', '.jsx', '.less', '.css'],

@@ -30,6 +30,18 @@ if(auth.loggedIn()) {
 return null
 }
 
+function _getDashboardIcon() {
+if(auth.loggedIn()) {
+  return (
+    <IconMenu iconButtonElement={<IconButton iconStyle={styles.smallIcon} className='text-white-base'>
+          <NavigationExpandMoreIcon className='text-white-base'/></IconButton>}>
+            <MenuItem onTouchTap={this.props.logout} primaryText="Logout" />
+          </IconMenu>
+  )
+}
+return null
+}
+
 const styles = {
   smallIcon: {
     width: 36,
