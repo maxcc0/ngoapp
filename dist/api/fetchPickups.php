@@ -1,16 +1,16 @@
 <?php
 
-function calculate_distance($lat1, $lon1, $lat2, $lon2, $unit='N') 
-{ 
-  $theta = $lon1 - $lon2; 
-  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta)); 
-  $dist = acos($dist); 
-  $dist = rad2deg($dist); 
+function calculate_distance($lat1, $lon1, $lat2, $lon2, $unit='N')
+{
+  $theta = $lon1 - $lon2;
+  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+  $dist = acos($dist);
+  $dist = rad2deg($dist);
   $miles = $dist * 60 * 1.1515;
   $unit = strtoupper($unit);
 
   if ($unit == "K") {
-    return ($miles * 1.609344); 
+    return ($miles * 1.609344);
   } else if ($unit == "N") {
       return ($miles * 0.8684);
     } else {
@@ -23,11 +23,11 @@ $DB = new database;
 $Connect = $DB->connect_database();
  foreach($_POST['origin'] as $KEY=>$VALUE)
 {
-   
-    
+
+
        foreach($VALUE as $LAT=>$LONG)
        {
-             
+
            if($LAT == 'latitude')
            {
                $LATS = $LONG;
@@ -37,12 +37,25 @@ $Connect = $DB->connect_database();
                $LOTS = $LONG;
            }
        }
-    
+
       $VALUESSS .= $LATS.", ".$LOTS." | ";
-       
-    
-     
+
+
+
 }
+foreach($_POST['dest'] as $KEY2=>$VALSS)
+{
+
+
+if($KEY2 == 'geolocation')
+{
+  $DESTINATIONS =  $VALSS;
+}
+
+
+
+}
+
 $EXPO = explode(' | ',$VALUESSS);
 $NEW = explode(', ',$EXPO[0]);
 $ARRAY = array();
@@ -59,13 +72,15 @@ if($RESULT1->num_rows > 0)
         $ASSIGNEDONDATE = $ROW['assigned_on_date'];
         $UID = $ROW['UID'];
 
-        if( $PLEDGESTATUS === 'assigned' && $ASSIGNEDONDATE !== NULL && 
+        if( $PLEDGESTATUS === 'assigned' && $ASSIGNEDONDATE !== NULL &&
         strtotime("now") > strtotime("+4 hours", strtotime($ASSIGNEDONDATE))){
             $UPDATE = "UPDATE ngo_pledge_table SET assigned_to = NULL, donation_status = 'created', assigned_on_date=NULL where UID = '".$UID."'";
-              $Connect->query($UPDATE); 
-            }    
+              $Connect->query($UPDATE);
+            }
     };
 }
+$DESTI  = explode(',',$DESTINATIONS);
+$OR_DESTI = calculate_distance($NEW[0],$NEW[1],$DESTI[0],$DESTI[1],'K');
 
 $RESULT = $Connect->query($SELECT);
 $ARRAY = array();
@@ -73,17 +88,18 @@ if($RESULT->num_rows > 0)
 {
     while($ROW = $RESULT->fetch_assoc())
     {
-            
+
         if ($ROW['donation_status'] === 'created' || ($ROW['donation_status'] ==='assigned' && $ROW['assigned_to'] === $_SESSION['USER_ACTIVE'])
         || ($ROW['donation_status'] === 'picked' && $ROW['picked_by'] === $_SESSION['USER_ACTIVE'])){
 
            $LATS = explode(', ',$ROW['geoLocation']);
-        if(calculate_distance($NEW[0],$NEW[1],$LATS[0],$LATS[1],'K') <= '1')
+        if(calculate_distance($NEW[0],$NEW[1],$LATS[0],$LATS[1],'K') <= '20')
         {
+
            $ARRAY[]  = array('donation_id'=>$ROW['UID'], 'donor_name'=>$ROW['name'], 'donor_address'=>$ROW['address'], 'donor_contact'=>$ROW['contact'], 'donation_status'=>$ROW['donation_status'], 'donation_type'=>$ROW['donation_type'], 'donor_location'=>$ROW['geoLocation']);
-        }  
         }
-                
+        }
+
     }
     echo json_encode($ARRAY)    ;
 }
