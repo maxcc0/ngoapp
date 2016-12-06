@@ -5,10 +5,18 @@ The out reach of this organization depends on enhancing its digital presence as 
 ### TechStack
 The app uses ReactJS for UI, PHP based backend server and mySql DB.
 
+### Prerequisites
+```
+php capable hosting environment
+mySql DB
+SSL certificate installed (needed of google apis)
+```
+
 ### Installation
 ```
 download zip
 create mysql DB with the scripts present in migrations folder
+update DB connection string in dist/api/database.class.php
 deployment is present in dist folder, copy the contents and 
 put it on the server
 ```
