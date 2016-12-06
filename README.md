@@ -34,9 +34,9 @@ npm start <This will start a local webpack dev server at http://localhost:8080/>
 
 #### Build Src
 Distribution package is sourced into /dist folder after running the command. Please
-that there are 2 index files there:<br />
-index.html is required for local development<br />
-index.php is required for the production php server <br />
+note that there are 2 index files there:<br />
+*index.html* is required for local development<br />
+*index.php* is required for the production php server <br />
 
 ```
 npm run build <This is build the JS scr and put distirbution ready content in /dist folder>
