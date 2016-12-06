@@ -23,7 +23,7 @@ put it on the server
 
 ### Develop
 You'd need a nodejs based development environment and a more-than-basic 
-understanding of node js, npm
+understanding of node js, npm, ReactJS, PHP and mySql
 
 ```
 install nodejs
