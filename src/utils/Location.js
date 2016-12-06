@@ -47,7 +47,6 @@ export function fetchAddress(lat, lng, cb) {
 
 export function getGeoLocation(cb) {
 
-    console.log('getting location for mobile')
     if (geoPosition.init()) {  // Geolocation Initialisation
         geoPosition.getCurrentPosition(success_callback, error_callback, {enableHighAccuracy:true});
     } else {

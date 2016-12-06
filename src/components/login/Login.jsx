@@ -70,7 +70,7 @@ var LoginPage = React.createClass({
               
              <div className='page-footer  text-right font-light'>
 
-                    Copyright. Do Mutthi Ka Dum. All rights reserverd. 
+                    Copyright. Do Mutthi Ka Dum. All rights reserved. 
         
              </div>
           </div>

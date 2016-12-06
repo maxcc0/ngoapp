@@ -12,7 +12,7 @@ import Menu from './Menu';
 
 const BrandLogo = () => (
   <div style={{ 'lineHeight': 50 + 'px', marginLeft: '10px' }}>
-  <a  href='#/login'>
+  <a  href='#/'>
       <img src={require("../../assets/images/logo_ngo.png") }  className="brand-logo"/></a>
     </div>
 );
@@ -67,7 +67,7 @@ export default class PrimaryHeader extends React.Component {
       <Toolbar className='app-header'>
         <ToolbarGroup firstChild={true}>
           <Menu/>
-          <IconButton href= '#/login' style={{padding: '6px'} } iconStyle={styles.smallIcon}>
+          <IconButton href= '#/' style={{padding: '6px'} } iconStyle={styles.smallIcon}>
             <ActionHome color='#666'
       hoverColor={'#ff5a5f'}/>
           </IconButton>

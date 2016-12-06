@@ -7,7 +7,7 @@ import { browserHistory } from 'react-router'
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 import { createHashHistory, useBasename } from 'history';
-import { Router, useRouterHistory  } from 'react-router';
+import { Router, useRouterHistory, Redirect  } from 'react-router';
 import "./assets/styles/app.less";
 import NProgress from 'nProgress';
 
@@ -21,11 +21,17 @@ import auth from './utils/auth';
 
 
 NProgress.configure({ showSpinner: false });
+
+function redirectHome(nextState, replace) {
+   replace('/');
+}
+
 function requireAuth(nextState, replace) {
   if (!auth.loggedIn()) {
-   replace('/login');
+   redirectHome(nextState, replace)
   }
 }
+
 //  const history = useBasename(createHashHistory)({
 //     queryKey: false
 //  })
@@ -35,7 +41,7 @@ const history = useRouterHistory(createHashHistory)({ queryKey: false });
 const rootRoute = {
   path: '/',
   component: Base,
-  indexRoute: { component: Home },
+  indexRoute: { component: Login },
   childRoutes: [
     {
       component: Home,
@@ -51,15 +57,14 @@ const rootRoute = {
         },
          {
           path: 'dashboard',
-          component: Dashboard
+          component: Dashboard,
+          onEnter: requireAuth
         }
       ]
     },
     {
-      path: '/login',
-      component: Login,
-      childRoutes: [
-      ]
+      path: 'login',
+      onEnter: redirectHome
     }
   ]
 }

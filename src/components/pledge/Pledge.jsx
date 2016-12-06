@@ -12,14 +12,13 @@ var Pledge = React.createClass({
   },
   
   handlePledge: function () {
-    this.context.router.push('/login');
+    this.context.router.push('/');
     return false;
   },
 
   render: function () {
     return (
       <div key="pledge" className="reports-page">
-
         <div className='row pledge-logo-section'>
          <div className='col-md-3 text-center'>
             <div>

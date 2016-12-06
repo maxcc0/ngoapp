@@ -48,8 +48,8 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './src/index.php', to: 'index.php' },
        { from: './lib/geoPosition.js', to: 'geoPosition.js' },
-       { from: './lib/geo-min.js', to: 'geo-min.js' },
-       { from: './lib/geolocator.min.js', to: 'geolocator.min.js' },
+     //  { from: './lib/geo-min.js', to: 'geo-min.js' },
+      // { from: './lib/geolocator.min.js', to: 'geolocator.min.js' },
        { from: './server' }
     ]),
     new webpack.DefinePlugin({'process.env.NODE_ENV': '"production"'}),

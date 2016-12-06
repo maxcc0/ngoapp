@@ -9,11 +9,6 @@ var Dashboard = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
-  
-  handlePledge: function () {
-    this.context.router.push('/login');
-    return false;
-  },
 
   render: function () {
     return (

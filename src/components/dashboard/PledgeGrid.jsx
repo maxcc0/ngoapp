@@ -130,11 +130,3 @@ import Open from 'material-ui/svg-icons/av/fiber-new';
      return jsx;
    }
  });
-
-import LinearProgress from 'material-ui/LinearProgress';
- //Custom Formatter component
- const DeliveryProgressFormatter = React.createClass({
-   render:function(){  
-     return <LinearProgress mode="determinate" value={this.props.value} />;
-   }
- });

@@ -204,7 +204,7 @@ var PickupPageLayout = React.createClass({
     //update donation object in this.state.data
   },
 onRequestClose() {
-this.context.router.push('/login');
+this.context.router.push('/');
     return false;
 },
   submitAssignment() {
