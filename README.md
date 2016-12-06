@@ -22,15 +22,22 @@ put it on the server
 ```
 
 ### Develop
+You'd need a nodejs based development environment and a more-than-basic 
+understanding of node js, npm
+
 ```
-You'd need a nodejs based development environment
 install nodejs
-run git clone https://github.com/maxcc0/fabric-ui.git
-npm i <This will install all the dependencies>
-npm start <This will start the app at http://localhost:8080/>
+run git clone https://github.com/maxcc0/ngoapp.git
+npm i <This will install all the required dependencies>
+npm start <This will start a local webpack dev server at http://localhost:8080/>
 ```
 
 #### Build Src
+Distribution package is sourced into /dist folder after running the command. Please
+that there are 2 index files there:<br />
+index.html is required for local development<br />
+index.php is required for the production php server <br />
+
 ```
-npm run build <This is build the JS scr and put content in dist folder>
+npm run build <This is build the JS scr and put distirbution ready content in /dist folder>
 ```
